@@ -1,12 +1,21 @@
 import React,{useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Formik, Form, Field , ErrorMessage } from 'formik';
+import { helpHttp } from '../helpers/helpHttp';
+
+
+let token = localStorage.getItem('token')
+let http = helpHttp()
 
 const RegisterForm = () => {
   let [sendForm,setSendForm] = useState(false)
+  let [error, setError] = useState(null)
   return (
     <>
-      <h1>Sing in into your count</h1>
+      <div className='d-flex flex-column ms-20 text-center'>
+        <h1>Create user</h1>
+        <img src='/images/Group33.png' alt="" />
+      </div>
       <Formik 
       initialValues={
         {
@@ -66,14 +75,30 @@ const RegisterForm = () => {
           body: JSON.stringify(values)
         })
         */
-        setSendForm(true)
-        setTimeout(()=>{
-          setSendForm(false)
-        },3000)
+        
+        
+        http.post('users/auth/register',{
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: values
+        }).then(res => {
+          if(res.errors) setError(res.errors)
+          console.log(res)
+        }).catch(err => {
+          console.log(err)
+        })
+      
+          setSendForm(true)
+          setError(null)
+          setTimeout(()=>{
+            setSendForm(false)
+            setError(false)
+          },2000)
       }}>
 
         { ( {errors,touched} ) =>(
-          <Form className='d-lg-flex flex-lg-column justify-content-lg-center align-items-lg-center border w-50 fw-bold mt-20'>
+          <Form className='d-lg-flex flex-lg-column justify-content-lg-center align-items-lg-center w-50 fw-bold'>
             <div className="mb-3 w-50">
               <label htmlFor="firstName" className="form-label">
                 First Name
@@ -112,6 +137,7 @@ const RegisterForm = () => {
              <ErrorMessage name='email' component={()=>{
                 return (<div className='alert alert-danger' role='alert'>{errors.email}</div>)
               }}/>
+              {error && <div className='alert alert-danger' role='alert'>{error}</div>}
             </div>
             <div className="mb-3 w-50">
               <label htmlFor="exampleInputPassword1" className="form-label">
@@ -127,22 +153,12 @@ const RegisterForm = () => {
                 return (<div className='alert alert-danger' role='alert'>{errors.password}</div>)
               }}/>
             </div>
-            <div className="mb-3 w-60 form-check">
-              <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-              <label className="form-check-label" htmlFor="exampleCheck1">
-                Remember me
-              </label>
-              <a href="/" className="form-check-label ms-5">
-                Forgot your password?
-              </a>
-            </div>
-            <button type="submit" className="btn btn-primary w-50 fw-bold">
-              Submit
+            <button type="submit" className="btn btn-primary w-50 fw-bold" style={{backgroundColor: '#FF0000'}}>
+              Create
             </button>
-            {sendForm && <div className='alert alert-success' role='alert'>Register Success</div> }
+            {error ? <div>Error unsuccess</div> : sendForm && <div className='alert alert-success' role='alert'>Register Success</div> }
           </Form>
         )}
-        
       </Formik>
      
     </>
