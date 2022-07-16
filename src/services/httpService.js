@@ -1,15 +1,19 @@
+// prettier-ignore
 const headers = {
   "Accept": "application/json",
   "Content-type": "application/json",
+  "Access-Control-Allow-Origin": "*"
 };
 
 function joinURL(baseUrl, url) {
   return `${baseUrl}/${url}`;
 }
 
+let API_URL = process.env.REACT_APP_API_URL;
+
 class httpService {
   constructor() {
-    this.domain = "http://localhost:3001";
+    this.domain = API_URL;
   }
   request(url, method = "POST", data = null) {
     url = joinURL(this.domain, url);
@@ -22,7 +26,7 @@ class httpService {
     }
     let jwtoken = localStorage.getItem("token");
     if (jwtoken) {
-      options.headers = { ...options.headers, "Authorization": `Bearer ${jwtoken}` };
+      options.headers = { ...options.headers, Authorization: `Bearer ${jwtoken}` };
     }
     return fetch(url, options);
   }
