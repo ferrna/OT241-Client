@@ -1,6 +1,6 @@
 import React from 'react'
 import { useFormik } from 'formik';
-import img2 from '../../images/loginimg.jpg'
+import img2 from '../images/loginimg.jpg'
 import * as yup from 'yup'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
