@@ -1,5 +1,17 @@
 import Swal from 'sweetalert2'
 
+/*
+COMO USAR
+Importar las funciones en el componente o page donde quieran usarlas
+> Import {ConfirmAlert, ErrorAlert, InfoAlert} from './Components/Alerts'
+
+Llamar la funcion donde sea necesario, pueden pasarles parametros con un objeto. Por ejemplo:
+<button onClick={() => ConfirmAlert({text: 'texto para la alerta'})}>BORRAR</button>
+
+Con las propiedades onConfirm y onCancel pueden pasarles funciones para ejecutar segun apreten cancelar o confirmar
+<button onClick={() => ConfirmAlert({onConfirm: suFuncion()})}>BORRAR</button>
+*/
+
 const ConfirmAlert = (props) => {
   Swal.fire({
     title: 'Confirmar?',
