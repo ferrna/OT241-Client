@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import Login from './components/Login/Login';
+import Slider from './components/Slider';
 
 function App() {
   return (
-    <div className=" h-100">
-      <Login/>
+    <div className="">
+      <Slider/>
     </div>
   );
 }
