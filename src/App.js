@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
-import Contacto from './components/Contacto';
+import Slider from './components/Slider';
 
 function App() {
 
   return (
     <div className="">
-      <Contacto/>
+      <Slider/>
     </div>
   );
 }
