@@ -2,7 +2,11 @@ import React from 'react'
 
 const MenuButton = (props) => {
   return (
-    <div>{props.number}</div>
+    <div>
+      <h2>{props.title}</h2>
+      {props.icon}
+      <a href={props.to}>Ir</a>
+    </div>
   )
 }
 

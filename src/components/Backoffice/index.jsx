@@ -1,18 +1,22 @@
 import React from 'react'
 import MenuButton from "./MenuButton.jsx";
+import { FaRegNewspaper, FaClipboardList, FaList, FaUserAlt } from 'react-icons/fa'
+import { BsFillChatFill, BsFillFileEarmarkSlidesFill } from 'react-icons/bs'
+import { RiOrganizationChart } from 'react-icons/ri'
+import { IoIosPeople } from 'react-icons/io'
 
 const Backoffice = () => {
   return (
     <div className='container'>
       <div class="row row-cols-4">
-        <MenuButton number='1'/>
-        <MenuButton number='2'/>
-        <MenuButton number='3'/>
-        <MenuButton number='4'/>
-        <MenuButton number='5'/>
-        <MenuButton number='6'/>
-        <MenuButton number='7'/>
-        <MenuButton number='8'/>
+        <MenuButton title='Novedades' icon={<FaRegNewspaper />}/>
+        <MenuButton title='Actividades' icon={<FaClipboardList />}/>
+        <MenuButton title='Categorias' icon={<FaList />}/>
+        <MenuButton title='Testimonios' icon={<BsFillChatFill />}/>
+        <MenuButton title='Organizacion' icon={<RiOrganizationChart />}/>
+        <MenuButton title='Slides' icon={<BsFillFileEarmarkSlidesFill />}/>
+        <MenuButton title='Usuarios' icon={<FaUserAlt />}/>
+        <MenuButton title='Miembros' icon={<IoIosPeople />}/>
       </div>
     </div>
   )
