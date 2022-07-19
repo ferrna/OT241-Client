@@ -1,5 +1,5 @@
 import React from 'react'
-import MenuButton from "./MenuButton.jsx";
+import MenuButton from "./MenuCard.jsx";
 import { FaRegNewspaper, FaClipboardList, FaList, FaUserAlt } from 'react-icons/fa'
 import { BsFillChatFill, BsFillFileEarmarkSlidesFill } from 'react-icons/bs'
 import { RiOrganizationChart } from 'react-icons/ri'

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const MenuButton = (props) => {
   return (
@@ -6,7 +7,7 @@ const MenuButton = (props) => {
       <h2 className='h6 text-center' style={{color: '#76b8fa'}}>{props.title}</h2>
       <div className='col text-center mb-3' style={{fontSize: '3em'}}>{props.icon}</div>
       <div className='mx-auto d-flex justify-content-center'>
-        <a className='btn btn-primary' href={props.to}>Ir</a>
+        <Link className='btn btn-primary' to={props.to}>Ir</Link>
       </div>
     </div>
   )
