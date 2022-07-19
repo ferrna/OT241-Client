@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import Slider from './components/Slider';
+import Backoffice from './components/Backoffice';
 
 function App() {
   return (
     <div className="">
-      <Slider/>
+      <Backoffice />
     </div>
   );
 }
