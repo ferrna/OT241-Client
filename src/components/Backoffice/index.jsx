@@ -9,14 +9,14 @@ const Backoffice = () => {
   return (
     <div className='container'>
       <div class="row row-cols-4">
-        <MenuButton title='Novedades' icon={<FaRegNewspaper />}/>
-        <MenuButton title='Actividades' icon={<FaClipboardList />}/>
-        <MenuButton title='Categorias' icon={<FaList />}/>
-        <MenuButton title='Testimonios' icon={<BsFillChatFill />}/>
-        <MenuButton title='Organizacion' icon={<RiOrganizationChart />}/>
-        <MenuButton title='Slides' icon={<BsFillFileEarmarkSlidesFill />}/>
-        <MenuButton title='Usuarios' icon={<FaUserAlt />}/>
-        <MenuButton title='Miembros' icon={<IoIosPeople />}/>
+        <MenuButton title='Novedades' icon={<FaRegNewspaper />} to='Novedades'/>
+        <MenuButton title='Actividades' icon={<FaClipboardList />} to='Actividades'/>
+        <MenuButton title='Categorias' icon={<FaList />} to='Categorias'/>
+        <MenuButton title='Testimonios' icon={<BsFillChatFill />} to='Testimonios'/>
+        <MenuButton title='Organizacion' icon={<RiOrganizationChart />} to='Organizacion'/>
+        <MenuButton title='Slides' icon={<BsFillFileEarmarkSlidesFill />} to='Slides'/>
+        <MenuButton title='Usuarios' icon={<FaUserAlt />} to='Usuarios'/>
+        <MenuButton title='Miembros' icon={<IoIosPeople />} to='Miembros'/>
       </div>
     </div>
   )
