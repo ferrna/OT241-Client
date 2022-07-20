@@ -1,9 +1,7 @@
 import React from 'react'
-import './App.css'
-import RoutesNav from './components/RoutesNav';
 import Header from './components/Header'
-import Slider from './components/Slider'
 import Footer from './components/Footer';
+import { Outlet } from 'react-router-dom';
 
 function App() {
 
@@ -11,8 +9,7 @@ function App() {
     <div className="">
 
       <Header />
-      <RoutesNav/>
-      <Slider />
+      <Outlet />
       <Footer/>
 
     </div>
