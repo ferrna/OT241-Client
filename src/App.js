@@ -7,11 +7,9 @@ function App() {
 
   return (
     <div className="">
-
       <Header />
       <Outlet />
       <Footer/>
-
     </div>
   )
 }
