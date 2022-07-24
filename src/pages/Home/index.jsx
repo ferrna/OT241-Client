@@ -29,7 +29,7 @@ function Home(props) {
           Ver todos {">"}
         </Link>
       </div>
-      {novedades && <Novedades novedades={novedades} />}
+      {novedades && <Novedades novedades={novedades.slice(0,2)} />}
     </>
   );
 }
