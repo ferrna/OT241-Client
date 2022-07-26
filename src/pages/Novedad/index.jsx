@@ -16,8 +16,6 @@ const Novedades = ()=>{
     const [props, setProps] = useState();
     const [errors, setErrors] = useState(null);
 
-    console.log(novedadesMock);
-    // Get all news
     useEffect(() => {
         let mounted = true;
         async function fetchData() {

@@ -10,6 +10,8 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 // import { BrowserRouter } from 'react-router-dom'
 import * as serviceWorker from './serviceWorker'
 import Novedades from './pages/Novedad';
+import NovedadesBackOffice from './pages/NovedadBackOffice';
+
 
 
 
@@ -20,6 +22,7 @@ ReactDOM.render(
         <Routes>
           <Route path="/"element={<App />}/>
           <Route path="news"element={<Novedades/>}/>
+          <Route path="backoffice/news"element={<NovedadesBackOffice/>}/>
           <Route path="*"element={<h2>Esta pagina aun no fue creada</h2>}/>
         </Routes>
       </Provider>
