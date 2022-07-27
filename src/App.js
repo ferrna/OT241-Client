@@ -1,6 +1,5 @@
 import React from 'react'
 
-import './App.css'
 // import RoutesNav from './components/RoutesNav.js';
 import Header from './components/Header'
 import Slider from './components/Slider'
