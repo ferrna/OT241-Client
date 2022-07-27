@@ -13,8 +13,4 @@ function ErrorMessage({ children }) {
   );
 }
 
-<<<<<<< HEAD
 export default ErrorMessage;
-=======
-export default ErrorMessage;
->>>>>>> dev
