@@ -4,7 +4,7 @@ import NavBar from "../../src/components/NavBar";
 
 
 
-const RoutesNav=()=>{
+const RoutesNav =()=>{
 
   return(
     <>
