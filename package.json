@@ -2,6 +2,8 @@
   "name": "ong-client",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://127.0.0.1:3300/",
+  "secure" : false,
   "dependencies": {
     "@reduxjs/toolkit": "^1.1.0",
     "@testing-library/jest-dom": "^4.2.4",
