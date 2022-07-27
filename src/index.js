@@ -10,6 +10,8 @@ import Novedades from './pages/Novedades'
 import Login from './pages/Login'
 
 
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
