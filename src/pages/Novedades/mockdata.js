@@ -2,21 +2,21 @@ export const novedades = [
   {
     imgUrl: "",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere delectus magni eum, excepturi tenetur officia illo et quaerat repellat sunt.",
+    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere delectus magni eum, excepturi tenetur officia illo et quaerat repellat sunt.",
   },
   {
     imgUrl: "",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere delectus magni eum, excepturi tenetur officia illo et quaerat repellat sunt.",
+    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere delectus magni eum, excepturi tenetur officia illo et quaerat repellat sunt.",
   },
   {
-    imgUrl: "",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere delectus magni eum, excepturi tenetur officia illo et quaerat repellat sunt.",
-  },
-  {
-    imgUrl: "",
-    description:
+      imgUrl: "",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere delectus magni eum, excepturi tenetur officia illo et quaerat repellat sunt.",
+    },
+    {
+        imgUrl: "",
+     description:
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere delectus magni eum, excepturi tenetur officia illo et quaerat repellat sunt.",
   },
 ];
