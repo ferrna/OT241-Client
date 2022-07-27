@@ -3,7 +3,7 @@ import httpService from '../services/httpService';
 
 const service = new httpService();
 
-export const login = createAsyncThunk('auth/login', async (email, password, thunkAPI) => {
+export const login = createAsyncThunk('auth/login', async ({email, password}, thunkAPI) => {
   try {
     return await service.post("auth/login", {email, password})
   } catch (error) {
