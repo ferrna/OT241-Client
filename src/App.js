@@ -1,20 +1,15 @@
-import React from "react";
-import "./App.css";
-import RoutesNav from "./components/RoutesNav";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-
-import RegisterForm from './components/RegisterForm'
-
-import 'bootstrap/dist/css/bootstrap.min.css'
+import React from 'react'
+import Header from './components/Header'
+import Footer from './components/Footer';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   return (
    
     <div className="">
       <Header />
-      <RoutesNav />
-      <Footer />
+      <Outlet />
+      <Footer/>
     </div>
   );
 }
