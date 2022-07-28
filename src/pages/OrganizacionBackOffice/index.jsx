@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import httpService from "../../services/httpService";
 import Loader from "../../components/Loader";
 import ErrorMessage from "../../components/ErrorMessage";
+import FormOrganizacion from "./FormOrganizacion";
 import { organizacion } from "./mockorganizacion";
 
 function OrganizacionBackoffice() {
@@ -40,7 +41,7 @@ function OrganizacionBackoffice() {
           Ops! Parece que hay un error en el servidor, por favor intente más tarde.
         </ErrorMessage>
       ) : (
-        <div {...props} />
+        <FormOrganizacion {...props} />
       )}
     </div>
   );
