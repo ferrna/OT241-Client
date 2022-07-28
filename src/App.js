@@ -1,15 +1,14 @@
-import React from 'react'
-import Header from './components/Header'
-import Footer from './components/Footer';
-import { Outlet } from 'react-router-dom';
+import React from "react";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import RoutesNav from "./components/RoutesNav";
 
 function App() {
   return (
-   
     <div className="">
       <Header />
-      <Outlet />
-      <Footer/>
+      <RoutesNav />
+      <Footer />
     </div>
   );
 }

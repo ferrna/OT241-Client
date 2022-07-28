@@ -3,7 +3,7 @@ import Footer from "../../components/Footer";
 import Header from "../../components/Header.jsx";
 import httpService from "../../services/httpService";
 import Loader from "../../components/Loader";
-import ErrorMessage from "./ErrorMessage";
+import ErrorMessage from "../../components/ErrorMessage";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { actividades } from "./mockdataActividad.js";
@@ -43,9 +43,7 @@ const ActividadesBackOffice = () => {
         {isLoading ? (
           <Loader />
         ) : !errors?.msg ? (
-          <ErrorMessage>
-            Ops! Parece que en este momento no hay novedades.
-          </ErrorMessage>
+          <ErrorMessage>Ops! Parece que en este momento no hay novedades.</ErrorMessage>
         ) : (
           <table className="table">
             <thead>
@@ -71,16 +69,10 @@ const ActividadesBackOffice = () => {
                         justifyContent: "space-between",
                       }}
                     >
-                      <Link
-                        className="btn btn-info text-white"
-                        to={`edit/${actividad.id}`}
-                      >
+                      <Link className="btn btn-info text-white" to={`edit/${actividad.id}`}>
                         <FiEdit />
                       </Link>
-                      <Link
-                        className="btn btn-danger"
-                        to={`delete/${actividad.id}`}
-                      >
+                      <Link className="btn btn-danger" to={`delete/${actividad.id}`}>
                         <FiTrash2 />
                       </Link>
                     </td>

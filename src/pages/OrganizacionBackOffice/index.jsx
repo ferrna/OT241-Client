@@ -1,25 +1,24 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import Novedad from "./Novedad";
 import httpService from "../../services/httpService";
 import Loader from "../../components/Loader";
-import ErrorMessage from "./ErrorMessage";
+import ErrorMessage from "../../components/ErrorMessage";
+import { organizacion } from "./mockorganizacion";
 
-function NovedadWrapper() {
+function OrganizacionBackoffice() {
   const [isLoading, setIsLoading] = useState(true);
   const [errors, setErrors] = useState(null);
-  const { id } = useParams();
   const service = new httpService();
   const [props, setProps] = useState();
+  const organization = organizacion || {};
 
   useEffect(() => {
     let mounted = true;
     async function fetchData() {
       if (mounted) {
         try {
-          let news = await service.get("news", id);
-          setProps({ ...news.news });
+          /* let news = await service.get("news", id); */
+          setProps({ ...organization });
           setIsLoading(false);
         } catch (err) {
           setErrors({ msg: "Endpoint not finded" });
@@ -37,12 +36,14 @@ function NovedadWrapper() {
       {isLoading ? (
         <Loader />
       ) : errors?.msg ? (
-        <ErrorMessage>Ops! Parece que esta noticia ya no es accesible.</ErrorMessage>
+        <ErrorMessage>
+          Ops! Parece que hay un error en el servidor, por favor intente más tarde.
+        </ErrorMessage>
       ) : (
-        <Novedad {...props} />
+        <div {...props} />
       )}
     </div>
   );
 }
 
-export default NovedadWrapper;
+export default OrganizacionBackoffice;
