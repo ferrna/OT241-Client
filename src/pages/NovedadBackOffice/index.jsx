@@ -4,7 +4,7 @@ import Header from "../../components/Header.jsx";
 // import CardNovedad from './cardNovedad';
 import httpService from "../../services/httpService";
 import Loader from "../../components/Loader";
-import ErrorMessage from "./ErrorMessage";
+import ErrorMessage from "../../components/ErrorMessage";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import image1 from "../../images/Novedad1.png";
 import { Link } from "react-router-dom";
@@ -45,9 +45,7 @@ const NovedadesBackOffice = () => {
         {isLoading ? (
           <Loader />
         ) : !errors?.msg ? (
-          <ErrorMessage>
-            Ops! Parece que en este momento no hay novedades.
-          </ErrorMessage>
+          <ErrorMessage>Ops! Parece que en este momento no hay novedades.</ErrorMessage>
         ) : (
           <table className="table">
             <thead>
@@ -67,11 +65,7 @@ const NovedadesBackOffice = () => {
                     <th scope="row">{novedad.id}</th>
                     <td>{novedad.name}</td>
                     <td>
-                      <img
-                        style={{ width: "35px" }}
-                        src={image1}
-                        alt="news img"
-                      ></img>
+                      <img style={{ width: "35px" }} src={image1} alt="news img"></img>
                     </td>
                     <td>{novedad.createdAt}</td>
                     <td
@@ -81,16 +75,10 @@ const NovedadesBackOffice = () => {
                         justifyContent: "space-between",
                       }}
                     >
-                      <Link
-                        className="btn btn-info text-white"
-                        to={`edit/${novedad.id}`}
-                      >
+                      <Link className="btn btn-info text-white" to={`edit/${novedad.id}`}>
                         <FiEdit />
                       </Link>
-                      <Link
-                        className="btn btn-danger"
-                        to={`delete/${novedad.id}`}
-                      >
+                      <Link className="btn btn-danger" to={`delete/${novedad.id}`}>
                         <FiTrash2 />
                       </Link>
                     </td>

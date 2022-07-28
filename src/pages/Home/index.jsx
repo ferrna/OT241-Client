@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Slider from "../components/Slider.jsx";
-import Novedades from "./Novedades";
+import Slider from "../../components/Slider.jsx";
+import Novedades from "./Novedades/index.jsx";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
@@ -29,7 +29,7 @@ function Home(props) {
           Ver todos {">"}
         </Link>
       </div>
-      {novedades && <Novedades novedades={novedades.slice(0,2)} />}
+      {novedades && <Novedades novedades={novedades.slice(0, 2)} />}
     </>
   );
 }

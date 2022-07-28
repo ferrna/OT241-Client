@@ -1,7 +1,10 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "../pages/Home";
-import NovedadWrapper from "../pages/Novedad/Wrapper";
+import ActividadesBackOffice from "../pages/ActividadBackOffice";
+import Home from "../pages/Home/index.jsx";
+import NovedadWrapper from "../pages/NovedadId/Wrapper";
+import NovedadesBackOffice from "../pages/NovedadBackOffice";
+import OrganizacionBackoffice from "../pages/OrganizacionBackOffice";
 import Backoffice from "./Backoffice";
 
 const RoutesNav = () => {
@@ -11,31 +14,20 @@ const RoutesNav = () => {
         <Route path="/" element={<Home />} />
         <Route path="/novedad/:id" element={<NovedadWrapper />} />
         <Route path="/backoffice" element={<Backoffice />} />
-        <Route path="/route2" element={<h2>Route 2</h2>} />
+        <Route path="/backoffice/edit-organization" element={<OrganizacionBackoffice />} />
+        <Route path="/backoffice/news" element={<NovedadesBackOffice />} />
+        <Route path="/backoffice/activities" element={<ActividadesBackOffice />} />
+        <Route path="nosotros" element={<h2>NOSOTROS</h2>} />
+        {/* <Route path="novedades" element={<Novedades />} /> */}
+        <Route path="testimonios" element={<h2>TESTIMONIOS</h2>} />
+        {/* <Route path="contacto" element={<Contacto />} /> */}
+        <Route path="contribuye" element={<h2>CONTRIBUYE</h2>} />
+        {/* <Route path="ingreso" element={<Login />} /> */}
+        <Route path="registro" element={<h2>REGISTRO</h2>} />
+        <Route path="*" element={<h2>Esta pagina aun no fue creada</h2>} />
       </Routes>
     </div>
   );
 };
 
-<<<<<<< HEAD
 export default RoutesNav;
-=======
-
-const RoutesNav =()=>{
-
-  return(
-    <>
-      <BrowserRouter>
-        <NavBar/>
-        <Routes>
-          <Route path="/"element={<h2>Home</h2>}/>
-          <Route path="/route1"element={<h2>Route 1</h2>}/>
-          <Route path="/route2"element={<h2>Route 2</h2>}/>
-        </Routes>
-      </BrowserRouter>
-    </>
-    )
-  }
-
-  export default RoutesNav;
->>>>>>> dev
