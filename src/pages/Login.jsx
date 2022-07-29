@@ -3,8 +3,13 @@ import { useFormik } from 'formik';
 import img2 from '../images/loginimg.jpg'
 import * as yup from 'yup'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { login } from '../reducers/authSlice';
+import { useDispatch } from 'react-redux';
 
 const Login = () => {
+
+  const dispatch = useDispatch();
+
   const validationSchema = yup.object({
     email: yup.string().email("Formato Incorrecto").required("Campo requerido"),
     password: yup.string().min(6, "Necesita al menos 6 caracteres").required("Campo requerido")
@@ -19,7 +24,7 @@ const Login = () => {
     validationSchema : validationSchema,
     onSubmit: (values) => {
       const data = {...values}
-      console.log(data)
+      dispatch(login(data))
     },
   });
 
