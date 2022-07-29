@@ -2,8 +2,7 @@
   "name": "ong-client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://127.0.0.1:3300/",
-  "secure" : false,
+  "secure": false,
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.3",
     "@testing-library/jest-dom": "^4.2.4",
@@ -20,7 +19,6 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "3.4.3",
     "sweetalert2": "^11.4.23",
-    "sweetalert2-react-content": "^5.0.1",
     "uuid": "^8.3.2",
     "yup": "^0.32.11"
   },
@@ -44,17 +42,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/alkemyTech/OT241-Client.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/alkemyTech/OT241-Client/issues"
-  },
-  "homepage": "https://github.com/alkemyTech/OT241-Client#readme"
+  }
 }
