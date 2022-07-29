@@ -1,14 +1,14 @@
 import React from 'react';
-import { Formik, Form, Field , ErrorMessage } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import { useState } from 'react';
 import { helpHttp } from '../helpers/helpHttp';
 
-let http = helpHttp()
+const http = helpHttp()
 
-const ActivitiesForm = () => {
+const ActivitiesForm = (props) => {
 
-  let [sendForm,setSendForm] = useState(false)
-  let [error, setError] = useState(null)
+  const [sendForm,setSendForm] = useState(false)
+  const [error, setError] = useState(null)
 
   return (
     <>
@@ -18,63 +18,43 @@ const ActivitiesForm = () => {
       <Formik
       initialValues={
         {
-          nombre: '',
-          contenido: ''
+          name: props.activity ? props.activity.name : '',
+          content: props.activity ? props.activity.content : ''
         }
       }
 
       validate={(values)=>{
-        let {nombre, contenido} = values
-        let myErrors = {}
+        const {name, content} = values
+        const myErrors = {}
 
         //Validate a name:
-        if(!nombre){
+        if(!name){
           myErrors.nombre = "Please insert a name"
-        }else if(!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(nombre)){
+        }else if(!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(name)){
           myErrors.nombre = "The name can only contain letters and spaces"
         }
 
         //Validate a lastName:
-        if(!contenido){
-          myErrors.contenido = "Please insert a Last name"
-        }else if(!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(contenido)){
-          myErrors.contenido = "The Last Name can only contain letters and spaces"
+        if(!content){
+          myErrors.contenido = "Please insert content"
         }
         return myErrors
       }}
 
       onSubmit={(values, {resetForm})=>{
-        // resetForm()
-        // //Aqui va la peticion fetch para crear el usuario en la base de datos EJ:
-        // fetch('/users/auth/register', {
-        //   method: 'POST',
-        //   headers:{
-        //     'Content-Type': 'application/json'
-        //   },
-        //   body: JSON.stringify(values)
-        // })
-        // http.post('users/auth/register',{
-        //   headers: {
-        //     'Content-Type': 'application/json'
-        //   },
-        //   body: values
-        // }).then(res => {
-        //   if(res.errors) setError(res.errors)
-        //   console.log(res)
-        // }).catch(err => {
-        //   console.log(err)
-        // })
-        //   setSendForm(true)
-        //   setError(null)
-        //   setTimeout(()=>{
-        //     setSendForm(false)
-        //     setError(false)
-        //   },2000)
+        resetForm()
+        if(props.activity) {
+          //REQUEST PARA EDITAR LA ACTIVIDAD
+          http.put('<endpoint activities>', ({body: {...values}}))
+        } else {
+          //REQUEST PARA CREAR LA ACTIVIDAD
+          http.post('<endpoint activities>', {body: values})
+        }
       }}
       >
 
         { ( {errors,touched} ) =>(
-          <Form className='d-lg-flex flex-lg-column justify-content-lg-center align-items-lg-center w-50 fw-bold mb-5'>
+          <Form className='d-lg-flex flex-lg-column justify-content-lg-left align-items-lg-start w-50 fw-bold mb-5 mx-auto'>
             <div className="mb-3 w-50">
               <label htmlFor="nombre" className="form-label">
                 Nombre
@@ -83,21 +63,21 @@ const ActivitiesForm = () => {
                 type="text"
                 className="form-control"
                 id="nombre"
-                name='nombre'
+                name='name'
               />
-              {touched.nombre && errors.nombre && <div className='alert alert-danger' role='alert'>{errors.nombre}</div>}
+              {touched.name && errors.name && <div className='alert alert-danger' role='alert'>{errors.name}</div>}
             </div>
-            <div className="mb-3 w-50">
+            <div className="mb-3 w-100">
               <label htmlFor="contenido" className="form-label">
                 Contenido
               </label>
-              <Field
+              <Field as='textarea'
                 type="textarea"
                 className="form-control"
                 id="contenido"
-                name='contenido'
+                name='content'
               />
-              {touched.contenido && errors.contenido && <div className='alert alert-danger' role='alert'>{errors.contenido}</div>}
+              {touched.content && errors.content && <div className='alert alert-danger' role='alert'>{errors.content}</div>}
             </div>
             <button type="submit" className="btn btn-primary w-50 fw-bold" style={{backgroundColor: '#FF0000'}}>
               Create
