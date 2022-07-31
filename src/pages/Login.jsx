@@ -33,6 +33,7 @@ const Login = () => {
       axios.post('http://localhost:3000/auth/login' , {...values})
         .then(res => {
           setIsLoading(false);
+          localStorage.setItem('user', res.user)
           dispatch(login({user: res.user}))
         })
         .catch(err => {
