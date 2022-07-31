@@ -14,12 +14,13 @@ export const authSlice = createSlice({
       state.isLoggedIn = true;
       state.user = payload.user;
       state.error = '';
+      localStorage.setItem('user', payload.user)
     },
     logout: (state, payload) => {
       state.isLoggedIn = false;
       state.user = null;
       state.error = payload.error;
-
+      localStorage.removeItem('user')
     }
   }
 });
