@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Slider from "../../components/Slider.jsx";
-import Novedades from "./Novedades.jsx";
+import Novedades from "./Novedades/index.jsx";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
-import { novedades, homeWelcome } from "./mockdata.js";
+import { novedades, homeWelcome } from "./Novedades/mockdata.js";
 
 function Home(props) {
   return (
@@ -29,7 +29,7 @@ function Home(props) {
           Ver todos {">"}
         </Link>
       </div>
-      {novedades && <Novedades novedades={novedades} />}
+      {novedades && <Novedades novedades={novedades.slice(0, 2)} />}
     </>
   );
 }

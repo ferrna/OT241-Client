@@ -9,8 +9,8 @@ const Backoffice = () => {
   return (
     <div className='container-fluid p-5' style={{backgroundColor: '#edf2f7'}}>
       <div className='row'>
-        <MenuButton title='Novedades' icon={<FaRegNewspaper />} to='Novedades'/>
-        <MenuButton title='Actividades' icon={<FaClipboardList />} to='Actividades'/>
+        <MenuButton title='Novedades' icon={<FaRegNewspaper />} to='backoffice/news'/>
+        <MenuButton title='Actividades' icon={<FaClipboardList />} to='backoffice/activities'/>
         <MenuButton title='Categorias' icon={<FaList />} to='Categorias'/>
         <MenuButton title='Testimonios' icon={<BsFillChatFill />} to='Testimonios'/>
       </div>

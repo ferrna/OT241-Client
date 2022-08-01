@@ -16,7 +16,7 @@ const NAV_LINKS = [
     },
     {
       name: 'Novedades',
-      path: '/novedades',
+      path: '/news',
     },
     {
       name: 'Testimonios',
