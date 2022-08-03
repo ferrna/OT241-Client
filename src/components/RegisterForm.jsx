@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import httpService from "../services/httpService";
+import { useDispatch } from "react-redux";
+import { login } from "../reducers/authSlice";
+import { useNavigate } from "react-router-dom";
 
 let token = localStorage.getItem("token");
 let http = new httpService();
@@ -9,6 +12,10 @@ let http = new httpService();
 const RegisterForm = () => {
   let [sendForm, setSendForm] = useState(false);
   let [error, setError] = useState(null);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="d-flex flex-column ms-20 text-center">
@@ -75,6 +82,8 @@ const RegisterForm = () => {
             .then((res) => {
               if (res.errors) setError(res.errors);
               console.log(res);
+              dispatch(login({ user: { ...res.data }, token: res.token }));
+              navigate("/backoffice");
             })
             .catch((err) => {
               console.log(err);

@@ -26,8 +26,8 @@ const Backoffice = () => {
           </div>
         </div>
       ) : (
-        <div className="container-fluid p-5" style={{ backgroundColor: "#edf2f7" }}>
-          <div className="row">
+        <div className="container-fluid p-5" style={{ backgroundColor: "#edf2f7", maxWidth: "calc(400px + 6rem)" }}>
+          <div className="row" style={{ maxWidth: "400px" }}>
             <MenuButton title="Editar Perfil" icon={<RiEdit2Line />} to="backoffice/edit" />
           </div>
         </div>
