@@ -6,7 +6,7 @@ import httpService from "../../services/httpService";
 import Loader from "../../components/Loader";
 import ErrorMessage from "../../components/ErrorMessage";
 
-function NovedadWrapper() {
+function NovedadPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [errors, setErrors] = useState(null);
   const { id } = useParams();
@@ -45,4 +45,4 @@ function NovedadWrapper() {
   );
 }
 
-export default NovedadWrapper;
+export default NovedadPage;
