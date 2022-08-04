@@ -9,6 +9,7 @@ import Backoffice from "./Backoffice";
 import Login from "../pages/Login";
 import RegisterForm from "./RegisterForm";
 
+import Contacto from "../pages/Contacto"
 const RoutesNav = () => {
   return (
     <div className="min-vh-100">
@@ -25,7 +26,7 @@ const RoutesNav = () => {
         <Route path="testimonios" element={<h2>TESTIMONIOS</h2>} />
         <Route path="contribuye" element={<h2>CONTRIBUYE</h2>} />
         {/* <Route path="novedades" element={<Novedades />} /> */}
-        {/* <Route path="contacto" element={<Contacto />} /> */}
+         <Route path="contacto" element={<Contacto />} /> 
         <Route path="*" element={<h2>Esta pagina aun no fue creada</h2>} />
       </Routes>
     </div>

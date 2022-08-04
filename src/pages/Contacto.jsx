@@ -1,19 +1,39 @@
-import React from 'react'
+import React,{useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import axios from 'axios'
+import  Loader  from '../components/Loader'
 
 const Contacto = () => {
+    const [isLoading, setIsLoading] = useState(false)
+    const [data, setData] = useState({});
+    const[messageSuccess,setMessageSuccess] = useState(null)
 
-
-    const sendMessage = (e) => {
+    const sendMessage = async (e) => {
         //Prevent refresh
         e.preventDefault()
 
         //send Logic
+        let myNewData = {
+            name: data.nombre,
+            email: data.email
+        }
 
+        let res = await axios.post('http://localhost:3000/contacts',myNewData,{headers:{'Content-Type': 'application/json'}})
+        setIsLoading(true)
+
+        setMessageSuccess(res.data.message)
+        if(res.statusText === "OK") setIsLoading(false)
         //Clear Form
         document.getElementById("form").reset()
     }
 
+    
+    const handleInputChange = (e) =>{
+        setData({
+            ...data,
+            [e.target.name] : e.target.value
+        })
+    }
   return (
     <div className='mt-5'>
         <h1 className="text-center">
@@ -29,21 +49,23 @@ const Contacto = () => {
                     <form onSubmit={sendMessage} id="form">
                         <div className="mb-3">
                             <label className="form-label">Nombre</label>
-                            <input type="text" className="form-control" name= "nombre" aria-describedby="emailHelp" placeholder="Nombre" required/>
+                            <input type="text" className="form-control" name= "nombre" aria-describedby="emailHelp" placeholder="Nombre" required onChange={handleInputChange}/>
                         </div>
                         <div className="mb-3">
                             <label className="form-label">Email</label>
-                            <input type="email" className="form-control" name= "email" placeholder="correo@correo.cl" required/>
+                            <input type="email" className="form-control" name= "email" placeholder="correo@correo.cl" required onChange={handleInputChange}/>
                         </div>
                         <div className="mb-3">
                             <label className="form-label">Mensaje</label>
-                            <textarea className="form-control" id="mensaje" name= "comentario" placeholder="Deje su comentario aquí" style={{height: "100px"}} required></textarea>
+                            <textarea className="form-control" id="mensaje" name= "comentario" placeholder="Deje su comentario aquí" style={{height: "100px"}} required onChange={handleInputChange}></textarea>
                         </div>
                         <button type="submit" className="btn btn-primary">Enviar</button>
                     </form>
                 </div>
             </div>
         </div>
+        {isLoading && <Loader/>}
+        {messageSuccess && <h2>{messageSuccess}</h2>}
     </div>
   )
 }
