@@ -8,6 +8,7 @@ import { IoIosPeople } from "react-icons/io";
 
 const Backoffice = () => {
   const roleUser = useSelector((state) => state.auth.user.roleId);
+
   return (
     <>
       {roleUser === 1 ? (
@@ -16,7 +17,7 @@ const Backoffice = () => {
             <MenuButton title="Novedades" icon={<FaRegNewspaper />} to="backoffice/news" />
             <MenuButton title="Actividades" icon={<FaClipboardList />} to="backoffice/activities" />
             <MenuButton title="Categorias" icon={<FaList />} to="Categorias" />
-            <MenuButton title="Testimonios" icon={<BsFillChatFill />} to="Testimonios" />
+            <MenuButton title="Testimonios" icon={<BsFillChatFill />} to="testimonials" />
           </div>
           <div className="row">
             <MenuButton title="Organizacion" icon={<RiOrganizationChart />} to="Organizacion" />

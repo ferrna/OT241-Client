@@ -20,7 +20,7 @@ const NAV_LINKS = [
     },
     {
       name: 'Testimonios',
-      path: '/testimonios',
+      path: '/testimonials',
     },
     {
       name: 'Contacto',
