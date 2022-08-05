@@ -9,6 +9,8 @@ import Backoffice from "./Backoffice";
 import Login from "../pages/Login";
 import RegisterForm from "./RegisterForm";
 
+import News from '../components/News'
+import NewsById from '../components/News/NewsById'
 const RoutesNav = () => {
   return (
     <div className="min-vh-100">
@@ -26,6 +28,8 @@ const RoutesNav = () => {
         <Route path="contribuye" element={<h2>CONTRIBUYE</h2>} />
         {/* <Route path="novedades" element={<Novedades />} /> */}
         {/* <Route path="contacto" element={<Contacto />} /> */}
+        <Route path="/news" element={<News/>}/>
+        <Route path="/news/:id" element={<NewsById/>}/>
         <Route path="*" element={<h2>Esta pagina aun no fue creada</h2>} />
       </Routes>
     </div>
