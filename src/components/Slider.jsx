@@ -6,15 +6,15 @@ const Slider = () => {
   const sliderContent = [
     {
       imageURL: img1,
-      text: 'Lorem ipsum dolor sit amet.',
+      text: 'Slide 1',
     },
     {
       imageURL: img1,
-      text: 'Lorem ipsum dolor sit amet.',
+      text: 'Slide 2',
     },
     {
       imageURL: img1,
-      text: 'Lorem ipsum dolor sit amet.',
+      text: 'Slide 3',
     },
   ]
 
@@ -53,10 +53,8 @@ const Slider = () => {
             index === 0 ? (
               <div key={uuidv4()} className="carousel-item active">
                 <img
-                  key={uuidv4()}
-                  src={item.imageURL}
+                  src="http://localhost:3000/images/0b42b55fbc57fd2a73b39c43f6a0236f"
                   className="d-block w-100"
-                  alt={item.imageURL}
                 />
                 <div
                   key={uuidv4()}
