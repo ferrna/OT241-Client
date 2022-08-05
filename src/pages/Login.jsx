@@ -9,6 +9,8 @@ import { useDispatch } from "react-redux";
 import Loader from "../components/Loader";
 import { ErrorAlert } from "../components/Alerts";
 
+import axios from 'axios'
+
 import httpService from "../services/httpService";
 import { useNavigate } from "react-router-dom";
 let http = new httpService();
@@ -31,11 +33,12 @@ const Login = () => {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       setIsLoading(true);
-      http
-        .post("auth/login", { ...values })
+      axios
+        .post("http://localhost:3000/auth/login", { ...values })
         .then((res) => {
+          console.log(res.data.data)
           setIsLoading(false);
-          dispatch(login({ user: { ...res.data }, token: res.token }));
+          dispatch(login({ user: { ...res.data.data }, token: res.token }));
           navigate("/backoffice");
         })
         .catch((err) => {
