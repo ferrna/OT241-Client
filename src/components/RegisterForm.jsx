@@ -5,6 +5,7 @@ import httpService from "../services/httpService";
 import { useDispatch } from "react-redux";
 import { login } from "../reducers/authSlice";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios'
 
 let token = localStorage.getItem("token");
 let http = new httpService();
@@ -77,8 +78,7 @@ const RegisterForm = () => {
         })
         */
 
-          http
-            .post("auth/register", { ...values })
+          axios.post("http://localhost:3000/auth/register", { ...values })
             .then((res) => {
               if (res.errors) setError(res.errors);
               console.log(res);
