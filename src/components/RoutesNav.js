@@ -10,13 +10,19 @@ import Login from "../pages/Login";
 import RegisterForm from "./RegisterForm";
 import Profile from "../pages/Profile";
 
+import Contacto from "../pages/Contacto";
+import News from "../components/News";
+import NewsById from "../components/News/NewsById";
 const RoutesNav = () => {
   return (
     <div className="min-vh-100">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/backoffice" element={<Backoffice />} />
-        <Route path="/backoffice/edit-organization" element={<OrganizacionBackoffice />} />
+        <Route
+          path="/backoffice/edit-organization"
+          element={<OrganizacionBackoffice />}
+        />
         <Route path="/backoffice/news" element={<NovedadesBackOffice />} />
         <Route path="/backoffice/activities" element={<ActividadesBackOffice />} />
         <Route path="/backoffice/user" element={<Profile />} />
@@ -27,7 +33,10 @@ const RoutesNav = () => {
         <Route path="testimonios" element={<h2>TESTIMONIOS</h2>} />
         <Route path="contribuye" element={<h2>CONTRIBUYE</h2>} />
         {/* <Route path="novedades" element={<Novedades />} /> */}
+        <Route path="contacto" element={<Contacto />} />
         {/* <Route path="contacto" element={<Contacto />} /> */}
+        <Route path="/news" element={<News />} />
+        <Route path="/news/:id" element={<NewsById />} />
         <Route path="*" element={<h2>Esta pagina aun no fue creada</h2>} />
       </Routes>
     </div>
