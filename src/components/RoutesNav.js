@@ -8,6 +8,7 @@ import OrganizacionBackoffice from "../pages/OrganizacionBackOffice";
 import Backoffice from "./Backoffice";
 import Login from "../pages/Login";
 import RegisterForm from "./RegisterForm";
+import Profile from "../pages/Profile";
 
 import Contacto from "../pages/Contacto";
 import News from "../components/News";
@@ -23,10 +24,8 @@ const RoutesNav = () => {
           element={<OrganizacionBackoffice />}
         />
         <Route path="/backoffice/news" element={<NovedadesBackOffice />} />
-        <Route
-          path="/backoffice/activities"
-          element={<ActividadesBackOffice />}
-        />
+        <Route path="/backoffice/activities" element={<ActividadesBackOffice />} />
+        <Route path="/backoffice/user" element={<Profile />} />
         <Route path="/novedad/:id" element={<NovedadPage />} />
         <Route path="ingreso" element={<Login />} />
         <Route path="registro" element={<RegisterForm />} />
