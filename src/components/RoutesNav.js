@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import ActividadesBackOffice from "../pages/ActividadBackOffice";
+import TestimonialsBackOffice from "../pages/TestimonialsBackOffice";
 import Home from "../pages/Home/index.jsx";
 import NovedadPage from "../pages/NovedadPage";
 import NovedadesBackOffice from "../pages/NovedadBackOffice";
@@ -18,6 +19,7 @@ const RoutesNav = () => {
         <Route path="/backoffice/edit-organization" element={<OrganizacionBackoffice />} />
         <Route path="/backoffice/news" element={<NovedadesBackOffice />} />
         <Route path="/backoffice/activities" element={<ActividadesBackOffice />} />
+        <Route path="/backoffice/testimonials" element={<TestimonialsBackOffice />} />
         <Route path="/novedad/:id" element={<NovedadPage />} />
         <Route path="ingreso" element={<Login />} />
         <Route path="registro" element={<RegisterForm />} />
