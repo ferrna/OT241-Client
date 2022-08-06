@@ -36,9 +36,9 @@ const Login = () => {
       axios
         .post("http://localhost:3000/auth/login", { ...values })
         .then((res) => {
-          console.log(res.data.data)
+          console.log(res.data)
           setIsLoading(false);
-          dispatch(login({ user: { ...res.data.data }, token: res.token }));
+          dispatch(login({ user: { ...res.data.data }, token: res.data.token }));
           navigate("/backoffice");
         })
         .catch((err) => {
