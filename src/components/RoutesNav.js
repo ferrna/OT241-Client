@@ -14,6 +14,7 @@ import Profile from "../pages/Profile";
 import Contacto from "../pages/Contacto";
 import News from "../components/News";
 import NewsById from "../components/News/NewsById";
+import Contacts from "../pages/Contacts/Contacts.jsx";
 const RoutesNav = () => {
   return (
     <div className="min-vh-100">
@@ -28,6 +29,7 @@ const RoutesNav = () => {
         <Route path="/backoffice/activities" element={<ActividadesBackOffice />} />
         <Route path="/backoffice/testimonials" element={<TestimonialsBackOffice />} />
         <Route path="/backoffice/user" element={<Profile />} />
+        <Route path="/backoffice/contacts" element={<Contacts />} />
         <Route path="/novedad/:id" element={<NovedadPage />} />
         <Route path="ingreso" element={<Login />} />
         <Route path="registro" element={<RegisterForm />} />
