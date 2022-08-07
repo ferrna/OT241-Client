@@ -10,7 +10,6 @@ import Backoffice from "./Backoffice";
 import Login from "../pages/Login";
 import RegisterForm from "./RegisterForm";
 import Profile from "../pages/Profile";
-
 import Contacto from "../pages/Contacto";
 import News from "../components/News";
 import NewsById from "../components/News/NewsById";
@@ -34,7 +33,7 @@ const RoutesNav = () => {
         <Route path="ingreso" element={<Login />} />
         <Route path="registro" element={<RegisterForm />} />
         <Route path="nosotros" element={<h2>NOSOTROS</h2>} />
-        <Route path="testimonios" element={<h2>TESTIMONIOS</h2>} />
+        <Route path="testimonios" element={<Testimonials/>} />
         <Route path="contribuye" element={<h2>CONTRIBUYE</h2>} />
         {/* <Route path="novedades" element={<Novedades />} /> */}
         <Route path="contacto" element={<Contacto />} />
