@@ -14,6 +14,7 @@ import Contacto from "../pages/Contacto";
 import News from "../components/News";
 import NewsById from "../components/News/NewsById";
 import Contacts from "../pages/Contacts/Contacts.jsx";
+import Testimonials from "../components/Testimonials"
 const RoutesNav = () => {
   return (
     <div className="min-vh-100">
