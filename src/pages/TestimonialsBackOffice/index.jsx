@@ -5,6 +5,7 @@ import ErrorMessage from "../../components/ErrorMessage";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { ConfirmAlert } from "../../components/Alerts";
+import { testimonials } from "./mockdataTestimonial";
 
 const service = new httpService();
 
@@ -19,8 +20,8 @@ const TestimonialsBackOffice = () => {
     let mounted = true;
     async function fetchData() {
       if (mounted) {
-        try {
-          let testimonials = await service.get("testimonials");
+        try { // TODO: Descomentar esta línea una vez este listo el endpoint de la api:
+          // let testimonials = await service.get("testimonials");
           setProps([...testimonials]);
           if (testimonials.length === 0) {
             setErrors({ msg: "No testimonials finded" });
@@ -105,14 +106,14 @@ const TestimonialsBackOffice = () => {
                         <Link className="btn btn-info text-white" to={`edit/${testimonial.id}`}>
                           <FiEdit />
                         </Link>
-                        <Link
+                        <button
                           className="btn btn-danger"
                           style={{ zIndex: "10" }}
                           value={testimonial.id}
                           onClick={(e) => handleDeleteTestimonial(testimonial.id)}
                         >
                           <FiTrash2 />
-                        </Link>
+                        </button>
                       </td>
                     </tr>
                   );
