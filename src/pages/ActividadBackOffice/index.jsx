@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Footer from "../../components/Footer";
-import Header from "../../components/Header.jsx";
 import httpService from "../../services/httpService";
 import Loader from "../../components/Loader";
 import ErrorMessage from "../../components/ErrorMessage";
@@ -37,7 +35,6 @@ const ActividadesBackOffice = () => {
 
   return (
     <>
-      <Header />
       <div className="container-fluid mb-5 w-100">
         <p className="text-center h1">Lista de Actividades</p>
         {isLoading ? (
@@ -83,7 +80,6 @@ const ActividadesBackOffice = () => {
           </table>
         )}
       </div>
-      <Footer />
     </>
   );
 };
