@@ -1,14 +1,14 @@
 import React,{useState,useEffect,useRef} from 'react'
 import { useParams,useNavigate } from 'react-router-dom';
+import httpService from "../../services/httpService";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-
+import Loader from '../../components/Loader';
 import axios from 'axios'
-import Loader from '../Loader';
 
-import "bootstrap/dist/css/bootstrap.min.css";
+const service = new httpService();
 
-const FormEdit = () => {
+const TestimonialsForm = () => {
     const {id} = useParams()
     const Navigate = useNavigate()
     const inputFile = useRef()
@@ -21,12 +21,12 @@ const FormEdit = () => {
     let [myContent, setMyContent] = useState()
 
     useEffect(()=>{
-            axios.get(`http://localhost:3000/testimonials/${id}`)
+        service.get(`testimonials`, id)
             .then(res => {
                 let myObject = {
-                    name : id ? res.data.name : '',
-                    content : id ? res.data.content : '',
-                    imageUrl : id ? res.data.imageUrl : '',
+                    name : id ? res.name : '',
+                    content : id ? res.content : '',
+                    imageUrl : id ? res.imageUrl : '',
                 }
                 setMyData(myObject)
             })
@@ -47,7 +47,7 @@ const FormEdit = () => {
               };
               
             setIsLoading(true);
-            data = await axios.post("http://localhost:3000/images",formData,config)
+            data = await service.post("images",formData,config)
             if(data != null) setIsLoading(false)
             
             console.log(data)
@@ -149,4 +149,4 @@ const FormEdit = () => {
   )
 }
 
-export default FormEdit
+export default TestimonialsForm

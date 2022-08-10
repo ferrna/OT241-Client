@@ -1,11 +1,10 @@
-export const novedades = [
+export const activities = [
   {   
     id: 1,
     name: "Creación de taller",
     content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere delectus magni eum, excepturi tenetur officia illo et quaerat repellat sunt",
-    image: '',
-    categoryId: 1,
-    type: "news",
+    categoryId: 2,
+    type: "activities",
     createdAt: "2022-07-20 12:23:43",
     deletedAt: "2022-07-20 12:23:43"
   },
@@ -13,9 +12,8 @@ export const novedades = [
     id: 2,
     name: "Nuestros nuevos compañeros",
     content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere delectus magni eum, excepturi tenetur officia illo et quaerat repellat sunt",
-    image: '',
-    categoryId: 1,
-    type: "news",
+    categoryId: 2,
+    type: "activities",
     createdAt: "2022-07-20 12:23:43",
     deletedAt: "2022-07-20 12:23:43"
   },
@@ -23,9 +21,8 @@ export const novedades = [
     id: 3,
     name: "Festival de la ONG",
     content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere delectus magni eum, excepturi tenetur officia illo et quaerat repellat sunt",
-    image: '',
-    categoryId: 1,
-    type: "news",
+    categoryId: 2,
+    type: "activities",
     createdAt: "2022-07-20 12:23:43",
     deletedAt: "2022-07-20 12:23:43"
   },
@@ -33,9 +30,8 @@ export const novedades = [
     id: 4,
     name: "Capacitaciones Online",
     content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere delectus magni eum, excepturi tenetur officia illo et quaerat repellat sunt",
-    image: '',
-    categoryId: 1,
-    type: "news",
+    categoryId: 2,
+    type: "activities",
     createdAt: "2022-07-20 12:23:43",
     deletedAt: "2022-07-20 12:23:43"
   },
@@ -43,9 +39,8 @@ export const novedades = [
     id: 5,
     name: "Jornada deportiva en la ciudad",
     content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere delectus magni eum, excepturi tenetur officia illo et quaerat repellat sunt",
-    image: '',
-    categoryId: 1,
-    type: "news",
+    categoryId: 2,
+    type: "activities",
     createdAt: "2022-07-20 12:23:43",
     deletedAt: "2022-07-20 12:23:43"
   },
@@ -53,9 +48,8 @@ export const novedades = [
     id: 6,
     name: "Las curiosidades del nuestro último evento",
     content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere delectus magni eum, excepturi tenetur officia illo et quaerat repellat sunt",
-    image: '',
-    categoryId: 1,
-    type: "news",
+    categoryId: 2,
+    type: "activities",
     createdAt: "2022-07-20 12:23:43",
     deletedAt: "2022-07-20 12:23:43"
   },
@@ -64,8 +58,8 @@ export const novedades = [
     name: "Lorem ipsum dolores",
     content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere delectus magni eum, excepturi tenetur officia illo et quaerat repellat sunt",
     image: '',
-    categoryId: 1,
-    type: "news",
+    categoryId: 2,
+    type: "activities",
     createdAt: "2022-07-20 12:23:43",
     deletedAt: "2022-07-20 12:23:43"
   },

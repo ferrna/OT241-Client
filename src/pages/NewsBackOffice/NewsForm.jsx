@@ -3,7 +3,7 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import axios from 'axios'
 
-const NovedadesForm = (props) => {
+const NewsForm = (props) => {
     
     //constantes (sólo comentar props en el caso de enviar el objeto con la información)
     props = {
@@ -143,4 +143,4 @@ const NovedadesForm = (props) => {
   )
 }
 
-export default NovedadesForm
+export default NewsForm
