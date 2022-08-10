@@ -3,6 +3,7 @@ import httpService from "../../services/httpService";
 import Loader from "../../components/Loader";
 import ErrorMessage from "../../components/ErrorMessage";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
+import { ConfirmAlert } from "../../components/Alerts";
 
 const service = new httpService();
 
@@ -10,6 +11,7 @@ const CategoriasBackOffice = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [props, setProps] = useState();
   const [errors, setErrors] = useState(null);
+  const [reloadData, setReloadData] = useState(false);
 
   // Get all news
   useEffect(() => {
@@ -34,7 +36,23 @@ const CategoriasBackOffice = () => {
     fetchData();
     return () => (mounted = false);
     //eslint-disable-next-line
-  }, []);
+  }, [reloadData]);
+
+  // Delete category
+  const handleDeleteCategory = async (value) => {
+    const id = value;
+    ConfirmAlert({
+      text: "Atención! Esta por eliminar la categoría ¿desea continuar?",
+      onConfirm: async () => {
+        setIsLoading(true);
+        await service.delete("categories", id);
+        setTimeout(() => {
+          setReloadData(!reloadData);
+          setIsLoading(false);
+        }, 1000);
+      },
+    });
+  };
 
   return (
     <>
@@ -81,7 +99,7 @@ const CategoriasBackOffice = () => {
                   return (
                     <div
                       key={categoria.name}
-                      className="d-flex justify-content-between p-2 px-3 border border-red rounded bg-light shadow-sm"
+                      className="d-flex justify-content-between p-2 px-3 mb-3 border border-red rounded bg-light shadow-sm"
                     >
                       <span
                         className="align-self-center fw-semibold"
@@ -93,7 +111,12 @@ const CategoriasBackOffice = () => {
                         <button className="btn btn-info text-white" style={{ zIndex: "10" }}>
                           <FiEdit />
                         </button>
-                        <button className="btn btn-danger" style={{ zIndex: "10" }}>
+                        <button
+                          className="btn btn-danger"
+                          style={{ zIndex: "10" }}
+                          value={categoria.name}
+                          onClick={(e) => handleDeleteCategory(categoria.name)}
+                        >
                           <FiTrash2 />
                         </button>
                       </span>
