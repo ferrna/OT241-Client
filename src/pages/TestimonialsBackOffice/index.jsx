@@ -5,25 +5,26 @@ import ErrorMessage from "../../components/ErrorMessage";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { ConfirmAlert } from "../../components/Alerts";
+import { testimonials } from "./mockdataTestimonial";
 
 const service = new httpService();
 
-const NovedadesBackOffice = () => {
+const TestimonialsBackOffice = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [props, setProps] = useState();
   const [errors, setErrors] = useState(null);
   const [reloadData, setReloadData] = useState(false);
 
-  // Get all news
+  // Get all testimonials
   useEffect(() => {
     let mounted = true;
     async function fetchData() {
       if (mounted) {
-        try {
-          let news = await service.get("news");
-          setProps([...news]);
-          if (news.length === 0) {
-            setErrors({ msg: "No news finded" });
+        try { // TODO: Descomentar esta línea una vez este listo el endpoint de la api:
+          // let testimonials = await service.get("testimonials");
+          setProps([...testimonials]);
+          if (testimonials.length === 0) {
+            setErrors({ msg: "No testimonials finded" });
           } else {
             setErrors(null);
           }
@@ -39,72 +40,77 @@ const NovedadesBackOffice = () => {
     //eslint-disable-next-line
   }, [reloadData]);
 
-  // Delete news
-  const handleDeleteNews = async (value) => {
+  // Delete testimonial
+  const handleDeleteTestimonial = async (value) => {
     const id = value;
-
+    
     ConfirmAlert({
-      text: "Esta por eliminar la novedad, ¿desea continuar?",
+      text: "Esta por eliminar el testimonio, ¿desea continuar?",
       onConfirm: async () => {
         setIsLoading(true)
-        await service.delete("news", id)
+        await service.delete("testimonials", id);
         setTimeout(() => {
           setReloadData(!reloadData)
           setIsLoading(false)
         }, 1000);
-        /*
-        console.log(news);
-        if (news) console.log("novedad eliminada con exito"); */
       },
     });
   };
 
   return (
     <>
-      <div className="container-fluid mb-5 w-100">
-        <p className="text-center h1">Lista de Novedades</p>
+      <div
+        style={{
+          width: "80vw",
+          // display: "flex",
+          // justifyContent: "space-between",
+        }}
+        className="container mb-5 w-80"
+      >
+        <p className="text-center h1">Lista de testimonials</p>
         {isLoading ? (
           <Loader />
         ) : errors?.msg ? (
           <ErrorMessage>Ops! Parece que en este momento no hay novedades.</ErrorMessage>
         ) : (
-          <table className="table">
+          <table
+            className="table"
+            style={{
+              width: "80vw",
+              // display: "flex",
+              // justifyContent: "space-between",
+            }}
+          >
             <thead>
               <tr>
                 <th scope="col">Id</th>
-                <th scope="col">Name</th>
-                <th scope="col">Image</th>
-                <th scope="col">createdAt</th>
+                <th scope="col">Nombre</th>
                 <th scope="col">Actions</th>
               </tr>
             </thead>
 
             <tbody>
               {props &&
-                props.map((novedad) => {
+                props.map((testimonial) => {
                   return (
-                    <tr key={novedad.id}>
-                      <th scope="row">{novedad.id}</th>
-                      <td>{novedad.name}</td>
-                      <td>
-                        <img style={{ width: "35px" }} src={novedad.image} alt="news img"></img>
-                      </td>
-                      <td>{novedad.createdAt}</td>
+                    <tr key={testimonial.id}>
+                      <th scope="row">{testimonial.id}</th>
+                      <td>{testimonial.name}</td>
                       <td
                         style={{
-                          minWidth: "100px",
+                          maxWidth: "120px",
                           display: "flex",
                           justifyContent: "space-between",
                         }}
                       >
-                        <Link className="btn btn-info text-white" to={`edit/${novedad.id}`}>
+                        <Link className="btn btn-info text-white" to={`edit/${testimonial.id}`}>
                           <FiEdit />
                         </Link>
                         <button
                           className="btn btn-danger"
                           style={{ zIndex: "10" }}
-                          value={novedad.id}
-                          onClick={(e) => handleDeleteNews(novedad.id)}
+                          value={testimonial.id}
+                          onClick={(e) => handleDeleteTestimonial(testimonial.id)}
                         >
                           <FiTrash2 />
                         </button>
@@ -116,9 +122,8 @@ const NovedadesBackOffice = () => {
           </table>
         )}
       </div>
-      {/* <Novedad {...props} /> */}
     </>
   );
 };
 
-export default NovedadesBackOffice;
+export default TestimonialsBackOffice;
