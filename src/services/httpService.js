@@ -1,8 +1,8 @@
 // prettier-ignore
 const headers = {
-  "Accept": "application/json",
-  "Content-type": "application/json",
-  "Access-Control-Allow-Origin": "*"
+  "accept": "application/json",
+  "content-type": "application/json",
+  "access-control-allow-origin": "*"
 };
 
 function joinURL(baseUrl, url) {
@@ -15,9 +15,9 @@ class httpService {
   constructor() {
     this.domain = API_URL;
   }
-  request(url, method = "POST", data = null) {
+  request(url, method = "POST", data = null, config) {
     url = joinURL(this.domain, url);
-    const options = {
+    let options = {
       headers,
       method,
     };
@@ -28,18 +28,46 @@ class httpService {
     if (jwtoken) {
       options.headers = { ...options.headers, Authorization: `Bearer ${jwtoken}` };
     }
+    /* if(config) {
+      for(const prop in config){
+        if(options[prop]){
+          options[prop] = {...options[prop], ...config[prop]}
+        }
+      }
+    } */
     return fetch(url, options);
   }
-  get(url, id) {
+  get(url, id, config) {
     const method = "GET";
     if (id) {
       url = `${url}/${id}`;
     }
-    return this.request(url, method).then((res) => res.json());
+    return this.request(url, method, ...[,], config).then((res) => res.json());
   }
-  post(url, data) {
+  post(url, data, config) {
     const method = "POST";
-    return this.request(url, method, data).then((res) => res.json());
+    return this.request(url, method, data, config).then((res) => res.json());
+  }
+  delete(url, id, config) {
+    const method = "DELETE";
+    if (id) {
+      url = `${url}/${id}`;
+    }
+    return this.request(url, method, ...[,], config).then((res) => res.json());
+  }
+  patch(url, id, data, config) {
+    const method = "PATCH";
+    if (id) {
+      url = `${url}/${id}`;
+    }
+    return this.request(url, method, data, config).then((res) => res.json());
+  }
+  put(url, id, data, config) {
+    const method = "PUT";
+    if (id) {
+      url = `${url}/${id}`;
+    }
+    return this.request(url, method, data, config).then((res) => res.json());
   }
 }
 

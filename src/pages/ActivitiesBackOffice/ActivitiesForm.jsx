@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import { useState } from 'react';
-import { helpHttp } from '../helpers/helpHttp';
+import { helpHttp } from '../../helpers/helpHttp';
 
 const http = helpHttp()
 
