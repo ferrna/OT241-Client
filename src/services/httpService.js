@@ -41,6 +41,13 @@ class httpService {
     const method = "POST";
     return this.request(url, method, data).then((res) => res.json());
   }
+  delete(url, id) {
+    const method = "DELETE";
+    if (id) {
+      url = `${url}/${id}`;
+    }
+    return this.request(url, method).then((res) => res.json());
+  }
 }
 
 // Example for implementation:

@@ -19,6 +19,7 @@ function NovedadPage() {
       if (mounted) {
         try {
           let news = await service.get("news", id);
+          console.log(news.news);
           setProps({ ...news.news });
           setIsLoading(false);
         } catch (err) {
