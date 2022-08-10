@@ -8,7 +8,7 @@ import { ConfirmAlert } from "../../components/Alerts";
 
 const service = new httpService();
 
-const NovedadesBackOffice = () => {
+const NewsBackOffice = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [props, setProps] = useState();
   const [errors, setErrors] = useState(null);
@@ -52,9 +52,6 @@ const NovedadesBackOffice = () => {
           setReloadData(!reloadData)
           setIsLoading(false)
         }, 1000);
-        /*
-        console.log(news);
-        if (news) console.log("novedad eliminada con exito"); */
       },
     });
   };
@@ -116,9 +113,8 @@ const NovedadesBackOffice = () => {
           </table>
         )}
       </div>
-      {/* <Novedad {...props} /> */}
     </>
   );
 };
 
-export default NovedadesBackOffice;
+export default NewsBackOffice;

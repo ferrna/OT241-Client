@@ -4,12 +4,12 @@ import Loader from "../../components/Loader";
 import ErrorMessage from "../../components/ErrorMessage";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import { actividades } from "./mockdataActividad.js";
+import { activities } from "./mockdataActivities.js";
 
-const ActividadesBackOffice = () => {
-  const actividadesMock = actividades;
+const service = new httpService();
+
+const ActivitiesBackOffice = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const service = new httpService();
   const [props, setProps] = useState();
   const [errors, setErrors] = useState(null);
 
@@ -19,8 +19,14 @@ const ActividadesBackOffice = () => {
     async function fetchData() {
       if (mounted) {
         try {
-          let news = await service.get("api/v1/news", "");
-          setProps({ ...news.news });
+          // TODO: Descomentar esta línea una vez este listo el endpoint de la api:
+          // let activities = await service.get("activities");
+          setProps({ ...activities });
+          if (activities.length === 0) {
+            setErrors({ msg: "No activities finded" });
+          } else {
+            setErrors(null);
+          }
           setIsLoading(false);
         } catch (err) {
           setErrors({ msg: "Endpoint not finded" });
@@ -39,7 +45,7 @@ const ActividadesBackOffice = () => {
         <p className="text-center h1">Lista de Actividades</p>
         {isLoading ? (
           <Loader />
-        ) : !errors?.msg ? (
+        ) : errors?.msg ? (
           <ErrorMessage>Ops! Parece que en este momento no hay novedades.</ErrorMessage>
         ) : (
           <table className="table">
@@ -53,12 +59,12 @@ const ActividadesBackOffice = () => {
             </thead>
 
             <tbody>
-              {actividadesMock.map((actividad) => {
+              {props && props.map((activity) => {
                 return (
-                  <tr key={actividad.id}>
-                    <th scope="row">{actividad.id}</th>
-                    <td>{actividad.name}</td>
-                    <td>{actividad.content}</td>
+                  <tr key={activity.id}>
+                    <th scope="row">{activity.id}</th>
+                    <td>{activity.name}</td>
+                    <td>{activity.content}</td>
                     <td
                       style={{
                         minWidth: "100px",
@@ -66,10 +72,10 @@ const ActividadesBackOffice = () => {
                         justifyContent: "space-between",
                       }}
                     >
-                      <Link className="btn btn-info text-white" to={`edit/${actividad.id}`}>
+                      <Link className="btn btn-info text-white" to={`edit/${activity.id}`}>
                         <FiEdit />
                       </Link>
-                      <Link className="btn btn-danger" to={`delete/${actividad.id}`}>
+                      <Link className="btn btn-danger" to={`delete/${activity.id}`}>
                         <FiTrash2 />
                       </Link>
                     </td>
@@ -84,4 +90,4 @@ const ActividadesBackOffice = () => {
   );
 };
 
-export default ActividadesBackOffice;
+export default ActivitiesBackOffice;

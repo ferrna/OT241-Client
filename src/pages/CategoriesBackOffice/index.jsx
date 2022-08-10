@@ -4,10 +4,11 @@ import Loader from "../../components/Loader";
 import ErrorMessage from "../../components/ErrorMessage";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { ConfirmAlert } from "../../components/Alerts";
+import { Link } from "react-router-dom";
 
 const service = new httpService();
 
-const CategoriasBackOffice = () => {
+const CategoriesBackOffice = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [props, setProps] = useState();
   const [errors, setErrors] = useState(null);
@@ -95,27 +96,27 @@ const CategoriasBackOffice = () => {
               }}
             >
               {props &&
-                props.map((categoria) => {
+                props.map((category) => {
                   return (
                     <div
-                      key={categoria.name}
+                      key={category.name}
                       className="d-flex justify-content-between p-2 px-3 mb-3 border border-red rounded bg-light shadow-sm"
                     >
                       <span
                         className="align-self-center fw-semibold"
                         style={{ fontSize: "1.2rem" }}
                       >
-                        {categoria.name}
+                        {category.name}
                       </span>
                       <span className="d-flex justify-content-around" style={{ width: "100px" }}>
-                        <button className="btn btn-info text-white" style={{ zIndex: "10" }}>
+                        <Link className="btn btn-info text-white" style={{ zIndex: "10" }} to={`edit/${category.name}`}>
                           <FiEdit />
-                        </button>
+                        </Link>
                         <button
                           className="btn btn-danger"
                           style={{ zIndex: "10" }}
-                          value={categoria.name}
-                          onClick={(e) => handleDeleteCategory(categoria.name)}
+                          value={category.name}
+                          onClick={(e) => handleDeleteCategory(category.name)}
                         >
                           <FiTrash2 />
                         </button>
@@ -131,4 +132,4 @@ const CategoriasBackOffice = () => {
   );
 };
 
-export default CategoriasBackOffice;
+export default CategoriesBackOffice;
