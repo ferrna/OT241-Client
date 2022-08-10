@@ -1,6 +1,9 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 
-function Novedad({ name, content, image, createdAt }) {
+function News({ name, content, image, createdAt }) {
+  const navigate = useNavigate();
+
   return (
     <div
       className="mx-auto d-flex flex-column justify-content-center align-items-center fs-5"
@@ -15,8 +18,9 @@ function Novedad({ name, content, image, createdAt }) {
         </figcaption>
       </figure>
       <p>{content}</p>
+      <button onClick={() => navigate(-1)}>{"<"} Volver</button>
     </div>
   );
 }
 
-export default Novedad;
+export default News;
