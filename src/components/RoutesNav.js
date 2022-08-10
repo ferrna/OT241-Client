@@ -16,6 +16,7 @@ import NewsById from "../components/News/NewsById";
 import Contacts from "../pages/Contacts/Contacts.jsx";
 import Testimonials from "./Testimonials";
 import CategoriasBackOffice from "../pages/CategoriaBackOffice";
+import Members from "../pages/Members/Members";
 
 const RoutesNav = () => {
   return (
@@ -33,7 +34,7 @@ const RoutesNav = () => {
         <Route path="/novedad/:id" element={<NovedadPage />} />
         <Route path="ingreso" element={<Login />} />
         <Route path="registro" element={<RegisterForm />} />
-        <Route path="nosotros" element={<h2>NOSOTROS</h2>} />
+        <Route path="nosotros" element={<Members />} />
         <Route path="testimonios" element={<Testimonials />} />
         <Route path="contribuye" element={<h2>CONTRIBUYE</h2>} />
         {/* <Route path="novedades" element={<Novedades />} /> */}
