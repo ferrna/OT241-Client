@@ -17,7 +17,7 @@ const Backoffice = () => {
           <div className="row">
             <MenuButton title="Novedades" icon={<FaRegNewspaper />} to="news" />
             <MenuButton title="Actividades" icon={<FaClipboardList />} to="activities" />
-            <MenuButton title="Categorias" icon={<FaList />} to="Categorias" />
+            <MenuButton title="Categorias" icon={<FaList />} to="categories" />
             <MenuButton title="Testimonios" icon={<BsFillChatFill />} to="testimonials" />
           </div>
           <div className="row">

@@ -15,6 +15,8 @@ import News from "../components/News";
 import NewsById from "../components/News/NewsById";
 import Contacts from "../pages/Contacts/Contacts.jsx";
 import Testimonials from "./Testimonials";
+import CategoriasBackOffice from "../pages/CategoriaBackOffice";
+
 const RoutesNav = () => {
   return (
     <div className="min-vh-100">
@@ -27,6 +29,7 @@ const RoutesNav = () => {
         <Route path="/backoffice/testimonials" element={<TestimonialsBackOffice />} />
         <Route path="/backoffice/user" element={<Profile />} />
         <Route path="/backoffice/contacts" element={<Contacts />} />
+        <Route path="/backoffice/categories" element={<CategoriasBackOffice />} />
         <Route path="/novedad/:id" element={<NovedadPage />} />
         <Route path="ingreso" element={<Login />} />
         <Route path="registro" element={<RegisterForm />} />
