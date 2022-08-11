@@ -12,6 +12,7 @@ import Contacto from "../pages/Contacto";
 import News from "../components/News";
 import NewsById from "../components/News/NewsById/index";
 import Contacts from "../pages/Contacts/Contacts.jsx";
+import Testimonials from "../components/Testimonials"
 import Testimonials from "./Testimonials";
 import CategoriesBackOffice from "../pages/CategoriesBackOffice";
 import CategoriesForm from "../pages/CategoriesBackOffice/CategoriesForm";
