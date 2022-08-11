@@ -12,7 +12,9 @@ import Contacto from "../pages/Contacto";
 import News from "../components/News";
 import NewsById from "../components/News/NewsById/index";
 import Contacts from "../pages/Contacts/Contacts.jsx";
+import Testimonials from "../components/Testimonials"
 import Testimonials from "./Testimonials";
+import Members from "../pages/Members/Members";
 import CategoriesBackOffice from "../pages/CategoriesBackOffice";
 import CategoriesForm from "../pages/CategoriesBackOffice/CategoriesForm";
 import ActivitiesBackOffice from "../pages/ActivitiesBackOffice";
@@ -46,7 +48,7 @@ const RoutesNav = () => {
             <Route path="/backoffice/contacts" element={<Contacts />} />
             <Route path="ingreso" element={<Login />} />
             <Route path="registro" element={<RegisterForm />} />
-            <Route path="nosotros" element={<h2>NOSOTROS</h2>} />
+            <Route path="nosotros" element={<Members />} />
             <Route path="testimonios" element={<Testimonials />} />
             <Route path="contribuye" element={<h2>CONTRIBUYE</h2>} />
             {/* <Route path="novedades" element={<Novedades />} /> */}

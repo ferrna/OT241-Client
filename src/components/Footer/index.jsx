@@ -1,8 +1,9 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Logo from '../../images/LOGO-SOMOS MAS.png';
 
 import {useLocation, Link } from 'react-router-dom'
+import axios from 'axios';
 
 
 const NAV_LINKS = [
@@ -33,6 +34,16 @@ const NAV_LINKS = [
   ]
 const Footer = ()=> {
     const { pathname } = useLocation()
+    const [socials,setSocials] = useState([])
+
+
+    useEffect(()=>{
+
+        axios.get('http://localhost:3000/socialmedia').then(res => {
+            setSocials(res.data)            
+        })
+
+    },[])
 
     const getLinkClassName = path =>
       path === pathname
@@ -86,34 +97,36 @@ const Footer = ()=> {
                 </div>
                 <div className="w-100 p-2 bd-highlight">
                     <ul className="w-50 list-unstyled mx-auto d-flex flex-row justify-content-between">
-                        <li className='text-center p-2 rounded-circle bg-dark text-white display-6' style={{  
-                            width:"50px",
-                            height:"50px",
-                        // backgroundColor:"#000",
-
-                    }
-                    }>x</li>
-                        <li className='text-center p-2 rounded-circle bg-dark text-white display-6' style={{  
-                            width:"50px",
-                            height:"50px",
-                        // backgroundColor:"#000",
-
-                    }
-                    }>x</li>
-                        <li className='text-center p-2 rounded-circle bg-dark text-white display-6' style={{  
-                            width:"50px",
-                            height:"50px",
-                        // backgroundColor:"#000",
-
-                    }
-                    }>x</li>
-                        <li className='text-center p-2 rounded-circle bg-dark text-white display-6' style={{  
-                            width:"50px",
-                            height:"50px",
-                        // backgroundColor:"#000",
-
-                    }
-                    }>x</li>
+                        {socials.map(e => {
+                            switch (e.name) {
+                                case 'Twitter':
+                                    return (<li className="text-center p-2 text-white display-6" style={{width: "50px", height: "50px"}}>
+                                        <a href={e.url}>
+                                        <i className="bi bi-twitter"></i>
+                                    </a>
+                                    </li>)
+                                case 'Facebook':
+                                    return (<li className="text-center p-2 text-white display-6" style={{width: "50px", height: "50px"}}>
+                                    <a href={e.url}>
+                                    <i className="bi bi-facebook"></i>
+                                </a>
+                                </li>)
+                                case 'Linkedin':
+                                    return (<li className="text-center p-2 text-white display-6" style={{width: "50px", height: "50px"}}>
+                                    <a href={e.url}>
+                                    <i className="bi bi-linkedin"></i>
+                                </a>
+                                </li>)
+                                case 'Instagram':
+                                    return (<li className="text-center p-2 text-white display-6" style={{width: "50px", height: "50px", textDecoration:"none"}}>
+                                    <a href={e.url}>
+                                    <i className="bi bi-instagram"></i>
+                                </a>
+                                </li>)
+                                default:
+                                    break;
+                            }
+                        })}
                     </ul>
                 </div>
                 <div className=" p-2 bd-highlight">
