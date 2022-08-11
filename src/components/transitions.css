@@ -1,0 +1,24 @@
+/* .dialog-enter {
+  opacity: 0.01;
+  transform: scale(1.1);
+} */
+.dialog-enter {
+  opacity: 0.1;
+  transform: translateY(20%);
+}
+
+.dialog-enter-active {
+  opacity: 1;
+  transform: translateY(0%);
+  transition: all 1000ms ease;
+}
+
+.dialog-exit {
+  opacity: 0;
+  transform: translateY(0%);
+}
+
+.dialog-exit-active {
+  opacity: 0;
+  transition: all 600ms;
+}

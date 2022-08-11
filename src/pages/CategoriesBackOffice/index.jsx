@@ -22,12 +22,12 @@ const CategoriesBackOffice = () => {
         try {
           let categories = await service.get("categories");
           setProps([...categories]);
-          if (categories.length === 0) {
+          if (categories.length === 0 || !categories) {
             setErrors({ msg: "No categories finded" });
           } else {
             setErrors(null);
           }
-          setIsLoading(false);
+          setTimeout(() => setIsLoading(false), 600);
         } catch (err) {
           setErrors({ msg: "Endpoint not finded" });
           setIsLoading(false);
@@ -109,7 +109,11 @@ const CategoriesBackOffice = () => {
                         {category.name}
                       </span>
                       <span className="d-flex justify-content-around" style={{ width: "100px" }}>
-                        <Link className="btn btn-info text-white" style={{ zIndex: "10" }} to={`edit/${category.name}`}>
+                        <Link
+                          className="btn btn-info text-white"
+                          style={{ zIndex: "10" }}
+                          to={`edit/${category.name}`}
+                        >
                           <FiEdit />
                         </Link>
                         <button
