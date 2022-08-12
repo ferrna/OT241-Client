@@ -21,10 +21,10 @@ const MembersCards = () => {
         {
             members && (
                 members.map((item) => (
-                            <div key={uuidv4()} className='card border-0 col-sm-3 col-lg-2 mx-2 mb-5'>
+                            <div key={uuidv4()} className='card border-0 col-4 col-md-3 col-lg-2 mx-2 mb-5'>
                                 <img key={uuidv4()} className='img-fluid rounded-5 shadow ' src={`http://localhost:3000/images/${item.image}`} alt={item.image} />
                                     <div className='card-img-overlay d-flex align-items-end justify-content-center'>
-                                        <h5 className='text-light' key={uuidv4()}>{item.name}</h5>
+                                        <p className='text-light fw-bolder fs-5' key={uuidv4()}>{item.name}</p>
                                     </div>
                             </div>
                             
