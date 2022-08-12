@@ -4,6 +4,7 @@ import Loader from "../../Loader";
 import ErrorMessage from "../../ErrorMessage";
 import News from "./News";
 import httpService from "../../../services/httpService";
+import axios from "axios";
 
 const service = new httpService();
 
@@ -18,9 +19,9 @@ function NewsById() {
     async function fetchData() {
       if (mounted) {
         try {
-          let news = await service.get("news", id);
-          console.log(news.news);
-          setProps({ ...news.news });
+          let {data} = await axios.get(`http://localhost:3000/news/${id}`);
+          console.log(data);
+          setProps({ ...data.news });
           setIsLoading(false);
         } catch (err) {
           setErrors({ msg: "Endpoint not finded" });

@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import httpService from "../../services/httpService";
+import axios from "axios";
+import moment from "moment";
+import 'moment/locale/es-mx'
 
 const http = new httpService();
 
@@ -9,20 +12,20 @@ const News = () => {
 
   useEffect(() => {
     async function getData() {
-      let response = await http.get("news");
-      setNews(response);
+      let {data} = await axios.get("http://localhost:3000/news");
+      setNews(data);
     }
 
     getData();
+    
   }, []);
 
   return (
     <div>
-      <h1>NEWS</h1>
+      <h1 className="container text-center">Noticias</h1>
       <div className="d-flex flex-wrap justify-content-center">
         {news &&
           news.map((e) => {
-            console.log(e);
             let { name, image, createdAt, id } = e;
             return (
               <>
@@ -35,7 +38,7 @@ const News = () => {
                       </Link>
                     </h3>
                     <p>
-                      <small>{Date(createdAt)}</small>
+                      <small>{moment(createdAt).format("LLL")}</small>
                     </p>
                   </div>
                 </div>
