@@ -1,5 +1,5 @@
 import React from 'react'
-import img1 from '../images/1920x680.png'
+import img1 from '../images/Rectangle4.png'
 import { v4 as uuidv4 } from 'uuid'
 
 const Slider = () => {
@@ -19,7 +19,7 @@ const Slider = () => {
   ]
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid p-0">
       <div
         id="carouselExampleCaptions"
         className="carousel slide"
@@ -53,14 +53,13 @@ const Slider = () => {
             index === 0 ? (
               <div key={uuidv4()} className="carousel-item active">
                 <img
-                  src="http://localhost:3000/images/0b42b55fbc57fd2a73b39c43f6a0236f"
+                  src={img1}
                   className="d-block w-100"
                 />
                 <div
                   key={uuidv4()}
                   className="carousel-caption d-none d-md-block"
                 >
-                  <p key={uuidv4()}>{item.text}</p>
                 </div>
               </div>
             ) : (
@@ -75,7 +74,6 @@ const Slider = () => {
                   key={uuidv4()}
                   className="carousel-caption d-none d-md-block"
                 >
-                  <p key={uuidv4()}>{item.text}</p>
                 </div>
               </div>
             )
