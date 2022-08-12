@@ -21,8 +21,8 @@ const ActivitiesBackOffice = () => {
         try {
           // TODO: Descomentar esta línea una vez este listo el endpoint de la api:
           // let activities = await service.get("activities");
-          setProps({ ...activities });
-          if (activities.length === 0) {
+          setProps([...activities]);
+          if (activities.length === 0 || !activities) {
             setErrors({ msg: "No activities finded" });
           } else {
             setErrors(null);
@@ -59,29 +59,30 @@ const ActivitiesBackOffice = () => {
             </thead>
 
             <tbody>
-              {props && props.map((activity) => {
-                return (
-                  <tr key={activity.id}>
-                    <th scope="row">{activity.id}</th>
-                    <td>{activity.name}</td>
-                    <td>{activity.content}</td>
-                    <td
-                      style={{
-                        minWidth: "100px",
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <Link className="btn btn-info text-white" to={`edit/${activity.id}`}>
-                        <FiEdit />
-                      </Link>
-                      <Link className="btn btn-danger" to={`delete/${activity.id}`}>
-                        <FiTrash2 />
-                      </Link>
-                    </td>
-                  </tr>
-                );
-              })}
+              {props &&
+                props.map((activity) => {
+                  return (
+                    <tr key={activity.id}>
+                      <th scope="row">{activity.id}</th>
+                      <td>{activity.name}</td>
+                      <td>{activity.content}</td>
+                      <td
+                        style={{
+                          minWidth: "100px",
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <Link className="btn btn-info text-white" to={`edit/${activity.id}`}>
+                          <FiEdit />
+                        </Link>
+                        <Link className="btn btn-danger" to={`delete/${activity.id}`}>
+                          <FiTrash2 />
+                        </Link>
+                      </td>
+                    </tr>
+                  );
+                })}
             </tbody>
           </table>
         )}
