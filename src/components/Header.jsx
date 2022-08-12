@@ -41,7 +41,7 @@ function Header() {
       : 'text-decoration-none text-body'
 
   return (
-    <nav className="d-flex align-items-center justify-content-between container-fluid py-2 shadow mb-5">
+    <nav className="d-flex align-items-center justify-content-between container-fluid py-2 shadow">
       <Link to="/">
         <img src={logo} alt="ONG" />
       </Link>
