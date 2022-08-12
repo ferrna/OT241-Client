@@ -18,7 +18,7 @@ function News({ name, content, image, createdAt }) {
         </figcaption>
       </figure>
       <p>{content}</p>
-      <button onClick={() => navigate(-1)}>{"<"} Volver</button>
+      <button type="button" className="btn btn-danger" onClick={() => navigate(-1)}>{"<"} Volver</button>
     </div>
   );
 }
