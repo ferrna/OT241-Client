@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./styles.css";
 
 function NovedadesItem({ image, content, id, name }) {
   return (
@@ -8,18 +9,35 @@ function NovedadesItem({ image, content, id, name }) {
         className="card m-2 p-3 ms-md-0 me-md-3 rounded-4"
         style={{
           backgroundColor: "#7E9AFD",
+          border: "1px solid #0038FF",
         }}
       >
-        <div className="row g-0 d-flex align-items-center">
+        <div className="row g-0 d-flex align-items-center align-items-lg-stretch">
           <div
-            className="col-lg-6 bg-cover d-flex justify-content-center align-items-center"
-            style={{ maxHeight: "380px", overflow: "hidden" }}
+            className="module--image-div col-lg-6 bg-cover d-flex justify-content-center align-items-center align-self-stretch rounded-4"
+            style={{
+              overflow: "hidden",
+              flexGrow: "1",
+              backgroundImage: `url(${image})`,
+              objectFit: "contain",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "auto 100%",
+              backgroundPosition: "center center",
+            }}
           >
-            <img src={image} className="img-fluid rounded-4 h-100 w-100" alt={`imagen-${name}`} />
+            {/* 
+            <img src={img1} className="img-fluid rounded-4 h-100" alt={`imagen-${name}`} /> */}
           </div>
           <div className="col-lg-6 d-lg-flex align-self-lg-stretch">
             <div className="d-flex flex-column justify-content-between pt-2 ps-lg-4 align-items-center">
-              <p className="card-text fs-5">{content}</p>
+              <p
+                className="card-text fs-5"
+                style={{
+                  lineHeight: "1.7rem",
+                }}
+              >
+                {content}
+              </p>
               <Link
                 className="btn btn-primary mx-auto rounded-3 px-3 py-2 px-lg-5 py-lg-2"
                 style={{
