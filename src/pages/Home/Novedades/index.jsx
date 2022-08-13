@@ -11,7 +11,7 @@ function Novedades({ homeNews }) {
           Ver todos {">"}
         </Link>
       </div>
-      <div className="container d-flex flex-wrap mb-5">
+      <div className="container d-flex flex-wrap flex-xl-nowrap mb-5 overflow-hidden">
         {homeNews.map((news, i) => {
           let props = { ...news, i };
           return <NovedadesItem key={i + 1} {...props} />;

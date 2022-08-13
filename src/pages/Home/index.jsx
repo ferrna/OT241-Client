@@ -1,9 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import Slider from "../../components/Slider.jsx";
-import Novedades from "./Novedades/index.jsx";
 import RegisterFormEdit from "../../components/RegisterFormEdit.jsx";
 import httpService from "../../services/httpService";
 import "./styles.css";
+import Loader from "../../components/Loader.jsx";
+//const Novedades = React.lazy(() => import("./Novedades/index.jsx"));
+const Novedades = React.lazy(() => {
+  return new Promise((resolve) => setTimeout(resolve, 400)).then(() =>
+    import("./Novedades/index.jsx")
+  );
+});
 
 const service = new httpService();
 
@@ -23,14 +29,14 @@ function Home() {
     let mounted = true;
     if (mounted) {
       async function getData() {
-          await service.get("organization/20/public").then((res) => {
-            console.dir(res);
-            setHomeContent({ ...res[0] })
-          });
-          await service.get("news").then((res) => {
-            console.dir(res);
-            setHomeNews([...res]);
-          })
+        await service.get("organization/20/public").then((res) => {
+          console.dir(res);
+          setHomeContent({ ...res[0] });
+        });
+        await service.get("news").then((res) => {
+          console.dir(res);
+          setHomeNews([...res]);
+        });
       }
       getData();
     }
@@ -63,9 +69,13 @@ function Home() {
           </div>
         </div>
       </section>
-      {homeNews && <Novedades homeNews={homeNews.slice(0, 3)} />}
-      <br/>
-      <br/>
+      <div className="position-relative" style={{ minHeight: "300px" }}>
+        <Suspense fallback={<Loader />}>
+          {homeNews && <Novedades homeNews={homeNews.slice(0, 3)} />}
+        </Suspense>
+      </div>
+      <br />
+      <br />
     </>
   );
 }
