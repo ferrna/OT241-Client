@@ -30,7 +30,7 @@ function Home() {
     let mounted = true;
     if (mounted) {
       async function getData() {
-        await service.get("organization/20/public").then((res) => {
+        await service.get("organization/1/public").then((res) => {
           setHomeContent({ ...res[0] });
         });
         await service.get("news").then((res) => {
