@@ -4,6 +4,7 @@ import RegisterFormEdit from "../../components/RegisterFormEdit.jsx";
 import httpService from "../../services/httpService";
 import "./styles.css";
 import Loader from "../../components/Loader.jsx";
+import { mergeSort } from "./functions/sort.js";
 //const Novedades = React.lazy(() => import("./Novedades/index.jsx"));
 const Novedades = React.lazy(() => {
   return new Promise((resolve) => setTimeout(resolve, 400)).then(() =>
@@ -30,12 +31,11 @@ function Home() {
     if (mounted) {
       async function getData() {
         await service.get("organization/20/public").then((res) => {
-          console.dir(res);
           setHomeContent({ ...res[0] });
         });
         await service.get("news").then((res) => {
-          console.dir(res);
-          setHomeNews([...res]);
+          let sortedNews = mergeSort(res, "createdAt").reverse().slice(0, 2);
+          setHomeNews([...sortedNews]);
         });
       }
       getData();
@@ -70,9 +70,7 @@ function Home() {
         </div>
       </section>
       <div className="position-relative" style={{ minHeight: "300px" }}>
-        <Suspense fallback={<Loader />}>
-          {homeNews && <Novedades homeNews={homeNews.slice(0, 3)} />}
-        </Suspense>
+        <Suspense fallback={<Loader />}>{homeNews && <Novedades homeNews={homeNews} />}</Suspense>
       </div>
       <br />
       <br />

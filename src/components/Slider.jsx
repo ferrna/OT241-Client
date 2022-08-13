@@ -1,6 +1,7 @@
 import React from 'react'
 import img1 from '../images/Rectangle4.png'
 import { v4 as uuidv4 } from 'uuid'
+import { useEffect } from 'react'
 
 const Slider = () => {
   const sliderContent = [
@@ -17,6 +18,24 @@ const Slider = () => {
       text: 'Slide 3',
     },
   ]
+
+  var autoplayInterval = () => setInterval(function() {
+
+    // Get element via id and click next
+    document.getElementById("nextSlider").click();
+
+  }, 11000)
+
+  useEffect(()=> {
+    let mounted = true;
+    if(mounted){
+      autoplayInterval()
+    }
+    return ()=> {
+      clearInterval(autoplayInterval);
+      mounted = false;
+    }
+  }, [])
 
   return (
     <div className="container-fluid p-0">
@@ -51,7 +70,7 @@ const Slider = () => {
         <div className="carousel-inner">
           {sliderContent.map((item, index) =>
             index === 0 ? (
-              <div key={uuidv4()} className="carousel-item active">
+              <div key={uuidv4()} className="carousel-item active" style={{transition: "all 1.4s ease-out"}}>
                 <img
                   src={img1}
                   className="d-block w-100"
@@ -63,7 +82,7 @@ const Slider = () => {
                 </div>
               </div>
             ) : (
-              <div key={uuidv4()} className="carousel-item">
+              <div key={uuidv4()} className="carousel-item" style={{transition: "all 1.4s ease-out"}}>
                 <img
                   key={uuidv4()}
                   src={item.imageURL}
@@ -101,7 +120,7 @@ const Slider = () => {
             className="carousel-control-next-icon"
             aria-hidden="true"
           ></span>
-          <span className="visually-hidden">Next</span>
+          <span className="visually-hidden" id="nextSlider">Next</span>
         </button>
       </div>
     </div>
