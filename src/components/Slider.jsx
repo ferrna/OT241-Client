@@ -19,7 +19,7 @@ const Slider = () => {
     },
   ]
 
-  var autoplayInterval = () => setInterval(function() {
+  /* var autoplayInterval = () => setInterval(function() {
 
     // Get element via id and click next
     document.getElementById("nextSlider").click();
@@ -35,7 +35,7 @@ const Slider = () => {
       clearInterval(autoplayInterval);
       mounted = false;
     }
-  }, [])
+  }, []) */
 
   return (
     <div className="container-fluid p-0">
@@ -70,7 +70,7 @@ const Slider = () => {
         <div className="carousel-inner">
           {sliderContent.map((item, index) =>
             index === 0 ? (
-              <div key={uuidv4()} className="carousel-item active" style={{transition: "all 1.4s ease-out"}}>
+              <div key={uuidv4()} className="carousel-item active" style={{transition: "all 1s ease-out"}}>
                 <img
                   src={img1}
                   className="d-block w-100"
@@ -82,7 +82,7 @@ const Slider = () => {
                 </div>
               </div>
             ) : (
-              <div key={uuidv4()} className="carousel-item" style={{transition: "all 1.4s ease-out"}}>
+              <div key={uuidv4()} className="carousel-item" style={{transition: "all 1s ease-out"}}>
                 <img
                   key={uuidv4()}
                   src={item.imageURL}

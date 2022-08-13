@@ -6,8 +6,8 @@ import "./styles.css";
 import Loader from "../../components/Loader.jsx";
 import { mergeSort } from "./functions/sort.js";
 //const Novedades = React.lazy(() => import("./Novedades/index.jsx"));
-const Novedades = React.lazy(() => {
-  return new Promise((resolve) => setTimeout(resolve, 400)).then(() =>
+ const Novedades = React.lazy(() => {
+  return new Promise((resolve) => setTimeout(resolve, 300)).then(() =>
     import("./Novedades/index.jsx")
   );
 });
@@ -69,7 +69,7 @@ function Home() {
           </div>
         </div>
       </section>
-      <div className="position-relative" style={{ minHeight: "300px" }}>
+      <div className="position-relative" style={{ minHeight: "380px" }}>
         <Suspense fallback={<Loader />}>{homeNews && <Novedades homeNews={homeNews} />}</Suspense>
       </div>
       <br />
