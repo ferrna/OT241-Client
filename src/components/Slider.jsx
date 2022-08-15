@@ -1,20 +1,23 @@
 import React from 'react'
-import img1 from '../images/1920x680.png'
+import img1 from '../images/img4.jpg'
+import img2 from '../images/img5.jpg'
+import img3 from '../images/img6.jpg'
 import { v4 as uuidv4 } from 'uuid'
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 const Slider = () => {
   const sliderContent = [
     {
       imageURL: img1,
-      text: 'Slide 1',
+      text: "Lorem ipsum dolor sit amet.",
     },
     {
-      imageURL: img1,
-      text: 'Slide 2',
+      imageURL: img2,
+      text: "Lorem ipsum dolor sit amet.",
     },
     {
-      imageURL: img1,
-      text: 'Slide 3',
+      imageURL: img3,
+      text: "Lorem ipsum dolor sit amet.",
     },
   ]
 
@@ -51,10 +54,11 @@ const Slider = () => {
         <div className="carousel-inner">
           {sliderContent.map((item, index) =>
             index === 0 ? (
-              <div key={uuidv4()} className="carousel-item active">
+              <div key={uuidv4()} className="carousel-item active " data-bs-interval="3000">
                 <img
-                  src="http://localhost:3000/images/0b42b55fbc57fd2a73b39c43f6a0236f"
-                  className="d-block w-100"
+                  src={item.imageURL}
+                  className="d-block w-100 img-fluid"
+                  alt={item.imageURL}
                 />
                 <div
                   key={uuidv4()}
@@ -64,11 +68,11 @@ const Slider = () => {
                 </div>
               </div>
             ) : (
-              <div key={uuidv4()} className="carousel-item">
+              <div key={uuidv4()} className="carousel-item" data-bs-interval="3000">
                 <img
                   key={uuidv4()}
                   src={item.imageURL}
-                  className="d-block w-100"
+                  className="d-block w-100 img-fluid"
                   alt={item.imageURL}
                 />
                 <div
