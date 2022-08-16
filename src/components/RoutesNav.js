@@ -16,20 +16,25 @@ import NewsById from "../components/News/NewsById";
 import Contacts from "../pages/Contacts/Contacts.jsx";
 import Testimonials from "./Testimonials";
 import CategoriasBackOffice from "../pages/CategoriaBackOffice";
+import ProtectedRoute from "./ProtectedRoute";
 
 const RoutesNav = () => {
   return (
     <div className="min-vh-100">
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/backoffice" element={<Backoffice />} />
-        <Route path="/backoffice/edit-organization" element={<OrganizacionBackoffice />} />
-        <Route path="/backoffice/news" element={<NovedadesBackOffice />} />
-        <Route path="/backoffice/activities" element={<ActividadesBackOffice />} />
-        <Route path="/backoffice/testimonials" element={<TestimonialsBackOffice />} />
-        <Route path="/backoffice/user" element={<Profile />} />
-        <Route path="/backoffice/contacts" element={<Contacts />} />
-        <Route path="/backoffice/categories" element={<CategoriasBackOffice />} />
+        <Route path="/" element={ <Home /> } />
+        <Route path="/backoffice" element={ <ProtectedRoute role={1} /> }>
+          <Route path="" element={<Backoffice />} />
+          <Route path="edit-organization" element={<OrganizacionBackoffice />} />
+          <Route path="news" element={<NovedadesBackOffice />} />
+          <Route path="activities" element={<ActividadesBackOffice />} />
+          <Route path="testimonials" element={<TestimonialsBackOffice />} />
+          <Route path="categories" element={<CategoriasBackOffice />} />
+        </Route>
+        <Route path="user" element={ <ProtectedRoute logged={true} /> }>
+          <Route path="" element={<Profile />} />
+        </Route>
+        <Route path="contacts" element={<Contacts />} />
         <Route path="/novedad/:id" element={<NovedadPage />} />
         <Route path="ingreso" element={<Login />} />
         <Route path="registro" element={<RegisterForm />} />
