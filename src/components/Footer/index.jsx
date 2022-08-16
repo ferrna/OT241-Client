@@ -1,10 +1,10 @@
-import React,{useState,useEffect} from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState, useEffect } from 'react';
 import Logo from '../../images/LOGO-SOMOS MAS.png';
+import { useLocation, Link } from 'react-router-dom';
 
-import {useLocation, Link } from 'react-router-dom'
-import axios from 'axios';
+import httpService from "../../services/httpService";
 
+const service = new httpService();
 
 const NAV_LINKS = [
     {
@@ -39,8 +39,8 @@ const Footer = ()=> {
 
     useEffect(()=>{
 
-        axios.get('http://localhost:3000/socialmedia').then(res => {
-            setSocials(res.data)            
+        service.get('socialmedia').then(res => {
+            setSocials([...res])            
         })
 
     },[])
@@ -97,7 +97,7 @@ const Footer = ()=> {
                 </div>
                 <div className="w-100 p-2 bd-highlight">
                     <ul className="w-50 list-unstyled mx-auto d-flex flex-row justify-content-between">
-                        {socials.map(e => {
+                        {socials && socials.map(e => {
                             switch (e.name) {
                                 case 'Twitter':
                                     return (<li className="text-center p-2 text-white display-6" style={{width: "50px", height: "50px"}}>

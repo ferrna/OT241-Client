@@ -1,6 +1,7 @@
 import React from 'react'
-import img1 from '../images/1920x680.png'
+import img1 from '../images/Rectangle4.png'
 import { v4 as uuidv4 } from 'uuid'
+import { useEffect } from 'react'
 
 const Slider = () => {
   const sliderContent = [
@@ -18,8 +19,26 @@ const Slider = () => {
     },
   ]
 
+  /* var autoplayInterval = () => setInterval(function() {
+
+    // Get element via id and click next
+    document.getElementById("nextSlider").click();
+
+  }, 11000)
+
+  useEffect(()=> {
+    let mounted = true;
+    if(mounted){
+      autoplayInterval()
+    }
+    return ()=> {
+      clearInterval(autoplayInterval);
+      mounted = false;
+    }
+  }, []) */
+
   return (
-    <div className="container-fluid">
+    <div className="container-fluid p-0">
       <div
         id="carouselExampleCaptions"
         className="carousel slide"
@@ -51,20 +70,19 @@ const Slider = () => {
         <div className="carousel-inner">
           {sliderContent.map((item, index) =>
             index === 0 ? (
-              <div key={uuidv4()} className="carousel-item active">
+              <div key={uuidv4()} className="carousel-item active" style={{transition: "all 1s ease-out"}}>
                 <img
-                  src="http://localhost:3000/images/0b42b55fbc57fd2a73b39c43f6a0236f"
+                  src={img1}
                   className="d-block w-100"
                 />
                 <div
                   key={uuidv4()}
                   className="carousel-caption d-none d-md-block"
                 >
-                  <p key={uuidv4()}>{item.text}</p>
                 </div>
               </div>
             ) : (
-              <div key={uuidv4()} className="carousel-item">
+              <div key={uuidv4()} className="carousel-item" style={{transition: "all 1s ease-out"}}>
                 <img
                   key={uuidv4()}
                   src={item.imageURL}
@@ -75,7 +93,6 @@ const Slider = () => {
                   key={uuidv4()}
                   className="carousel-caption d-none d-md-block"
                 >
-                  <p key={uuidv4()}>{item.text}</p>
                 </div>
               </div>
             )
@@ -103,7 +120,7 @@ const Slider = () => {
             className="carousel-control-next-icon"
             aria-hidden="true"
           ></span>
-          <span className="visually-hidden">Next</span>
+          <span className="visually-hidden" id="nextSlider">Next</span>
         </button>
       </div>
     </div>
