@@ -18,7 +18,7 @@ const CategoriesForm = () => {
     let mounted = true;
     if (mounted) {
       setIsLoading(true);
-      service.get(`testimonials`, id).then((res) => {
+      service.get(`categories`, id).then((res) => {
         setProps({ ...res });
         setIsLoading(false);
       });

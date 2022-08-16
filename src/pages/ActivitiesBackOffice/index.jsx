@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
 import "./styles.css";
+import { ConfirmAlert } from "../../components/Alerts";
 
 const service = new httpService();
 
@@ -14,6 +15,7 @@ const ActivitiesBackOffice = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [props, setProps] = useState();
   const [errors, setErrors] = useState(null);
+  const [reloadData, setReloadData] = useState(false);
 
   // Get all news
   useEffect(() => {
@@ -39,7 +41,23 @@ const ActivitiesBackOffice = () => {
     fetchData();
     return () => (mounted = false);
     //eslint-disable-next-line
-  }, []);
+  }, [reloadData]);
+
+  // Delete activity
+  const handleDeleteActivity = async (value) => {
+    const id = value;
+    ConfirmAlert({
+      text: "Atención! Esta por eliminar la actividad ¿desea continuar?",
+      onConfirm: async () => {
+        setIsLoading(true);
+        await service.delete("activities", id);
+        setTimeout(() => {
+          setReloadData(!reloadData);
+          setIsLoading(false);
+        }, 1000);
+      },
+    });
+  };
 
   return (
     <>
@@ -89,9 +107,12 @@ const ActivitiesBackOffice = () => {
                             >
                               <FiEdit />
                             </Link>
-                            <Link className="btn btn-danger" to={`delete/${activity.id}`}>
+                            <button
+                              className="btn btn-danger"
+                              onClick={(e) => handleDeleteActivity(activity.id)}
+                            >
                               <FiTrash2 />
-                            </Link>
+                            </button>
                           </div>
                         </td>
                       </tr>
@@ -99,6 +120,9 @@ const ActivitiesBackOffice = () => {
                   })}
               </tbody>
             </table>
+            <Link className="btn btn-info mb-2 mb-sm-0" to={`edit`}>
+              <FiEdit /> Nueva actividad
+            </Link>
           </div>
         )}
       </div>
