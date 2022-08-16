@@ -5,8 +5,7 @@ import  Loader  from '../components/Loader'
 
 const Contacto = () => {
     const [isLoading, setIsLoading] = useState(false)
-    const [data, setData] = useState({});
-    const[messageSuccess,setMessageSuccess] = useState(null)
+    const [data, setData] = useState({})
 
     const sendMessage = async (e) => {
         //Prevent refresh
@@ -15,13 +14,13 @@ const Contacto = () => {
         //send Logic
         let myNewData = {
             name: data.nombre,
-            email: data.email
+            email: data.email,
+            message: data.comentario
         }
 
         let res = await axios.post('http://localhost:3000/contacts',myNewData,{headers:{'Content-Type': 'application/json'}})
         setIsLoading(true)
 
-        setMessageSuccess(res.data.message)
         if(res.statusText === "OK") setIsLoading(false)
         //Clear Form
         document.getElementById("form").reset()
@@ -41,11 +40,11 @@ const Contacto = () => {
         </h1>
         <div className="container mt-5">
             <div className="row">
-                <div className="col-6">
+                <div className="col-sm-12 col-lg-6">
                 <h2>What is Lorem Ipsum?</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis, ligula quis molestie mattis, est massa dignissim leo, vitae tempor ex turpis venenatis libero. Aliquam et accumsan urna, id accumsan sem. Ut sed faucibus mauris. Etiam nibh nisl, viverra in odio ac, lacinia vulputate massa. Duis facilisis lectus rutrum condimentum euismod. Morbi et venenatis dolor, ut efficitur nulla. Nam vitae ornare libero. Praesent nisl risus, molestie et urna ac, gravida ultrices velit.</p>
                 </div>
-                <div className="col-6">
+                <div className="col-sm-12 col-lg-6">
                     <form onSubmit={sendMessage} id="form">
                         <div className="mb-3">
                             <label className="form-label">Nombre</label>
@@ -65,7 +64,6 @@ const Contacto = () => {
             </div>
         </div>
         {isLoading && <Loader/>}
-        {messageSuccess && <h2>{messageSuccess}</h2>}
     </div>
   )
 }

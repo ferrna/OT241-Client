@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import axios from 'axios'
 import { v4 as uuidv4 } from 'uuid'
-import moment from 'moment'
+//import moment from 'moment'
 
 const Contacts = () => {
     const [data, setData] = React.useState([])
@@ -40,7 +40,7 @@ const Contacts = () => {
                                     <td key={uuidv4()}>{item.name}</td>
                                     <td key={uuidv4()}>{item.phone}</td>
                                     <td key={uuidv4()}>{item.email}</td>
-                                    <td key={uuidv4()}>{moment(item.createdAt).format('DD/MM/YYYY')}</td>
+                                    <td key={uuidv4()}>{new Date(item.createdAt).format('DD/MM/YYYY')}</td>
                                 </tr>
                                 
                             ))
