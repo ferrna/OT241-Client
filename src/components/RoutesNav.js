@@ -38,6 +38,7 @@ const RoutesNav = () => {
             <Route path="/backoffice/categories/edit/" element={<CategoriesForm />} />
             <Route path="/backoffice/activities" element={<ActivitiesBackOffice />} />
             <Route path="/backoffice/activities/edit/:id" element={<ActivitiesForm />} />
+            <Route path="/backoffice/activities/edit/" element={<ActivitiesForm />} />
             <Route path="/backoffice/edit-organization" element={<OrganizacionBackoffice />} />
             <Route path="/backoffice/news" element={<NewsBackOffice />} />
             <Route path="/backoffice/news/edit/:id" element={<NewsForm />} />

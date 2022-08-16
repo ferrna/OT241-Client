@@ -5,6 +5,7 @@ import ErrorMessage from "../../components/ErrorMessage";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { ConfirmAlert } from "../../components/Alerts";
 import { Link } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 const service = new httpService();
 
@@ -99,7 +100,7 @@ const CategoriesBackOffice = () => {
                 props.map((category) => {
                   return (
                     <div
-                      key={category.name}
+                      key={uuidv4()}
                       className="d-flex justify-content-between p-2 px-3 mb-3 border border-red rounded bg-light shadow-sm"
                     >
                       <span
@@ -112,7 +113,7 @@ const CategoriesBackOffice = () => {
                         <Link
                           className="btn btn-info text-white"
                           style={{ zIndex: "10" }}
-                          to={`edit/${category.name}`}
+                          to={`edit/${category.id}`}
                         >
                           <FiEdit />
                         </Link>
@@ -120,7 +121,7 @@ const CategoriesBackOffice = () => {
                           className="btn btn-danger"
                           style={{ zIndex: "10" }}
                           value={category.name}
-                          onClick={(e) => handleDeleteCategory(category.name)}
+                          onClick={(e) => handleDeleteCategory(category.id)}
                         >
                           <FiTrash2 />
                         </button>
@@ -129,6 +130,9 @@ const CategoriesBackOffice = () => {
                   );
                 })}
             </div>
+            <Link className="btn btn-info mb-2 mb-sm-0" to={`edit`}>
+              <FiEdit /> Nueva categoría
+            </Link>
           </div>
         )}
       </div>
