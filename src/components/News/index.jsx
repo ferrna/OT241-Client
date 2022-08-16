@@ -4,6 +4,7 @@ import httpService from "../../services/httpService";
 import axios from "axios";
 import moment from "moment";
 import 'moment/locale/es-mx'
+import { v4 as uuidv4 } from 'uuid'
 
 const http = new httpService();
 
@@ -22,27 +23,25 @@ const News = () => {
 
   return (
     <div>
-      <h1 className="container text-center">Noticias</h1>
+      <h1 className="container text-center mt-5">Noticias</h1>
       <div className="d-flex flex-wrap justify-content-center">
         {news &&
           news.map((e) => {
             let { name, image, createdAt, id } = e;
             return (
-              <>
-                <div className="card text-center" style={{ width: "18rem", margin: "1rem" }}>
-                  <img src={image} className="card-img-top" alt="..." />
-                  <div className="card-body">
-                    <h3 className="card-text ">
-                      <Link to={`${id}`} className="text-danger">
+                <div key={uuidv4()} className="card text-center" style={{ width: "18rem", margin: "1rem" }}>
+                  <img key={uuidv4()} src={image} className="card-img-top" alt="..." />
+                  <div key={uuidv4()} className="card-body">
+                    <h3 key={uuidv4()} className="card-text ">
+                      <Link key={uuidv4()} to={`${id}`} className="text-danger">
                         {name}
                       </Link>
                     </h3>
-                    <p>
-                      <small>{moment(createdAt).format("LLL")}</small>
+                    <p key={uuidv4()}>
+                      <small key={uuidv4()}>{moment(createdAt).format("LLL")}</small>
                     </p>
                   </div>
                 </div>
-              </>
             );
           })}
       </div>

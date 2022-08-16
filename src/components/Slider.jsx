@@ -1,4 +1,9 @@
 import React from 'react'
+import img1 from '../images/img4.jpg'
+import img2 from '../images/img5.jpg'
+import img3 from '../images/img6.jpg'
+import { v4 as uuidv4 } from 'uuid'
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import img1 from '../images/Rectangle4.png'
 import { v4 as uuidv4 } from 'uuid'
 import { useEffect } from 'react'
@@ -7,15 +12,15 @@ const Slider = () => {
   const sliderContent = [
     {
       imageURL: img1,
-      text: 'Slide 1',
+      text: "Lorem ipsum dolor sit amet.",
     },
     {
-      imageURL: img1,
-      text: 'Slide 2',
+      imageURL: img2,
+      text: "Lorem ipsum dolor sit amet.",
     },
     {
-      imageURL: img1,
-      text: 'Slide 3',
+      imageURL: img3,
+      text: "Lorem ipsum dolor sit amet.",
     },
   ]
 
@@ -86,7 +91,7 @@ const Slider = () => {
                 <img
                   key={uuidv4()}
                   src={item.imageURL}
-                  className="d-block w-100"
+                  className="d-block w-100 img-fluid"
                   alt={item.imageURL}
                 />
                 <div

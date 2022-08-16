@@ -1,16 +1,19 @@
 import React from "react";
+import image1 from "../../../images/Novedad1.png";
+import { v4 as uuidv4 } from 'uuid'
 import { Link } from "react-router-dom";
 import "./styles.css";
 
 function NovedadesItem({ image, content, id, name }) {
   return (
-    <div className="col-12 col-sm-6 col-xl-5" key={id}>
+    <div className="col-12 col-sm-6 col-xl-6" key={uuidv4()}>
       <div
         className="card m-2 p-3 ms-md-0 me-md-3 rounded-4"
         style={{
           backgroundColor: "#7E9AFD",
           border: "1px solid #0038FF",
         }}
+        key={uuidv4()}
       >
         <div className="row g-0 d-flex align-items-center align-items-lg-stretch">
           <div
@@ -35,6 +38,7 @@ function NovedadesItem({ image, content, id, name }) {
                 style={{
                   lineHeight: "1.7rem",
                 }}
+                key={uuidv4()}
               >
                 {content}
               </p>
