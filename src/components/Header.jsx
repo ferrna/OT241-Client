@@ -1,5 +1,7 @@
 import React from 'react'
 import { useLocation, Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { logout } from '../reducers/authSlice'
 
 // TODO: Cargar dinamicamente el logo
 import logo from '../images/logo.png'
@@ -34,6 +36,9 @@ const NAV_LINKS = [
 
 function Header() {
   const { pathname } = useLocation()
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+  const role = useSelector((state) => state.auth.user? state.auth.user.roleId : null)
+  const dispatch = useDispatch()
 
   const getLinkClassName = path =>
     path === pathname
@@ -58,18 +63,57 @@ function Header() {
         </ul>
 
         <div className="d-flex gap-2">
-          <Link
-            className="d-block text-decoration-none btn btn-outline-dark rounded-pill px-3"
-            to="/ingreso"
-          >
-            Log in
-          </Link>
-          <Link
-            className="d-block text-decoration-none btn btn-danger text-white rounded-pill px-3"
-            to="/registro"
-          >
-            Regístrate
-          </Link>
+          {!isLoggedIn &&
+          <>
+            <Link
+              className="d-block text-decoration-none btn btn-outline-dark rounded-pill px-3"
+              to="/ingreso"
+            >
+              Log in
+            </Link>
+            <Link
+              className="d-block text-decoration-none btn btn-danger text-white rounded-pill px-3"
+              to="/registro"
+            >
+              Regístrate
+            </Link>
+          </>}
+          {(isLoggedIn && role === 1) &&
+          <>
+            <Link
+              className="d-block text-decoration-none btn btn-outline-dark rounded-pill px-3"
+              to="/user"
+            >
+              Perfil
+            </Link>
+            <Link
+              className="d-block text-decoration-none btn btn-outline-dark rounded-pill px-3"
+              to="/Backoffice"
+            >
+              Backoffice
+            </Link>
+            <button
+              className="d-block text-decoration-none btn btn-danger text-white rounded-pill px-3"
+              onClick={() => dispatch(logout())}
+            >
+              Cerrar Sesion
+            </button>
+          </>}
+          {(isLoggedIn && role === 2) &&
+          <>
+            <Link
+              className="d-block text-decoration-none btn btn-outline-dark rounded-pill px-3"
+              to="/user"
+            >
+              Perfil
+            </Link>
+            <button
+              className="d-block text-decoration-none btn btn-danger text-white rounded-pill px-3"
+              onClick={() => dispatch(logout())}
+            >
+              Cerrar Sesion
+            </button>
+          </>}
         </div>
       </div>
     </nav>

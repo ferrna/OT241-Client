@@ -2,11 +2,10 @@ import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 
-const PrivateRoute = (props) => {
+const ProtectedRoute = (props) => {
 
-  const role = useSelector((state) => state.auth.user.roleId);
-  const isLoggedIn = useSelector((state) => state.auth.user.isLoggedIn);
-  console.log(role, props.roleId)
+  const role = useSelector((state) => state.auth.user? state.auth.user.roleId : null);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   if (props.role && role === props.role) {
     return (
@@ -21,4 +20,4 @@ const PrivateRoute = (props) => {
   }
 }
 
-export default PrivateRoute
+export default ProtectedRoute
