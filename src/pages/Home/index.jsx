@@ -1,46 +1,79 @@
-import React,{useState} from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, Suspense } from "react";
 import Slider from "../../components/Slider.jsx";
-import Novedades from "./Novedades/index.jsx";
-
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
-
-import { novedades, homeWelcome } from "./Novedades/mockdata.js";
 import RegisterFormEdit from "../../components/RegisterFormEdit.jsx";
+import httpService from "../../services/httpService";
+import "./styles.css";
+import Loader from "../../components/Loader.jsx";
+import { mergeSort } from "./functions/sort.js";
+//const Novedades = React.lazy(() => import("./Novedades/index.jsx"));
+ const Novedades = React.lazy(() => {
+  return new Promise((resolve) => setTimeout(resolve, 300)).then(() =>
+    import("./Novedades/index.jsx")
+  );
+});
 
-let userIsAdmin = true
-let infoHomeDefault = {
-  title: 'Hola Bienvenidx',
-  description: 'Lorem ipsun dolor anmet'
-}
-function Home(props) {
-  const [infoHome, setInfoHome] = useState(infoHomeDefault)
-  let [images, setImages] = useState({})
+const service = new httpService();
+
+let userIsAdmin = false;
+let homeContentDefault = {
+  title: "Hola Bienvenidx",
+  description: "Lorem ipsun dolor anmet",
+};
+
+function Home() {
+  const [homeContent, setHomeContent] = useState(homeContentDefault);
+  const [homeNews, setHomeNews] = useState();
+
+  const [images, setImages] = useState({});
+
+  useEffect(() => {
+    let mounted = true;
+    if (mounted) {
+      async function getData() {
+        await service.get("organization/1/public").then((res) => {
+          setHomeContent({ ...res[0] });
+        });
+        await service.get("news").then((res) => {
+          let sortedNews = mergeSort(res, "createdAt").reverse().slice(0, 2);
+          setHomeNews([...sortedNews]);
+        });
+      }
+      getData();
+    }
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
   return (
     <>
-    {userIsAdmin && <RegisterFormEdit infoHome={infoHome} images={images} setInfoHome={setInfoHome} setImages={setImages}/>}
+      {userIsAdmin && (
+        <RegisterFormEdit
+          infoHome={homeContent}
+          images={images}
+          setInfoHome={setHomeContent}
+          setImages={setImages}
+        />
+      )}
       <section className="position-relative" style={{ minHeight: "350px" }}>
         <Slider />
         <div
-          className="position-absolute top-0 h-100 d-flex flex-column justify-content-end align-items-center justify-content-md-center p-4 p-sm-0 mt-sm-4"
+          className="module-overlay top-0 h-100 d-flex flex-column justify-content-end align-items-center p-4 mt-3 p-md-0 mt-md-0"
           style={{ left: "0", right: "0" }}
         >
-          <div style={{ maxWidth: "500px" }}>
-            <h2 className="text-center text-sm-start mx-1 my-2 fw-bolder">
-              {infoHome.title}
+          <div className="mt-xs-0" style={{ maxWidth: "650px" }}>
+            <h2 className="module--title text-center fw-bolder my-2 mx-1">
+              {homeContent.welcomeTitle}
             </h2>
-            <p>{homeWelcome && infoHome.description}</p>
+            <p className="module--text fs-5 m-0">{homeContent.welcomeText}</p>
           </div>
         </div>
       </section>
-      <div className="container d-flex justify-content-between fs-4 fw-normal mt-2 mb-1">
-        <span>Últimas novedades</span>
-        <Link to="/news" className="fs-6 fw-lighter mt-2 mb-1 text-secondary text-decoration-none">
-          Ver todos {">"}
-        </Link>
+      <div className="position-relative" style={{ minHeight: "380px" }}>
+        <Suspense fallback={<Loader />}>{homeNews && <Novedades homeNews={homeNews} />}</Suspense>
       </div>
-      {novedades && <Novedades novedades={novedades.slice(0, 2)} />}
+      <br />
+      <br />
     </>
   );
 }

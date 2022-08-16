@@ -1,0 +1,11 @@
+.module--image-div {
+  minwidth: 200px;
+  aspect-ratio: 1 / 1;
+}
+
+@media only screen and (min-width: 992px) {
+  .module--image-div {
+    minwidth: auto;
+    aspect-ratio: auto;
+  }
+}

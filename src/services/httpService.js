@@ -10,7 +10,6 @@ function joinURL(baseUrl, url) {
 }
 
 let API_URL = process.env.REACT_APP_API_URL;
-
 class httpService {
   constructor() {
     this.domain = API_URL;
@@ -28,12 +27,19 @@ class httpService {
     if (jwtoken) {
       options.headers = { ...options.headers, Authorization: `Bearer ${jwtoken}` };
     }
-    /* if(config) {
-      for(const prop in config){
-        if(options[prop]){
-          options[prop] = {...options[prop], ...config[prop]}
+    /* Para intentar fetchear las imagenes con el servicio http, ya que tiene otro tipo de encabezado 
+      if(config) {
+        if(config.replace) {
+          delete config.replace;
+          options = {...config}
+        } else {
+          delete config.replace;
+          for(const prop in config){
+            if(options[prop]){
+              options[prop] = {...options[prop], ...config[prop]}
+            }
+          }
         }
-      }
     } */
     return fetch(url, options);
   }
@@ -42,6 +48,7 @@ class httpService {
     if (id) {
       url = `${url}/${id}`;
     }
+    //                               parámetro data no necesario
     return this.request(url, method, ...[,], config).then((res) => res.json());
   }
   post(url, data, config) {
@@ -53,6 +60,7 @@ class httpService {
     if (id) {
       url = `${url}/${id}`;
     }
+    //                               parámetro data no necesario
     return this.request(url, method, ...[,], config).then((res) => res.json());
   }
   patch(url, id, data, config) {
@@ -71,10 +79,14 @@ class httpService {
   }
 }
 
-// Example for implementation:
-//const service = new httpService();
-//useEffect(() => {
-//  service.post("mails/johndoe@gmail.com");
-//});
+//  Example for implementation:
+//  const service = new httpService();
+//  useEffect(() => {
+//    service.post("mails/johndoe@gmail.com", data, config);   --> config con la opcion replace: true para reemplazar el objeto
+//                                                                 options ( options[headers] = config[headers], options[prop] = config[prop] ),
+//                                                                 sin opcion replace o replace: false, para unir o sobreescribir a las
+//                                                                 opciones del objeto options de la clase httpService
+//                                                                 ( options[headers] = {...options[headers], ...config[headers]} ) .
+//  });
 
 export default httpService;
