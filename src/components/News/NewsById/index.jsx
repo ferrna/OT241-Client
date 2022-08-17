@@ -1,16 +1,17 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Novedad from "./Novedad";
-import httpService from "../../services/httpService";
-import Loader from "../../components/Loader";
-import ErrorMessage from "../../components/ErrorMessage";
+import Loader from "../../Loader";
+import ErrorMessage from "../../ErrorMessage";
+import News from "./News";
+import httpService from "../../../services/httpService";
+import axios from "axios";
 
-function NovedadPage() {
+const service = new httpService();
+
+function NewsById() {
   const [isLoading, setIsLoading] = useState(true);
   const [errors, setErrors] = useState(null);
   const { id } = useParams();
-  const service = new httpService();
   const [props, setProps] = useState();
 
   useEffect(() => {
@@ -18,9 +19,9 @@ function NovedadPage() {
     async function fetchData() {
       if (mounted) {
         try {
-          let news = await service.get("news", id);
-          console.log(news.news);
-          setProps({ ...news.news });
+          let {data} = await axios.get(`http://localhost:3000/news/${id}`);
+          console.log(data);
+          setProps({ ...data.news });
           setIsLoading(false);
         } catch (err) {
           setErrors({ msg: "Endpoint not finded" });
@@ -40,10 +41,10 @@ function NovedadPage() {
       ) : errors?.msg ? (
         <ErrorMessage>Ops! Parece que esta noticia ya no es accesible.</ErrorMessage>
       ) : (
-        <Novedad {...props} />
+        <News {...props} />
       )}
     </div>
   );
 }
 
-export default NovedadPage;
+export default NewsById;

@@ -1,0 +1,21 @@
+.module--title {
+  font-size: 2.6rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .module--title,
+  .module--text {
+    color: white;
+    text-shadow: 0 1px 0 black;
+  }
+  .module--text {
+    padding-bottom: 5rem;
+  }
+  .module--title {
+    font-size: 5rem;
+  }
+  .module-overlay {
+    position: absolute;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 50%);
+  }
+}

@@ -1,9 +1,11 @@
-import React from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState, useEffect } from 'react';
 import Logo from '../../images/LOGO-SOMOS MAS.png';
+import { v4 as uuidv4 } from 'uuid'
+import { useLocation, Link } from 'react-router-dom';
 
-import {useLocation, Link } from 'react-router-dom'
+import httpService from "../../services/httpService";
 
+const service = new httpService();
 
 const NAV_LINKS = [
     {
@@ -33,6 +35,16 @@ const NAV_LINKS = [
   ]
 const Footer = ()=> {
     const { pathname } = useLocation()
+    const [socials,setSocials] = useState([])
+
+
+    useEffect(()=>{
+
+        service.get('socialmedia').then(res => {
+            setSocials([...res])            
+        })
+
+    },[])
 
     const getLinkClassName = path =>
       path === pathname
@@ -68,8 +80,8 @@ const Footer = ()=> {
                 <div className=" p-2 bd-highlight w-75">
                     <ul className="list-unstyled d-flex flex-row justify-content-between">
                     {NAV_LINKS.map(({ name, path }) => (
-                        <li key={name}>
-                        <Link className={getLinkClassName(path)} to={path}>
+                        <li key={uuidv4()}>
+                        <Link key={uuidv4()} className={getLinkClassName(path)} to={path}>
                             {name}
                         </Link>
                         </li>
@@ -86,34 +98,36 @@ const Footer = ()=> {
                 </div>
                 <div className="w-100 p-2 bd-highlight">
                     <ul className="w-50 list-unstyled mx-auto d-flex flex-row justify-content-between">
-                        <li className='text-center p-2 rounded-circle bg-dark text-white display-6' style={{  
-                            width:"50px",
-                            height:"50px",
-                        // backgroundColor:"#000",
-
-                    }
-                    }>x</li>
-                        <li className='text-center p-2 rounded-circle bg-dark text-white display-6' style={{  
-                            width:"50px",
-                            height:"50px",
-                        // backgroundColor:"#000",
-
-                    }
-                    }>x</li>
-                        <li className='text-center p-2 rounded-circle bg-dark text-white display-6' style={{  
-                            width:"50px",
-                            height:"50px",
-                        // backgroundColor:"#000",
-
-                    }
-                    }>x</li>
-                        <li className='text-center p-2 rounded-circle bg-dark text-white display-6' style={{  
-                            width:"50px",
-                            height:"50px",
-                        // backgroundColor:"#000",
-
-                    }
-                    }>x</li>
+                        {socials && socials.map(e => {
+                            switch (e.name) {
+                                case 'Twitter':
+                                    return (<li key={uuidv4()} className="text-center p-2 text-white display-6" style={{width: "50px", height: "50px"}}>
+                                        <a key={uuidv4()} href={e.url}>
+                                        <i  key={uuidv4()} className="bi bi-twitter"></i>
+                                    </a>
+                                    </li>)
+                                case 'Facebook':
+                                    return (<li key={uuidv4()} className="text-center p-2 text-white display-6" style={{width: "50px", height: "50px"}}>
+                                    <a key={uuidv4()} href={e.url}>
+                                    <i key={uuidv4()} className="bi bi-facebook"></i>
+                                </a>
+                                </li>)
+                                case 'Linkedin':
+                                    return (<li key={uuidv4()} className="text-center p-2 text-white display-6" style={{width: "50px", height: "50px"}}>
+                                    <a key={uuidv4()} href={e.url}>
+                                    <i key={uuidv4()} className="bi bi-linkedin"></i>
+                                </a>
+                                </li>)
+                                case 'Instagram':
+                                    return (<li key={uuidv4()} className="text-center p-2 text-white display-6" style={{width: "50px", height: "50px", textDecoration:"none"}}>
+                                    <a key={uuidv4()} href={e.url}>
+                                    <i key={uuidv4()} className="bi bi-instagram"></i>
+                                </a>
+                                </li>)
+                                default:
+                                    break;
+                            }
+                        })}
                     </ul>
                 </div>
                 <div className=" p-2 bd-highlight">

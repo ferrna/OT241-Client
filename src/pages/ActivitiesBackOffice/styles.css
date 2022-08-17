@@ -1,0 +1,44 @@
+.module--container {
+  max-width: 1200px;
+  min-height: 50vh;
+  background-color: #242424;
+}
+.module--table {
+  max-width: 960px;
+  border-collapse: separate;
+  border-spacing: 2px;
+  border: none;
+}
+.module--actions-td,
+.module--actions-th {
+  width: 70px;
+}
+.module--actions-th {
+  padding: 1rem 0.2rem 1rem 0.2rem !important;
+}
+.module--borderbottomnone {
+  border-bottom-width: 0 !important;
+}
+
+@media only screen and (min-width: 576px) {
+  .module--actions-td,
+  .module--actions-th {
+    width: 100px;
+  }
+  .module--actions-th {
+    padding: 1rem !important;
+  }
+}
+
+/* ActivitiesForm */
+.module--form {
+  width: 100%;
+  padding: 1rem;
+}
+
+@media only screen and (min-width: 576px) {
+  .module--form {
+    width: 50%;
+    padding: 0;
+  }
+}
