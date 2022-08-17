@@ -35,18 +35,18 @@ const RoutesNav = () => {
             <Route path="/" element={<Home />} />
             <Route path="/backoffice" element={ <ProtectedRoute role={1} /> }>
               <Route path="" element={<Backoffice />} />
-              <Route path="/categories" element={<CategoriesBackOffice />} />
-              <Route path="/categories/edit/:id" element={<CategoriesForm />} />
-              <Route path="/categories/edit/" element={<CategoriesForm />} />
-              <Route path="/activities" element={<ActivitiesBackOffice />} />
-              <Route path="/activities/edit/:id" element={<ActivitiesForm />} />
-              <Route path="/activities/edit/" element={<ActivitiesForm />} />
-              <Route path="/edit-organization" element={<OrganizacionBackoffice />} />
-              <Route path="/news" element={<NewsBackOffice />} />
-              <Route path="/news/edit/:id" element={<NewsForm />} />
-              <Route path="/testimonials" element={<TestimonialsBackOffice />} />
-              <Route path="/testimonials/edit/:id" element={<TestimonialsForm />} />
-              <Route path="/contacts" element={<Contacts />} />
+              <Route path="categories" element={<CategoriesBackOffice />} />
+              <Route path="categories/edit/:id" element={<CategoriesForm />} />
+              <Route path="categories/edit/" element={<CategoriesForm />} />
+              <Route path="activities" element={<ActivitiesBackOffice />} />
+              <Route path="activities/edit/:id" element={<ActivitiesForm />} />
+              <Route path="activities/edit/" element={<ActivitiesForm />} />
+              <Route path="edit-organization" element={<OrganizacionBackoffice />} />
+              <Route path="news" element={<NewsBackOffice />} />
+              <Route path="news/edit/:id" element={<NewsForm />} />
+              <Route path="testimonials" element={<TestimonialsBackOffice />} />
+              <Route path="testimonials/edit/:id" element={<TestimonialsForm />} />
+              <Route path="contacts" element={<Contacts />} />
             </Route>
             <Route path="/user" element={ <ProtectedRoute logged={true} /> }>
               <Route path="" element={<Profile />} />
