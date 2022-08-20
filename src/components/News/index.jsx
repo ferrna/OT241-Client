@@ -23,14 +23,14 @@ const News = () => {
 
   return (
     <div>
-      <h1 className="container text-center mt-5">Noticias</h1>
+      <h1 className="container text-center mt-5">Novedades</h1>
       <div className="d-flex flex-wrap justify-content-center">
         {news &&
           news.map((e) => {
             let { name, image, createdAt, id } = e;
             return (
                 <div key={uuidv4()} className="card text-center" style={{ width: "18rem", margin: "1rem" }}>
-                  <img key={uuidv4()} src={image} className="card-img-top" alt="..." />
+                  <img key={uuidv4()} src={`http://localhost:3000/images/${image}`} className="card-img-top" alt="..." />
                   <div key={uuidv4()} className="card-body">
                     <h3 key={uuidv4()} className="card-text ">
                       <Link key={uuidv4()} to={`${id}`} className="text-danger">

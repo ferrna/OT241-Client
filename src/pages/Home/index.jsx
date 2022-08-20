@@ -31,7 +31,7 @@ function Home() {
     if (mounted) {
       async function getData() {
         await service.get("organization/1/public").then((res) => {
-          setHomeContent({ ...res[0] });
+          setHomeContent(res.publicResult[0]);
         });
         await service.get("news").then((res) => {
           let sortedNews = mergeSort(res, "createdAt").reverse().slice(0, 2);

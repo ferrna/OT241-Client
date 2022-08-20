@@ -15,7 +15,7 @@ class httpService {
     this.domain = API_URL;
   }
   request(url, method = "POST", data = null, config) {
-    url = joinURL(this.domain, url);
+    url = joinURL("http://localhost:3000", url);
     let options = {
       headers,
       method,

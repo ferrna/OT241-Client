@@ -5,6 +5,7 @@ import ErrorMessage from "../../components/ErrorMessage";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { ConfirmAlert } from "../../components/Alerts";
+import moment from 'moment'
 
 const service = new httpService();
 
@@ -13,6 +14,7 @@ const NewsBackOffice = () => {
   const [props, setProps] = useState();
   const [errors, setErrors] = useState(null);
   const [reloadData, setReloadData] = useState(false);
+
 
   // Get all news
   useEffect(() => {
@@ -59,20 +61,23 @@ const NewsBackOffice = () => {
   return (
     <>
       <div className="container-fluid mb-5 w-100">
-        <p className="text-center h1">Lista de Novedades</p>
+        <h1 className="text-center mt-5">Lista de Novedades</h1>
+        <div className="container">
+            <Link state={{props:0}} className="btn btn-danger btn-lg my-5 text-white fw-bold" to={"create/new"}> Crear Novedad </Link>
+        </div>
         {isLoading ? (
           <Loader />
         ) : errors?.msg ? (
           <ErrorMessage>Ops! Parece que en este momento no hay novedades.</ErrorMessage>
         ) : (
-          <table className="table">
+          <table className="table container">
             <thead>
               <tr>
                 <th scope="col">Id</th>
-                <th scope="col">Name</th>
-                <th scope="col">Image</th>
-                <th scope="col">createdAt</th>
-                <th scope="col">Actions</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Imagen</th>
+                <th scope="col">Fecha de creación</th>
+                <th scope="col">Acciones</th>
               </tr>
             </thead>
 
@@ -84,9 +89,9 @@ const NewsBackOffice = () => {
                       <th scope="row">{novedad.id}</th>
                       <td>{novedad.name}</td>
                       <td>
-                        <img style={{ width: "35px" }} src={novedad.image} alt="news img"></img>
+                        <img style={{ width: "35px" }} src={`http://localhost:3000/images/${novedad.image}`} alt="news img"></img>
                       </td>
-                      <td>{novedad.createdAt}</td>
+                      <td>{moment(novedad.createdAt).format("DD/MM/YYYY")}</td>
                       <td
                         style={{
                           minWidth: "100px",
@@ -94,7 +99,7 @@ const NewsBackOffice = () => {
                           justifyContent: "space-between",
                         }}
                       >
-                        <Link className="btn btn-info text-white" to={`edit/${novedad.id}`}>
+                        <Link state={{props:novedad}} className="btn btn-info text-white" to={`edit/${novedad.id}`}>
                           <FiEdit />
                         </Link>
                         <button
