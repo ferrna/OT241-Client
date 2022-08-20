@@ -1,0 +1,30 @@
+.module--btnInicio {
+  background-color: transparent;
+  transition: all 0.5s ease;
+  color: black;
+}
+.module--btnInicio:hover {
+  background-color: #242424;
+  color: white;
+}
+
+.module--testimonial {
+  width: 100%;
+}
+.module--testimonials {
+  max-width: 1320px;
+  margin: 0 0.8rem;
+}
+@media only screen and (min-width: 566px) {
+  .module--testimonial {
+    width: 50%;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .module--testimonial {
+    width: 20%;
+  }
+  .module--testimonials {
+    margin: 0 auto;
+  }
+}
