@@ -1,11 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { useNavigate } from 'react-router'
+import { Link } from 'react-router-dom'
 import img2 from "../../images/loginimg.jpg";
+import axios from 'axios'
+import MembersCards from '../../components/MembersCards';
 
 const Home = () => {
 
   const navigate = useNavigate()
+  const [members, setMembers] = useState([])
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/members')
+    .then((res) => {
+      setMembers(res.data);
+    })
+  }, [])
 
   return (
     <div className='container mt-5'>
@@ -18,6 +29,24 @@ const Home = () => {
         </div>
         <div className='container w-50'>
           <img className='img-fluid rounded' src={img2} alt="" />
+        </div>
+      </div>
+
+      <div className='mt-5'>
+        <div className='d-flex justify-content-between align-items-center'>
+          <h2 className='h2'>Nuestro Staff</h2>
+          <Link to='nosotros'>Ver todos &gt;</Link>
+        </div>
+        <div className='row'>
+          {members.slice(3).map((member) => (
+            <div key={member.id} className='card border-0 col p-2'>
+              <img className='img-fluid h-100 rounded-5 shadow ' src={`http://localhost:3000/images/${member.image}`} alt={member.image} />
+              <div className='card-img-overlay d-flex flex-column align-items-center justify-content-end text-center'>
+                <p className='text-light fw-bolder fs-5'>{member.name}</p>
+                <p className='text-light'>{member.role}</p>
+              </div>
+            </div>)
+          )}
         </div>
       </div>
 
