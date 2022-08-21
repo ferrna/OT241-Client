@@ -21,6 +21,7 @@ import ActivitiesBackOffice from "../pages/ActivitiesBackOffice";
 import ActivitiesForm from "../pages/ActivitiesBackOffice/ActivitiesForm";
 import TestimonialsBackOffice from "../pages/TestimonialsBackOffice";
 import TestimonialsForm from "../pages/TestimonialsBackOffice/TestimonialsForm";
+import Contribute from "./Contribute/index.jsx";
 
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import "./transitions.css";
@@ -56,7 +57,7 @@ const RoutesNav = () => {
             <Route path="registro" element={<RegisterForm />} />
             <Route path="nosotros" element={<Members />} />
             <Route path="testimonios" element={<Testimonials />} />
-            <Route path="contribuye" element={<h2>CONTRIBUYE</h2>} />
+            <Route path="contribuye" element={<Contribute />} />
             {/* <Route path="novedades" element={<Novedades />} /> */}
             <Route path="contacto" element={<Contacto />} />
             {/* <Route path="contacto" element={<Contacto />} /> */}
