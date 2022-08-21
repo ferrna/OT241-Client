@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import Slider from "../../Slider";
 
 function News({ name, content, image, createdAt }) {
   const navigate = useNavigate();
+  const text = (content) => {
+    const div = document.getElementById("text").innerHTML = content
+    return div
+  }
+
+  useEffect(() => {
+    text(content)
+  }, [])
 
   return (
     <div>
@@ -17,14 +25,15 @@ function News({ name, content, image, createdAt }) {
       >
         <h2>{name}</h2>
         <figure className="figure">
-          <img src={image} className="figure-img img-fluid rounded" alt={name} />
+          {/* <img src={image} className="figure-img img-fluid rounded" alt={name} /> */}
           <figcaption className="figure-caption fs-6">
             Publicado el {createdAt.slice(0, 10).replaceAll("-", "/")} a las {createdAt.slice(11, 16)}{" "}
             horas.
           </figcaption>
         </figure>
-        <p>{content}</p>
-        <button type="button" className=" btn btn-danger btn-lg fw-bold mb-5" onClick={() => navigate(-1)}>Ir al inicio</button>
+        <div className="container text-center" id="text" >
+        </div>
+        <button type="button" className=" btn btn-danger btn-lg fw-bold my-5" onClick={() => navigate(-1)}>Ir al inicio</button>
       </div>
 
     </div>

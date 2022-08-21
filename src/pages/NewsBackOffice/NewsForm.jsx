@@ -2,44 +2,37 @@ import React from 'react'
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import axios from 'axios'
+import { useLocation, useNavigate } from 'react-router';
 
-const NewsForm = (props) => {
-    
-    //constantes (sólo comentar props en el caso de enviar el objeto con la información)
-    props = {
-        id: 1,
-        content: "Hola, a través de PROPS debe enviarse el contenido de la Novedad a este componente",
-        title: "Noticia 1",
-        category: "2",
+const NewsForm = () => {
+    const navigate = useNavigate()
+    const {state} = useLocation()
+
+    const config = {     
+        headers: { 'content-type': 'multipart/form-data' }
     }
-    let contenido
     
     //States
-    const [title, setTitle] = React.useState(props.title)
-    const [category, setCategory] =  React.useState(props.category)
-
+    const [title, setTitle] = React.useState(state.props.name)
+    const [content, setContent] = React.useState(state.props.content)
     const [title2, setTitle2] = React.useState("")
-    const [category2, setCategory2] =  React.useState("")
-    
+    const [content2, setContent2] = React.useState("") 
+    const [image, setImage] = React.useState([])
+
     //editar novedades
     const editNews = async(ev) => {
         ev.preventDefault()
         
         try {
-            const titulo = document.getElementById("titulo").value
-            const categoria = document.getElementById("categoria").value
-            const imagen = document.getElementById("imagen").value
-            const id = document.getElementById("id").value
-            const form = document.getElementById("formulario")
-            await axios.patch(`news/${props.id}`,{
-                id: id,
-                name: titulo,
-                content: contenido,
-                image: imagen,
-                category: categoria,
-                updatedAt: Date.now()
-            })
-            form.reset()
+            const formData = new FormData()
+            formData.append("image", image)
+            formData.append("name", title)
+            formData.append("content", content)
+            const {data} = await axios.put(`http://localhost:3000/news/${state.props.id}`, formData, config)
+            console.log(data)
+            navigate(-1)
+            
+
         } catch (e) {
             console.log(e)
         }
@@ -50,18 +43,14 @@ const NewsForm = (props) => {
         ev.preventDefault()
 
         try {
-            const titulo = document.getElementById("titulo").value
-            const categoria = document.getElementById("categoria").value
-            const imagen = document.getElementById("imagen").value
+            const formData = new FormData()
+            formData.append("image", image)
+            formData.append("name", title2)
+            formData.append("content", content2)
             const form = document.getElementById("formulario")
-            await axios.post('news',{
-                name: titulo,
-                content: contenido,
-                image: imagen,
-                category:categoria,
-                createdAt: Date.now()
-            })
+            const { data } = await axios.post('http://localhost:3000/news', formData, config)
             form.reset()
+            navigate(-1)
         } catch (e) {
             console.log(e)
         }
@@ -70,32 +59,23 @@ const NewsForm = (props) => {
   return (
     <div>
         {
-            !props.title ? (
+            state.props === 0 ? (
                 <div className='container'>
-                    <h1 className='text-center'>Crear Novedad</h1>
+                    <h1 className='text-center mt-5'>Crear Novedad</h1>
                     <div className='container d-flex justify-content-center'>
                         <form id='formulario' onSubmit={createNews}>
-                            <input type="hidden" defaultValue={props.id} id="id" />
                             <label className='label-form'> Titulo</label>
-                            <input type="text" className="mb-2 form-control" value={title2} onChange={e => setTitle2(e.target.value)} placeholder='Titulo' id='titulo'/>
-
-                            <label className="label-form">Categoria</label>
-                            <select className="form-select" id="categoria" value={category2} onChange={e => setCategory2(e.target.value)}>
-                                <option defaultValue>Elige una categoría</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
+                            <input type="text" className="mb-2 form-control" value={title2} onChange={e => setTitle2(e.target.value)} placeholder='Titulo'/>
                             <label className="form-label mt-2">Selecciona una imagen</label>
-                            <input type="file" className="form-control" id="imagen" />
+                            <input type="file" name="image" onChange={e => setImage(e.target.files[0])} accept="image/*" className="form-control"/>
 
                         <label className='label-form mt-2'>Contenido</label>
                         <CKEditor   
                                     
                                     editor={ ClassicEditor }
-                                    data={props.content}
+                                    data={content2}
                                     onChange={(event, editor) => {
-                                        contenido = editor.getData(); 
+                                        setContent2(editor.getData())
                                     }}
                                 />
                                 <button type='submit' className="btn btn-danger mt-2">Crear Novedad</button>
@@ -106,30 +86,23 @@ const NewsForm = (props) => {
 
             ): (
                 <div className='container'>
-                    <h1 className='text-center'>Editar Novedad</h1>
+                    <h1 className='text-center mt-5'>Editar Novedad</h1>
                     <div className='container d-flex justify-content-center'>
                     <form id='formulario' onSubmit={editNews}>
-                        <input type="hidden" defaultValue={props.id} id="id" />
+                        <input type="hidden" defaultValue={state.props.id} />
                         <label className='label-form'> Titulo</label>
-                        <input type="text" className="mb-2 form-control" value={title} onChange={e => setTitle(e.target.value)} placeholder='Titulo' id='titulo'/>
-
-                        <label className="label-form">Categoria</label>
-                        <select className="form-select" id="categoria" value={category} onChange={e => setCategory(e.target.value)}>
-                            <option defaultValue>Elige una categoría</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
+                        <input type="text" className="mb-2 form-control" value={title} onChange={e => setTitle(e.target.value)} placeholder='Titulo'/>
                         <label className="form-label mt-2">Selecciona una imagen</label>
-                        <input type="file" className="form-control" id="imagen" />
+                        <input type="file" name="image" onChange={e => setImage(e.target.files[0])} accept="image/*" className="form-control"/>
 
                     <label className='label-form mt-2'>Contenido</label>
                     <CKEditor   
                                 
                                 editor={ ClassicEditor }
-                                data={props.content}
+                                data={content}
                                 onChange={(event, editor) => {
-                                    contenido = editor.getData(); 
+                                    
+                                     setContent(editor.getData())
                                 } }
                             />
                             <button type='submit' className="btn btn-warning mt-2">Editar Novedad</button>
