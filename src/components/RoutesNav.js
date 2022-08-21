@@ -22,6 +22,8 @@ import ActivitiesForm from "../pages/ActivitiesBackOffice/ActivitiesForm";
 import TestimonialsBackOffice from "../pages/TestimonialsBackOffice";
 import TestimonialsForm from "../pages/TestimonialsBackOffice/TestimonialsForm";
 import Contribute from "./Contribute/index.jsx";
+import ABMSlide from "../pages/backofficeSlide/ABMSlide.jsx";
+import EditSlide from "../pages/backofficeSlide/EditSlide.jsx";
 
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import "./transitions.css";
@@ -36,6 +38,8 @@ const RoutesNav = () => {
             <Route path="/" element={<Home />} />
             <Route path="/backoffice" element={ <ProtectedRoute role={1} /> }>
               <Route path="" element={<Backoffice />} />
+              <Route path="slides" element={<ABMSlide />} />
+              <Route path="slides/edit/:id" element={<EditSlide/>} />
               <Route path="categories" element={<CategoriesBackOffice />} />
               <Route path="categories/edit/:id" element={<CategoriesForm />} />
               <Route path="categories/edit/" element={<CategoriesForm />} />
