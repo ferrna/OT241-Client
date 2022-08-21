@@ -4,8 +4,6 @@ import img2 from '../images/img5.jpg'
 import img3 from '../images/img6.jpg'
 import { v4 as uuidv4 } from 'uuid'
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import img1 from '../images/Rectangle4.png'
-import { v4 as uuidv4 } from 'uuid'
 import { useEffect } from 'react'
 
 const Slider = () => {

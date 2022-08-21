@@ -13,6 +13,7 @@ import News from "../components/News";
 import NewsById from "../components/News/NewsById/index";
 import Contacts from "../pages/Contacts/Contacts.jsx";
 import Testimonials from "./Testimonials";
+import ProtectedRoute from "./ProtectedRoute";
 import Members from "../pages/Members/Members";
 import CategoriesBackOffice from "../pages/CategoriesBackOffice";
 import CategoriesForm from "../pages/CategoriesBackOffice/CategoriesForm";
@@ -33,20 +34,24 @@ const RoutesNav = () => {
         <div className="min-vh-100">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/backoffice" element={<Backoffice />} />
-            <Route path="/backoffice/categories" element={<CategoriesBackOffice />} />
-            <Route path="/backoffice/categories/edit/:id" element={<CategoriesForm />} />
-            <Route path="/backoffice/categories/edit/" element={<CategoriesForm />} />
-            <Route path="/backoffice/activities" element={<ActivitiesBackOffice />} />
-            <Route path="/backoffice/activities/edit/:id" element={<ActivitiesForm />} />
-            <Route path="/backoffice/activities/edit/" element={<ActivitiesForm />} />
-            <Route path="/backoffice/edit-organization" element={<OrganizacionBackoffice />} />
-            <Route path="/backoffice/news" element={<NewsBackOffice />} />
-            <Route path="/backoffice/news/edit/:id" element={<NewsForm />} />
-            <Route path="/backoffice/testimonials" element={<TestimonialsBackOffice />} />
-            <Route path="/backoffice/testimonials/edit/:id" element={<TestimonialsForm />} />
-            <Route path="/backoffice/user" element={<Profile />} />
-            <Route path="/backoffice/contacts" element={<Contacts />} />
+            <Route path="/backoffice" element={ <ProtectedRoute role={1} /> }>
+              <Route path="" element={<Backoffice />} />
+              <Route path="categories" element={<CategoriesBackOffice />} />
+              <Route path="categories/edit/:id" element={<CategoriesForm />} />
+              <Route path="categories/edit/" element={<CategoriesForm />} />
+              <Route path="activities" element={<ActivitiesBackOffice />} />
+              <Route path="activities/edit/:id" element={<ActivitiesForm />} />
+              <Route path="activities/edit/" element={<ActivitiesForm />} />
+              <Route path="edit-organization" element={<OrganizacionBackoffice />} />
+              <Route path="news" element={<NewsBackOffice />} />
+              <Route path="news/edit/:id" element={<NewsForm />} />
+              <Route path="testimonials" element={<TestimonialsBackOffice />} />
+              <Route path="testimonials/edit/:id" element={<TestimonialsForm />} />
+              <Route path="contacts" element={<Contacts />} />
+            </Route>
+            <Route path="/user" element={ <ProtectedRoute logged={true} /> }>
+              <Route path="" element={<Profile />} />
+            </Route>
             <Route path="ingreso" element={<Login />} />
             <Route path="registro" element={<RegisterForm />} />
             <Route path="nosotros" element={<Members />} />

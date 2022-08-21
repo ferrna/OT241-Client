@@ -17,6 +17,7 @@ export const authSlice = createSlice({
       localStorage.setItem("user", payload.token);
     },
     logout: (state, payload) => {
+      console.log('logout')
       state.isLoggedIn = false;
       state.user = null;
       state.error = payload.error;
