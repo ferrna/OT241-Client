@@ -1,0 +1,14 @@
+.module--contributeform {
+  overflow: hidden;
+  max-width: 820px;
+  margin: 0 auto;
+}
+.module--contributeform-container {
+  transition: all 0.8s ease;
+}
+.module--contributeform-form {
+  min-height: 50vh;
+}
+.module--translateform {
+  transform: translateX(-50%);
+}

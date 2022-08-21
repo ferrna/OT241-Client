@@ -1,49 +1,50 @@
-import React from 'react'
-import { useLocation, Link } from 'react-router-dom'
+import React from "react";
+import { useLocation, Link } from "react-router-dom";
 
 // TODO: Cargar dinamicamente el logo
-import logo from '../images/logo.png'
+import logo from "../images/LOGO-SOMOS-MAS.png";
 
 // TODO: Cargar dinámicamente los links de navegación
 const NAV_LINKS = [
   {
-    name: 'Inicio',
-    path: '/',
+    name: "Inicio",
+    path: "/",
   },
   {
-    name: 'Nosotros',
-    path: '/nosotros',
+    name: "Nosotros",
+    path: "/nosotros",
   },
   {
-    name: 'Novedades',
-    path: '/news',
+    name: "Novedades",
+    path: "/news",
   },
   {
-    name: 'Testimonios',
-    path: '/testimonios',
+    name: "Testimonios",
+    path: "/testimonios",
   },
   {
-    name: 'Contacto',
-    path: '/contacto',
+    name: "Contacto",
+    path: "/contacto",
   },
   {
-    name: 'Contribuye',
-    path: '/contribuye',
+    name: "Contribuye",
+    path: "/contribuye",
   },
-]
+];
 
 function Header() {
-  const { pathname } = useLocation()
+  const { pathname } = useLocation();
 
-  const getLinkClassName = path =>
-    path === pathname
-      ? 'text-decoration-none text-body fw-bold'
-      : 'text-decoration-none text-body'
+  const getLinkClassName = (path) =>
+    path === pathname ? "text-decoration-none text-body fw-bold" : "text-decoration-none text-body";
 
   return (
-    <nav className="d-flex align-items-center justify-content-between container-fluid py-2 shadow relative" style={{zIndex: "40"}}>
-      <Link to="/">
-        <img src={logo} alt="ONG" />
+    <nav
+      className="d-flex align-items-center justify-content-between container-fluid py-2 shadow relative"
+      style={{ zIndex: "40" }}
+    >
+      <Link to="/" className="ps-2">
+        <img src={logo} alt="ONG" height="50" />
       </Link>
 
       <div className="d-flex align-items-center gap-3">
@@ -73,7 +74,7 @@ function Header() {
         </div>
       </div>
     </nav>
-  )
+  );
 }
 
-export default Header
+export default Header;

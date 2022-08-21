@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Logo from '../../images/LOGO-SOMOS MAS.png';
+import Logo from '../../images/LOGO-SOMOS-MAS.png';
 import { v4 as uuidv4 } from 'uuid'
 import { useLocation, Link } from 'react-router-dom';
 
