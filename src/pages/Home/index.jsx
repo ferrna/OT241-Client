@@ -1,81 +1,129 @@
-import React, { useState, useEffect, Suspense } from "react";
-import Slider from "../../components/Slider.jsx";
-import RegisterFormEdit from "../../components/RegisterFormEdit.jsx";
-import httpService from "../../services/httpService";
-import "./styles.css";
-import Loader from "../../components/Loader.jsx";
-import { mergeSort } from "./functions/sort.js";
-//const Novedades = React.lazy(() => import("./Novedades/index.jsx"));
- const Novedades = React.lazy(() => {
-  return new Promise((resolve) => setTimeout(resolve, 300)).then(() =>
-    import("./Novedades/index.jsx")
-  );
-});
+import React, { useEffect, useState } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { useNavigate } from 'react-router'
+import { Link } from 'react-router-dom'
+import img2 from "../../images/loginimg.jpg";
+import axios from 'axios'
 
-const service = new httpService();
+const Home = () => {
 
-let userIsAdmin = false;
-let homeContentDefault = {
-  title: "Hola Bienvenidx",
-  description: "Lorem ipsun dolor anmet",
-};
-
-function Home() {
-  const [homeContent, setHomeContent] = useState(homeContentDefault);
-  const [homeNews, setHomeNews] = useState();
-
-  const [images, setImages] = useState({});
+  const navigate = useNavigate()
+  const [members, setMembers] = useState([])
+  const [testimonials, setTestimonials] = useState([])
+  const [news, setNews] = useState([])
 
   useEffect(() => {
-    let mounted = true;
-    if (mounted) {
-      async function getData() {
-        await service.get("organization/1/public").then((res) => {
-          setHomeContent(res.publicResult[0]);
-        });
-        await service.get("news").then((res) => {
-          let sortedNews = mergeSort(res, "createdAt").reverse().slice(0, 2);
-          setHomeNews([...sortedNews]);
-        });
-      }
-      getData();
-    }
-    return () => {
-      mounted = false;
-    };
-  }, []);
+    axios.get('http://localhost:3000/members')
+    .then((res) => {
+      setMembers(res.data);
+    })
+    .catch((err) => {
+      setMembers(null)
+    })
+  }, [])
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/testimonials')
+    .then((res) => {
+      setTestimonials(res.data);
+    })
+    .catch((err) => {
+      setTestimonials(null)
+    })
+  }, [])
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/news')
+    .then((res) => {
+      setNews(res.data);
+    })
+    .catch((err) => {
+      setNews(null)
+    })
+  }, [])
 
   return (
-    <>
-      {userIsAdmin && (
-        <RegisterFormEdit
-          infoHome={homeContent}
-          images={images}
-          setInfoHome={setHomeContent}
-          setImages={setImages}
-        />
-      )}
-      <section className="position-relative" style={{ minHeight: "350px" }}>
-        <Slider />
-        <div
-          className="module-overlay top-0 h-100 d-flex flex-column justify-content-end align-items-center p-4 mt-3 p-md-0 mt-md-0"
-          style={{ left: "0", right: "0" }}
-        >
-          <div className="mt-xs-0" style={{ maxWidth: "650px" }}>
-            <h2 className="module--title text-center fw-bolder my-2 mx-1">
-              {homeContent.welcomeTitle}
-            </h2>
-            <p className="module--text fs-5 m-0">{homeContent.welcomeText}</p>
-          </div>
+    <div className='container mt-5'>
+
+      <div className='d-flex'>
+        <div className='container w-50' style={{height: 'fit-content', alignSelf: 'center'}}>
+          <h2 className='h1'>Hola! Bienvenidx</h2>
+          <p className='lead'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe pariatur ut consectetur minima reiciendis iste quibusdam aliquam rerum, autem vitae, aperiam animi magnam aspernatur. Pariatur ea expedita earum saepe inventore.</p>
+          <button className='btn btn-danger px-4 py-2 fw-bolder shadow-sm' onClick={() => navigate("/contacto")}>Contactanos</button>
         </div>
-      </section>
-      <div className="position-relative" style={{ minHeight: "380px" }}>
-        <Suspense fallback={<Loader />}>{homeNews && <Novedades homeNews={homeNews} />}</Suspense>
+        <div className='container w-50'>
+          <img className='img-fluid rounded' src={img2} alt="" />
+        </div>
       </div>
-      <br />
-      <br />
-    </>
-  );
+
+      <div className='mt-5'>
+        <div className='d-flex justify-content-between align-items-center'>
+          <h2 className='h2'>Nuestro Staff</h2>
+          <Link to='nosotros'>Ver todos &gt;</Link>
+        </div>
+        <div className='row'>
+          {members === null ?
+          <h2>Could not load data</h2> :
+          members.slice(0,5).map((member) => (
+            <div key={member.id} className='card border-0 col-md-2'>
+              <img className='img-fluid h-100 rounded-5 shadow ' src={`http://localhost:3000/images/${member.image}`} alt={member.image} />
+              <div className='card-img-overlay d-flex flex-column align-items-center justify-content-end text-center'>
+                <p className='text-light fw-bolder fs-5'>{member.name}</p>
+                <p className='text-light'>{member.role}</p>
+              </div>
+            </div>)
+          )}
+        </div>
+      </div>
+
+      <div className='mt-5'>
+        <div className='d-flex justify-content-between align-items-center'>
+          <h2 className='h2'>Testimonios</h2>
+          <Link to='testimonios'>Ver todos &gt;</Link>
+        </div>
+        <div className='row row-cols-5'>
+          {testimonials === null ?
+          <h2>Could not load data</h2> :
+          testimonials.slice(0,5).map((testimonial) => (
+            <div key={testimonial.id} className='card border-0 col m-2 rounded-4' style={{backgroundColor: '#FAFA88'}}>
+              <img className='card-img-top w-50 mt-3 rounded-circle ' src={testimonial.imageUrl} alt='' />
+              <div className='card-body d-flex flex-column align-items-center justify-content-end text-center'>
+                <p className='fw-bolder fs-5'>{testimonial.name}</p>
+                <p className=''>{testimonial.content}</p>
+              </div>
+            </div>)
+          )}
+        </div>
+      </div>
+
+      <div className='mt-5'>
+        <div className='d-flex justify-content-between align-items-center'>
+          <h2 className='h2'>Novedades</h2>
+          <Link to='novedades'>Ver todos &gt;</Link>
+        </div>
+        <div className='row row-cols-3'>
+          {news === null ?
+          <h2>Could not load data</h2> :
+          news.slice(0,3).map((item) => (
+          <div className="card mb-3 rounded-4" style={{maxWidth: "540px", backgroundColor: "#9AC9FB"}}>
+            <div className="row g-0">
+              <div className="col-md-4">
+                <img src={item.image} className="img-fluid rounded-3" alt="..." />
+              </div>
+              <div className="col-md-8">
+                <div className="card-body">
+                  <p className="card-text">{item.content}</p>
+                  <button className='btn btn-primary w-100 f-bolder shadow' onClick={() => navigate(`news/${item.id}`)}>Ver Novedad</button>
+                </div>
+              </div>
+            </div>
+          </div>)
+          )}
+        </div>
+      </div>
+
+    </div>
+  )
 }
 
-export default Home;
+export default Home
