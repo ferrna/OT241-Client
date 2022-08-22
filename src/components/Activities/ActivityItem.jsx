@@ -24,7 +24,7 @@ function Activity({ image, content, id, name }) {
               </p>
               <Link
                 className="module--activity-btnLink btn btn-danger mx-auto rounded-3 px-3 py-2 px-lg-5 py-lg-2"
-                to={`news/${id}`}
+                to={`${id}`}
               >
                 Ver actividad
               </Link>

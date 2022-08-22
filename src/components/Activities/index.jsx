@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Activity from "./Activity";
+import Activity from "./ActivityItem";
 import httpService from "../../services/httpService";
 import { v4 as uuidv4 } from "uuid";
 import { Link } from "react-router-dom";

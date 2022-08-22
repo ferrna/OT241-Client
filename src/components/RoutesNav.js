@@ -21,11 +21,12 @@ import ActivitiesBackOffice from "../pages/ActivitiesBackOffice";
 import ActivitiesForm from "../pages/ActivitiesBackOffice/ActivitiesForm";
 import TestimonialsBackOffice from "../pages/TestimonialsBackOffice";
 import TestimonialsForm from "../pages/TestimonialsBackOffice/TestimonialsForm";
+import Activities from "./Activities/index.jsx";
+import ActivityById from "./Activities/ActivityById/index.jsx";
 import Contribute from "./Contribute/index.jsx";
 
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import "./transitions.css";
-import Activities from "./Activities/index.jsx";
 
 const RoutesNav = () => {
   const { key } = useLocation();
@@ -35,7 +36,7 @@ const RoutesNav = () => {
         <div className="min-vh-100">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/backoffice" element={ <ProtectedRoute role={1} /> }>
+            <Route path="/backoffice" element={<ProtectedRoute role={1} />}>
               <Route path="" element={<Backoffice />} />
               <Route path="categories" element={<CategoriesBackOffice />} />
               <Route path="categories/edit/:id" element={<CategoriesForm />} />
@@ -51,7 +52,7 @@ const RoutesNav = () => {
               <Route path="testimonials/edit/:id" element={<TestimonialsForm />} />
               <Route path="contacts" element={<Contacts />} />
             </Route>
-            <Route path="/user" element={ <ProtectedRoute logged={true} /> }>
+            <Route path="/user" element={<ProtectedRoute logged={true} />}>
               <Route path="" element={<Profile />} />
             </Route>
             <Route path="ingreso" element={<Login />} />
@@ -60,6 +61,7 @@ const RoutesNav = () => {
             <Route path="testimonios" element={<Testimonials />} />
             <Route path="contribuye" element={<Contribute />} />
             <Route path="actividades" element={<Activities />} />
+            <Route path="actividades/:id" element={<ActivityById />} />
             {/* <Route path="novedades" element={<Novedades />} /> */}
             <Route path="contacto" element={<Contacto />} />
             {/* <Route path="contacto" element={<Contacto />} /> */}
