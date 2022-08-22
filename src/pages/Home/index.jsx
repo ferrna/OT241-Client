@@ -4,18 +4,21 @@ import { useNavigate } from 'react-router'
 import { Link } from 'react-router-dom'
 import img2 from "../../images/loginimg.jpg";
 import axios from 'axios'
-import MembersCards from '../../components/MembersCards';
 
 const Home = () => {
 
   const navigate = useNavigate()
   const [members, setMembers] = useState([])
   const [testimonials, setTestimonials] = useState([])
+  const [news, setNews] = useState([])
 
   useEffect(() => {
     axios.get('http://localhost:3000/members')
     .then((res) => {
       setMembers(res.data);
+    })
+    .catch((err) => {
+      setMembers(null)
     })
   }, [])
 
@@ -23,6 +26,19 @@ const Home = () => {
     axios.get('http://localhost:3000/testimonials')
     .then((res) => {
       setTestimonials(res.data);
+    })
+    .catch((err) => {
+      setTestimonials(null)
+    })
+  }, [])
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/news')
+    .then((res) => {
+      setNews(res.data);
+    })
+    .catch((err) => {
+      setNews(null)
     })
   }, [])
 
@@ -46,8 +62,10 @@ const Home = () => {
           <Link to='nosotros'>Ver todos &gt;</Link>
         </div>
         <div className='row'>
-          {members.slice(3).map((member) => (
-            <div key={member.id} className='card border-0 col p-2'>
+          {members === null ?
+          <h2>Could not load data</h2> :
+          members.slice(0,5).map((member) => (
+            <div key={member.id} className='card border-0 col-md-2'>
               <img className='img-fluid h-100 rounded-5 shadow ' src={`http://localhost:3000/images/${member.image}`} alt={member.image} />
               <div className='card-img-overlay d-flex flex-column align-items-center justify-content-end text-center'>
                 <p className='text-light fw-bolder fs-5'>{member.name}</p>
@@ -64,14 +82,42 @@ const Home = () => {
           <Link to='testimonios'>Ver todos &gt;</Link>
         </div>
         <div className='row row-cols-5'>
-          {testimonials.map((testimonial) => (
+          {testimonials === null ?
+          <h2>Could not load data</h2> :
+          testimonials.slice(0,5).map((testimonial) => (
             <div key={testimonial.id} className='card border-0 col m-2 rounded-4' style={{backgroundColor: '#FAFA88'}}>
-              <img className='card-img-top w-50 mt-3 rounded-circle ' src={`http://localhost:3000/images/a7be39f693f676ce8650dfc1776ed33f`} alt={testimonial.imageUrl} />
+              <img className='card-img-top w-50 mt-3 rounded-circle ' src={testimonial.imageUrl} alt='' />
               <div className='card-body d-flex flex-column align-items-center justify-content-end text-center'>
                 <p className='fw-bolder fs-5'>{testimonial.name}</p>
                 <p className=''>{testimonial.content}</p>
               </div>
             </div>)
+          )}
+        </div>
+      </div>
+
+      <div className='mt-5'>
+        <div className='d-flex justify-content-between align-items-center'>
+          <h2 className='h2'>Novedades</h2>
+          <Link to='novedades'>Ver todos &gt;</Link>
+        </div>
+        <div className='row row-cols-3'>
+          {news === null ?
+          <h2>Could not load data</h2> :
+          news.slice(0,3).map((item) => (
+          <div className="card mb-3 rounded-4" style={{maxWidth: "540px", backgroundColor: "#9AC9FB"}}>
+            <div className="row g-0">
+              <div className="col-md-4">
+                <img src={item.image} className="img-fluid rounded-3" alt="..." />
+              </div>
+              <div className="col-md-8">
+                <div className="card-body">
+                  <p className="card-text">{item.content}</p>
+                  <button className='btn btn-primary w-100 f-bolder shadow' onClick={() => navigate(`news/${item.id}`)}>Ver Novedad</button>
+                </div>
+              </div>
+            </div>
+          </div>)
           )}
         </div>
       </div>
