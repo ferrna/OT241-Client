@@ -21,6 +21,9 @@ import ActivitiesBackOffice from "../pages/ActivitiesBackOffice";
 import ActivitiesForm from "../pages/ActivitiesBackOffice/ActivitiesForm";
 import TestimonialsBackOffice from "../pages/TestimonialsBackOffice";
 import TestimonialsForm from "../pages/TestimonialsBackOffice/TestimonialsForm";
+import Contribute from "./Contribute/index.jsx";
+import ABMSlide from "../pages/backofficeSlide/ABMSlide.jsx";
+import EditSlide from "../pages/backofficeSlide/EditSlide.jsx";
 
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import "./transitions.css";
@@ -35,6 +38,8 @@ const RoutesNav = () => {
             <Route path="/" element={<Home />} />
             <Route path="/backoffice" element={ <ProtectedRoute role={1} /> }>
               <Route path="" element={<Backoffice />} />
+              <Route path="slides" element={<ABMSlide />} />
+              <Route path="slides/edit/:id" element={<EditSlide/>} />
               <Route path="categories" element={<CategoriesBackOffice />} />
               <Route path="categories/edit/:id" element={<CategoriesForm />} />
               <Route path="categories/edit/" element={<CategoriesForm />} />
@@ -44,6 +49,7 @@ const RoutesNav = () => {
               <Route path="edit-organization" element={<OrganizacionBackoffice />} />
               <Route path="news" element={<NewsBackOffice />} />
               <Route path="news/edit/:id" element={<NewsForm />} />
+              <Route path="news/create/new" element={<NewsForm />} />
               <Route path="testimonials" element={<TestimonialsBackOffice />} />
               <Route path="testimonials/edit/:id" element={<TestimonialsForm />} />
               <Route path="contacts" element={<Contacts />} />
@@ -55,7 +61,7 @@ const RoutesNav = () => {
             <Route path="registro" element={<RegisterForm />} />
             <Route path="nosotros" element={<Members />} />
             <Route path="testimonios" element={<Testimonials />} />
-            <Route path="contribuye" element={<h2>CONTRIBUYE</h2>} />
+            <Route path="contribuye" element={<Contribute />} />
             {/* <Route path="novedades" element={<Novedades />} /> */}
             <Route path="contacto" element={<Contacto />} />
             {/* <Route path="contacto" element={<Contacto />} /> */}

@@ -18,7 +18,13 @@ function Loader() {
         overflow: "visible",
       }}
     >
-      <MutatingDots height="100" width="100" color="indianred" ariaLabel="Loading" />
+      <MutatingDots
+        height="100"
+        width="100"
+        color="#DB5752"
+        secondaryColor="#9AC9FB"
+        ariaLabel="Loading"
+      />
     </div>
   );
 }

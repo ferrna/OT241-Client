@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import image1 from "../../../images/Novedad1.png";
 import { v4 as uuidv4 } from 'uuid'
 import { Link } from "react-router-dom";
 import "./styles.css";
 
 function NovedadesItem({ image, content, id, name }) {
+  const text = (content) => {
+    const div = document.getElementById("contenido").innerHTML = content
+    return div
+  }
+
+  useEffect(() => {
+    text(content)
+  }, [])
   return (
     <div className="col-12 col-sm-6 col-xl-6" key={uuidv4()}>
       <div
@@ -21,7 +29,7 @@ function NovedadesItem({ image, content, id, name }) {
             style={{
               overflow: "hidden",
               flexGrow: "1",
-              backgroundImage: `url(${image})`,
+              backgroundImage: `url(http://localhost:3000/images/${image})`,
               objectFit: "contain",
               backgroundRepeat: "no-repeat",
               backgroundSize: "auto 100%",
@@ -39,8 +47,8 @@ function NovedadesItem({ image, content, id, name }) {
                   lineHeight: "1.7rem",
                 }}
                 key={uuidv4()}
+                id="contenido"
               >
-                {content}
               </p>
               <Link
                 className="btn btn-primary mx-auto rounded-3 px-3 py-2 px-lg-5 py-lg-2"
