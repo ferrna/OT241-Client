@@ -21,6 +21,10 @@ const NAV_LINKS = [
     path: "/news",
   },
   {
+    name: "Actividades",
+    path: "/actividades",
+  },
+  {
     name: "Testimonios",
     path: "/testimonios",
   },

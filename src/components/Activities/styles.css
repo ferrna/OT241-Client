@@ -1,0 +1,68 @@
+.module--activities {
+  max-width: 1320px;
+  margin: 0 0.8rem;
+}
+
+.module--image-div {
+  minwidth: 200px;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  flex-grow: 1;
+  object-fit: contain;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-position: center center;
+}
+
+.module--btnInicio {
+  background-color: transparent;
+  transition: all 0.5s ease;
+  color: black;
+}
+.module--btnInicio:hover {
+  background-color: #242424;
+  color: white;
+}
+
+.module--activity-btnLink {
+  background-color: #c62d1c;
+  border: none;
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.module--activity-container {
+  height: 100%;
+  background-color: #e76452;
+  border: 1px solid #c62d1c;
+}
+
+@media only screen and (min-width: 566px) {
+  .module--activity {
+    height: 300px;
+  }
+  .module--activity-content {
+    max-height: 200px;
+    text-overflow: ellipsis;
+    overflow: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .module--activity-content::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .module--image-div {
+    minwidth: auto;
+    aspect-ratio: auto;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .module--activity {
+  }
+  .module--activities {
+    margin: 0 auto;
+  }
+}
