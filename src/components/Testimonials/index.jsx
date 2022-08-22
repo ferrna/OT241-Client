@@ -27,9 +27,8 @@ const Testimonials = () => {
         {testimonials &&
           testimonials.map((testimonial) => {
             return (
-              <div className="module--testimonial">
+              <div className="module--testimonial" key={uuidv4()}>
                 <div
-                  key={uuidv4()}
                   className="rounded-4 m-2 p-3"
                   style={{
                     backgroundColor: "#FAFA88",

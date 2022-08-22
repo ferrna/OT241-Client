@@ -25,6 +25,7 @@ import Contribute from "./Contribute/index.jsx";
 
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import "./transitions.css";
+import Activities from "./Activities/index.jsx";
 
 const RoutesNav = () => {
   const { key } = useLocation();
@@ -58,6 +59,7 @@ const RoutesNav = () => {
             <Route path="nosotros" element={<Members />} />
             <Route path="testimonios" element={<Testimonials />} />
             <Route path="contribuye" element={<Contribute />} />
+            <Route path="actividades" element={<Activities />} />
             {/* <Route path="novedades" element={<Novedades />} /> */}
             <Route path="contacto" element={<Contacto />} />
             {/* <Route path="contacto" element={<Contacto />} /> */}
