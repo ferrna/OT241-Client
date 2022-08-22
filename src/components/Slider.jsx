@@ -1,45 +1,20 @@
 import React from 'react'
-import img1 from '../images/img4.jpg'
-import img2 from '../images/img5.jpg'
-import img3 from '../images/img6.jpg'
 import { v4 as uuidv4 } from 'uuid'
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { useEffect } from 'react'
+import axios from 'axios';
 
 const Slider = () => {
-  const sliderContent = [
-    {
-      imageURL: img1,
-      text: "Lorem ipsum dolor sit amet.",
-    },
-    {
-      imageURL: img2,
-      text: "Lorem ipsum dolor sit amet.",
-    },
-    {
-      imageURL: img3,
-      text: "Lorem ipsum dolor sit amet.",
-    },
-  ]
+ const [sliderContent, setSliderContent] = React.useState([])
 
-  /* var autoplayInterval = () => setInterval(function() {
 
-    // Get element via id and click next
-    document.getElementById("nextSlider").click();
-
-  }, 11000)
-
-  useEffect(()=> {
-    let mounted = true;
-    if(mounted){
-      autoplayInterval()
+ useEffect(() => {
+    const setInfo = async () => {
+      const {data} =  await axios.get("http://localhost:3000/slides")
+      setSliderContent(data)
     }
-    return ()=> {
-      clearInterval(autoplayInterval);
-      mounted = false;
-    }
-  }, []) */
-
+    setInfo()
+ }, [])
   return (
     <div className="container-fluid p-0">
       <div
@@ -72,30 +47,32 @@ const Slider = () => {
         </div>
         <div className="carousel-inner">
           {sliderContent.map((item, index) =>
-            index === 0 ? (
+            item.order === 1 ? (
               <div key={uuidv4()} className="carousel-item active" style={{transition: "all 1s ease-out"}}>
                 <img
-                  src={img1}
+                  src={item.imageUrl}
                   className="d-block w-100"
                 />
                 <div
                   key={uuidv4()}
                   className="carousel-caption d-none d-md-block"
                 >
+                  <h4>{item.text}</h4>
                 </div>
               </div>
             ) : (
               <div key={uuidv4()} className="carousel-item" style={{transition: "all 1s ease-out"}}>
                 <img
                   key={uuidv4()}
-                  src={item.imageURL}
+                  src={item.imageUrl}
                   className="d-block w-100 img-fluid"
-                  alt={item.imageURL}
+                  alt={item.imageUrl}
                 />
                 <div
                   key={uuidv4()}
                   className="carousel-caption d-none d-md-block"
                 >
+                  <h4>{item.text}</h4>
                 </div>
               </div>
             )
