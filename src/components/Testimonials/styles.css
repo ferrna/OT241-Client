@@ -28,8 +28,17 @@
     margin: 0 auto;
   }
 }
-
-
+/* 
+.module--testimonial-content-p {
+  max-height: 180px;
+  text-overflow: ellipsis;
+  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.module--testimonial-content-p::-webkit-scrollbar {
+  display: none;
+} */
 
 /*  CKEditor styles */
 .ck-editor__editable {

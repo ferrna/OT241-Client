@@ -30,13 +30,14 @@ import CreateTestimonio from "./Testimonials/CreateTestimonio.jsx";
 import ABMMembers from "../pages/MembersBackoffice/ABMMembers.jsx";
 import MembersForm from "../pages/MembersBackoffice/MembersForm.jsx";
 import ABMUsers from "../pages/UsersBackoffice/index.jsx";
+import UsersForm from "../pages/UsersBackoffice/UsersForm.jsx";
+import CreateUser from "../pages/UsersBackoffice/CreateUser.jsx";
 
 import Organization from '../pages/OrganizacionBackOffice/OrganizacionABM'
 import OrganizationEdit from '../pages/OrganizacionBackOffice'
 
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import "./transitions.css";
-import UsersForm from "../pages/UsersBackoffice/UsersForm.jsx";
 
 const RoutesNav = () => {
   const { key } = useLocation();
@@ -70,6 +71,7 @@ const RoutesNav = () => {
               <Route path="contacts" element={<Contacts />} />
               <Route path="usuarios" element={<ABMUsers />} />
               <Route path="usuarios/edit/:id" element={<UsersForm />} />
+              <Route path="usuarios/create/new" element={<CreateUser />} />
             </Route>
             <Route path="/user" element={<ProtectedRoute logged={true} />}>
               <Route path="" element={<Profile />} />
