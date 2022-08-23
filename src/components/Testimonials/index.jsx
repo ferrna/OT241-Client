@@ -50,17 +50,17 @@ const Testimonials = () => {
                       backgroundPosition: "center center",
                     }}
                   ></div>
-                  <div className="mt-3">
+                  <div className="mt-3 module--testimonial-content">
                     <h5 className="fw-semibold">{testimonial.name}</h5>
-                    <p dangerouslySetInnerHTML={innerHtml}></p>
+                    <p className="module--testimonial-content-p" dangerouslySetInnerHTML={innerHtml}></p>
                   </div>
                 </div>
               </div>
             );
           })}
       </div>
-      <div className="text-center d-flex flex-column">
-        {user && <Link to="add"><button className="btn btn-danger px-5 py-2 fs-5 rounded-3 mb-3" >¡Agregar mi Testimonio!</button></Link>}
+      <div className="text-center d-flex flex-column mb-5">
+        {user && <Link to="add"><button className="btn btn-danger px-5 py-2 fs-5 rounded-3 mb-2" >¡Agregar mi Testimonio!</button></Link>}
         <Link to="/">
           <button className="module--btnInicio button mt-5 px-5 py-2 fs-5 rounded-3 border border-1 border-dark">
             Ir a Inicio
