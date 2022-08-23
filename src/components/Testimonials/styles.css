@@ -28,3 +28,10 @@
     margin: 0 auto;
   }
 }
+
+
+
+/*  CKEditor styles */
+.ck-editor__editable {
+  min-height: 120px !important;
+}

@@ -26,6 +26,7 @@ import ActivityById from "./Activities/ActivityById/index.jsx";
 import Contribute from "./Contribute/index.jsx";
 import ABMSlide from "../pages/backofficeSlide/ABMSlide.jsx";
 import EditSlide from "../pages/backofficeSlide/EditSlide.jsx";
+import CreateTestimonio from "./Testimonials/CreateTestimonio.jsx";
 import ABMMembers from "../pages/MembersBackoffice/ABMMembers.jsx";
 import MembersForm from "../pages/MembersBackoffice/MembersForm.jsx";
 
@@ -68,6 +69,7 @@ const RoutesNav = () => {
             <Route path="registro" element={<RegisterForm />} />
             <Route path="nosotros" element={<Members />} />
             <Route path="testimonios" element={<Testimonials />} />
+            <Route path="testimonios/add" element={<CreateTestimonio />} />
             <Route path="contribuye" element={<Contribute />} />
             <Route path="actividades" element={<Activities />} />
             <Route path="actividades/:id" element={<ActivityById />} />
