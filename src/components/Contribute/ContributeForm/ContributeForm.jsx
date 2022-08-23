@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PayPalCheckout from "./PayPal";
 import "./formstyles.css";
+import { useEffect } from "react";
 
 function ContributeForm() {
   const [translateClass, setTranslateClass] = useState("");
@@ -22,21 +23,24 @@ function ContributeForm() {
     setStep(2);
   };
 
-  const handleInputChange = (e) => {
-    let value = e.target.value;
-    const named = e.target.name;
-    if (named == "valor") value = value.replace(/[a-zA-Z]+/, "");
-    setData({
-      ...data,
-      [named]: value,
-    });
+  useEffect(()=> {
     if (
       /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(data.email) &&
       data.email?.length > 0 &&
       data.valor?.length > 0
     ) {
       setIsDisabled(false);
-    }
+    } else {setIsDisabled(true);}
+  },[data])
+
+  const handleInputChange = async (e) => {
+    let value = e.target.value;
+    const named = e.target.name;
+    if (named == "valor") value = value.replace(/[a-zA-Z]+/, "");
+    setData({
+      ...data,
+      [named]: value,
+    })
   };
 
   return (

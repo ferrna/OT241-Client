@@ -1,9 +1,7 @@
 import React from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-import swal from "sweetalert2";
+import {ConfirmAlert, ErrorAlert, InfoAlert} from '../../Alerts';
 import "./PayPalStyles.css";
-import { useEffect } from "react";
-import { useState } from "react";
 
 export default function PayPalCheckout({ formData }) {
   /* const formData = {
@@ -123,12 +121,7 @@ export default function PayPalCheckout({ formData }) {
             products,
             idUser: userData.id,
           }; */
-          swal({
-            title: `Payment processed correctly`,
-            text: `ID: ${res.id}`,
-            icon: "success",
-            button: "Accept",
-          });
+          InfoAlert({text: 'Transacción procesada correctamente!, Muchas gracias!'})
           /* axios.all([
             corsAxiosPost("/sendmail", { ...orderData }),
             corsAxiosPost("/orders", { ...orderData }),
@@ -143,16 +136,10 @@ export default function PayPalCheckout({ formData }) {
 
   const onError = (error) => {
     console.log(error);
-    swal({
-      title: `Payment has failed, please try again`,
-      icon: "error",
-    });
+    ErrorAlert({text: "La transacción ha fallado, por favor intente nuevamente."})
   };
   const onCancel = (data, actions) => {
-    swal({
-      title: `Payment was cancel by the user`,
-      icon: "error",
-    });
+    InfoAlert({title: 'La transacción ha sido cancelada.'})
   };
   return (
     <div className="w-50" style={{ minHeight: "50vh" }}>

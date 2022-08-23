@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import {useSelector} from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 import httpService from "../../services/httpService";
 import { v4 as uuidv4 } from "uuid";
@@ -9,6 +10,7 @@ const service = new httpService();
 
 const Testimonials = () => {
   const [testimonials, setTestimonials] = useState([]);
+  const user = useSelector((store) => store.auth.user || null);
   useEffect(() => {
     service.get("testimonials").then((res) => {
       setTestimonials(res);
@@ -26,6 +28,7 @@ const Testimonials = () => {
       >
         {testimonials &&
           testimonials.map((testimonial) => {
+            const innerHtml = { __html: testimonial.content }
             return (
               <div className="module--testimonial" key={uuidv4()}>
                 <div
@@ -50,14 +53,15 @@ const Testimonials = () => {
                   ></div>
                   <div className="mt-3">
                     <h5 className="fw-semibold">{testimonial.name}</h5>
-                    <p className="">{testimonial.content}</p>
+                    <p dangerouslySetInnerHTML={innerHtml}></p>
                   </div>
                 </div>
               </div>
             );
           })}
       </div>
-      <div className="text-center">
+      <div className="text-center d-flex flex-column">
+        {user && <Link to="add"><button className="btn btn-danger px-5 py-2 fs-5 rounded-3 mb-3" >¡Agregar mi Testimonio!</button></Link>}
         <Link to="/">
           <button className="module--btnInicio button px-5 py-2 fs-5 rounded-3 border border-1 border-dark">
             Ir a Inicio
