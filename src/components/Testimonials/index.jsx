@@ -32,7 +32,6 @@ const Testimonials = () => {
                   className="rounded-4 m-2 p-3"
                   style={{
                     backgroundColor: "#FAFA88",
-                    height: "300px",
                   }}
                 >
                   <div
@@ -40,7 +39,7 @@ const Testimonials = () => {
                     style={{
                       width: "90px",
                       height: "90px",
-                      backgroundImage: `url(${testimonial.imageUrl})`,
+                      backgroundImage: `url(http://localhost:3000/images/${testimonial.imageUrl})`,
                       overflow: "hidden",
                       objectFit: "cover",
                       backgroundRepeat: "no-repeat",
@@ -59,7 +58,7 @@ const Testimonials = () => {
       </div>
       <div className="text-center">
         <Link to="/">
-          <button className="module--btnInicio button px-5 py-2 fs-5 rounded-3 border border-1 border-dark">
+          <button className="module--btnInicio button mt-5 px-5 py-2 fs-5 rounded-3 border border-1 border-dark">
             Ir a Inicio
           </button>
         </Link>
