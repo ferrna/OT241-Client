@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import Slider from '../../components/Slider'
 import axios from 'axios'
 import { Link } from "react-router-dom";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
