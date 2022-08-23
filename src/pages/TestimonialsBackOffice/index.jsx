@@ -60,7 +60,7 @@ const TestimonialsBackOffice = () => {
   return (
     <>
       <div className="container-fluid mb-5 w-100">
-        <p className="text-center h1">Lista de testimonios</p>
+        <p className="text-center h1 mt-5">Lista de testimonios</p>
         {isLoading ? (
           <Loader />
         ) : errors?.msg ? (
@@ -95,7 +95,7 @@ const TestimonialsBackOffice = () => {
                       maxWidth: "120px",
                     }}
                   >
-                    Actions
+                    Acciones
                   </th>
                 </tr>
               </thead>
