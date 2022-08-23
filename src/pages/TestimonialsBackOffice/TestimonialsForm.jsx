@@ -113,14 +113,15 @@ const TestimonialsForm = () => {
     }
 
   return (
-    <div>
+    <div className='container d-flex flex-column align-items-center'>
+        <h1 className='text-center mt-5'>Editar Testimonio</h1>
         <form onSubmit={handleUpload}>
-                    <input type="file" onChange={handleFile} ref={inputFile}/>
-                    <input type="submit" value="upload" />
         </form>
 
-        <form className='d-flex flex-column w-50 m-50' onSubmit={handleSubmit}>
-            <input type="text" name='name' className='mb-1' placeholder={id ? mydata.name : ''} onChange={handleChange}/>
+        <form className=' w-50 m-50' onSubmit={handleSubmit}>
+            <label className='form-label'>Nombre</label>
+            <input type="text" name='name' className='form-control' placeholder={id ? mydata.name : ''} onChange={handleChange}/>
+            <input className=' my-2 form-control' type="file" onChange={handleFile} ref={inputFile}/>
             {isLoading && <Loader />}
             <div className='mb-1'>
                 <CKEditor
@@ -143,7 +144,7 @@ const TestimonialsForm = () => {
                     } }
                 />
             </div>
-            <input type="submit" name="" id="" value={id ? 'edit' : 'create'}/>
+            <input type="submit" className='btn btn-danger' value={id ? 'Editar' : 'create'}/>
         </form>
     </div>
   )
