@@ -2,50 +2,33 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Formik, Form, Field } from "formik";
 import httpService from "../../services/httpService";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 let http = new httpService();
 
-const FormOrganizacion = () => {
+const FormOrganizacion = ({data}) => {
   let [sendForm, setSendForm] = useState(false);
   let [error, setError] = useState(null);
+  let navigate = useNavigate();
   return (
     <>
       <div className="d-flex flex-column ms-20 text-center align-items-center">
         <h1>Editar organización</h1>
         <img src="/images/Group33.png" alt="" height={50} width={90} />
       </div>
+      <div className="d-flex flex-column justify-content-center align-items-center">
       <Formik
         initialValues={{
-          welcomeText: "",
-          imageUrl: "",
+          welcomeText: data.welcomeText,
+          image: data.image,
+          phone:data.phone,
+          welcomeImage: data.welcomeImage,
+          welcomeTitle: data.welcomeTitle,
+          email:data.email
+
         }}
-        validate={(values) => {
-          let { welcomeText, imageUrl } = values;
-
-          let myErrors = {};
-
-          //Validate the welcome:
-          if (!welcomeText) {
-            myErrors.welcomeText = "Por favor inserte un texto de bienvenida.";
-          } else if (!/(^[\s\S]{20,}$\r?\n?){1,4}/.test(welcomeText)) {
-            myErrors.welcomeText =
-              "El texto de bienvenida debe ser de al menos 20 caracteres de longitud";
-          }
-
-          //Validate the imageUrl:
-          if (!imageUrl) {
-            myErrors.imageUrl = "Por favor inserte la url del logo.";
-          } else if (
-            !/[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/.test(
-              imageUrl
-            )
-          ) {
-            myErrors.imageUrl = "Por favor ingrese una url válida (www.tusitio.com/urlImagen).";
-          }
-
-          return myErrors;
-        }}
-        onSubmit={(values, { resetForm }) => {
+        onSubmit={async (values, { resetForm }) => {
           resetForm();
           //Aqui va la peticion fetch para actualizar la organización en la base de datos EJ:
           /*
@@ -57,28 +40,24 @@ const FormOrganizacion = () => {
           body: JSON.stringify(values)
         })
         */
+        try{
+          let message = await axios.put("http://localhost:3000/organizations/edit/1",values)
+          
 
-          http
-            .post("users/auth/register", {
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: values,
-            })
-            .then((res) => {
-              if (res.errors) setError(res.errors);
-              console.log(res);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+           setSendForm(true);
+           setError(null);
+           setTimeout(() => {
+             setSendForm(false);
+             setError(false);
+           }, 2000);
+           
+           if(message) navigate('/Backoffice/Organizacion')
 
-          setSendForm(true);
-          setError(null);
-          setTimeout(() => {
-            setSendForm(false);
-            setError(false);
-          }, 2000);
+        }catch(err){
+          if (err.errors) setError(err.errors);
+          console.log(err);
+        }
+
         }}
       >
         {({ errors, touched }) => (
@@ -102,13 +81,57 @@ const FormOrganizacion = () => {
               )}
             </div>
             <div className="mb-3 w-50">
-              <label htmlFor="imageUrl" className="form-label">
-                Url de la Imagen
+              <label htmlFor="phone" className="form-label">
+                Phone
               </label>
-              <Field type="text" className="form-control" id="imageUrl" name="imageUrl" />
-              {touched.imageUrl && errors.imageUrl && (
+              <Field type="text" className="form-control" id="phone" name="phone" placeholder={data.phone}/>
+              {touched.phone && errors.phone && (
                 <div className="alert alert-danger" role="alert">
-                  {errors.imageUrl}
+                  {errors.phone}
+                </div>
+              )}
+            </div>
+            <div className="mb-3 w-50">
+              <label htmlFor="email" className="form-label">
+                email
+              </label>
+              <Field type="text" className="form-control" id="email" name="email" placeholder={data.email}/>
+              {touched.email && errors.email && (
+                <div className="alert alert-danger" role="alert">
+                  {errors.email}
+                </div>
+              )}
+            </div>
+            <div className="mb-3 w-50">
+              <label htmlFor="welcomeTitle" className="form-label">
+                Title Welcome
+              </label>
+              <Field type="text" className="form-control" id="welcomeTitle" name="welcomeTitle" placeholder={data.welcomeTitle}/>
+              {touched.welcomeTitle && errors.welcomeTitle && (
+                <div className="alert alert-danger" role="alert">
+                  {errors.welcomeTitle}
+                </div>
+              )}
+            </div>
+            <div className="mb-3 w-50">
+              <label htmlFor="welcomeImage" className="form-label">
+                Welcome Image
+              </label>
+              <Field type="text" className="form-control" id="welcomeImage" name="welcomeImage" />
+              {touched.welcomeImage && errors.welcomeImage && (
+                <div className="alert alert-danger" role="alert">
+                  {errors.welcomeImage}
+                </div>
+              )}
+            </div>
+            <div className="mb-3 w-50">
+              <label htmlFor="image" className="form-label">
+                Image Principal
+              </label>
+              <Field type="text" className="form-control" id="image" name="image" />
+              {touched.image && errors.image && (
+                <div className="alert alert-danger" role="alert">
+                  {errors.image}
                 </div>
               )}
             </div>
@@ -131,6 +154,7 @@ const FormOrganizacion = () => {
           </Form>
         )}
       </Formik>
+      </div>
     </>
   );
 };

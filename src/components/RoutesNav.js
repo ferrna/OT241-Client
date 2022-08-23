@@ -31,6 +31,9 @@ import ABMMembers from "../pages/MembersBackoffice/ABMMembers.jsx";
 import MembersForm from "../pages/MembersBackoffice/MembersForm.jsx";
 import ABMUsers from "../pages/UsersBackoffice/index.jsx";
 
+import Organization from '../pages/OrganizacionBackOffice/OrganizacionABM'
+import OrganizationEdit from '../pages/OrganizacionBackOffice'
+
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import "./transitions.css";
 import UsersForm from "../pages/UsersBackoffice/UsersForm.jsx";
@@ -47,6 +50,8 @@ const RoutesNav = () => {
               <Route path="" element={<Backoffice />} />
               <Route path="slides" element={<ABMSlide />} />
               <Route path="slides/edit/:id" element={<EditSlide/>} />
+              <Route path="Organizacion" element={<Organization/>} />
+              <Route path="Organizacion/edit/:id" element={<OrganizationEdit/>} />
               <Route path="miembros" element={<ABMMembers/>} />
               <Route path="miembros/edit/:id" element={<MembersForm/>} />
               <Route path="miembros/create/new" element={<MembersForm/>} />
