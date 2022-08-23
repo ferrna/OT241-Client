@@ -21,7 +21,7 @@ const MembersCards = (props) => {
           {
             members && (
               members.map((item) => (
-                <div key={uuidv4()} className='card border-0 col-4 col-md-3 col-lg-2 mx-2 mb-5' style={{width:"20%"}}>
+                <div key={uuidv4()} className='card border-0 col-4 col-md-3 col-lg-2 mx-2 mb-5' style={{width:"20%"} } onClick={() => props.onClick(item)}>
                   <img key={uuidv4()} className=' imagen-card img-fluid rounded-5 shadow' src={`http://localhost:3000/images/${item.image}`} alt={item.image} />
                   <div className='card-img-overlay d-flex justify-content-end flex-column'>
                     <p className='m-0 text-light fw-bolder fs-5 text-center' key={uuidv4()}>{item.name}</p>
