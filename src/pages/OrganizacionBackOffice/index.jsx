@@ -6,20 +6,24 @@ import ErrorMessage from "../../components/ErrorMessage";
 import FormOrganizacion from "./FormOrganizacion";
 import { organizacion } from "./mockorganizacion";
 
+import { useParams } from 'react-router-dom';
+
 function OrganizacionBackoffice() {
   const [isLoading, setIsLoading] = useState(true);
   const [errors, setErrors] = useState(null);
   const service = new httpService();
   const [props, setProps] = useState();
   const organization = organizacion || {};
+  let { id } = useParams();
 
   useEffect(() => {
     let mounted = true;
     async function fetchData() {
       if (mounted) {
         try {
-          /* let news = await service.get("news", id); */
-          setProps({ ...organization });
+           let news = await service.get(`organizations/${id}/public`); 
+           console.log(news)
+          setProps(news);
           setIsLoading(false);
         } catch (err) {
           setErrors({ msg: "Endpoint not finded" });
@@ -41,7 +45,7 @@ function OrganizacionBackoffice() {
           Ops! Parece que hay un error en el servidor, por favor intente más tarde.
         </ErrorMessage>
       ) : (
-        <FormOrganizacion {...props} />
+        <FormOrganizacion data={props.publicResult[0]} />
       )}
     </div>
   );
