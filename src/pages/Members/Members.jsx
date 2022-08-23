@@ -5,7 +5,7 @@ import img3 from "../../images/img3.jpg";
 const Members = () => {
   return (
     <div>
-        <h1 className='text-center'>¡Nuestro Staff!</h1>
+        <h1 className='text-center mt-5'>¡Nuestro Staff!</h1>
         <div className='container mt-5'>
             <div className='row'>
                 <div className='col-sm-12 col-lg-6'>
@@ -19,7 +19,7 @@ const Members = () => {
                 </div>
             </div>
         </div>
-            <div className='mt-5'>
+            <div className='container mt-5'>
             <MembersCards/>
             </div>
     </div>
