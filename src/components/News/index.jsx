@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import httpService from "../../services/httpService";
 import axios from "axios";
 import moment from "moment";
@@ -9,6 +9,7 @@ import { v4 as uuidv4 } from 'uuid'
 const http = new httpService();
 
 const News = () => {
+  const navigate = useNavigate()
   const [news, setNews] = useState([]);
 
   useEffect(() => {
@@ -27,21 +28,20 @@ const News = () => {
       <div className="d-flex flex-wrap justify-content-center">
         {news &&
           news.map((e) => {
-            let { name, image, createdAt, id } = e;
             return (
-                <div key={uuidv4()} className="card text-center" style={{ width: "18rem", margin: "1rem" }}>
-                  <img key={uuidv4()} src={`http://localhost:3000/images/${image}`} className="card-img-top" alt="..." />
-                  <div key={uuidv4()} className="card-body">
-                    <h3 key={uuidv4()} className="card-text ">
-                      <Link key={uuidv4()} to={`${id}`} className="text-danger">
-                        {name}
-                      </Link>
-                    </h3>
-                    <p key={uuidv4()}>
-                      <small key={uuidv4()}>{moment(createdAt).format("LLL")}</small>
-                    </p>
+              <div className="card mb-3 p-3 m-2 mt-5 border-0 rounded-4" style={{maxWidth: "540px", backgroundColor: "#9AC9FB"}}>
+              <div className="row g-0">
+                <div className="col-md-4">
+                  <img src={`http://localhost:3000/images/${e.image}`} className="img-fluid rounded-3 shadow" alt="..." />
+                </div>
+                <div className="col-md-8">
+                  <div className="card-body">
+                    <p className="card-text">{e.content}</p>
+                    <Link className='btn btn-primary w-100 f-bolder shadow' to={`${e.id}`}>Ver Novedad</Link>
                   </div>
                 </div>
+              </div>
+            </div>
             );
           })}
       </div>
