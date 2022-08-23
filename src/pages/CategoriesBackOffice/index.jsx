@@ -59,7 +59,7 @@ const CategoriesBackOffice = () => {
   return (
     <>
       <div className="container-fluid mb-5 w-100">
-        <p className="text-center h1">Listado de categorías</p>
+        <p className="text-center mt-5 h1">Listado de categorías</p>
         {isLoading ? (
           <Loader />
         ) : errors?.msg ? (
