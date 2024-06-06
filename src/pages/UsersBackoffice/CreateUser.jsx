@@ -71,7 +71,7 @@ const CreateUser = () => {
           })
           */
 
-            axios.post("http://localhost:3000/auth/register", { ...values })
+            axios.post("process.env.REACT_APP_API_URL/auth/register", { ...values })
               .then((res) => {
                 if (res.errors) setError(res.errors);
                 navigate("/backoffice");

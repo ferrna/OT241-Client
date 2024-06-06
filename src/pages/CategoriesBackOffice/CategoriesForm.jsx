@@ -24,7 +24,7 @@ const CategoriesForm = () => {
       });
     }
     return () => (mounted = false);
-  }, []);
+  }, [id]);
 
   // Editar categoria
   const editCategory = async (ev) => {

@@ -4,7 +4,7 @@ import httpService from "../../services/httpService";
 import Loader from "../../components/Loader";
 import ErrorMessage from "../../components/ErrorMessage";
 import FormOrganizacion from "./FormOrganizacion";
-import { organizacion } from "./mockorganizacion";
+//import { organizacion } from "./mockorganizacion";
 
 import { useParams } from 'react-router-dom';
 
@@ -13,7 +13,7 @@ function OrganizacionBackoffice() {
   const [errors, setErrors] = useState(null);
   const service = new httpService();
   const [props, setProps] = useState();
-  const organization = organizacion || {};
+  //const organization = organizacion || {};
   let { id } = useParams();
 
   useEffect(() => {

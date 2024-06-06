@@ -29,7 +29,7 @@ const ActivitiesForm = () => {
       }
     }
     return () => (mounted = false);
-  }, []);
+  }, [id]);
 
   return (
     <>

@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import httpService from "../services/httpService";
 import { useDispatch } from "react-redux";
 import { login } from "../reducers/authSlice";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
-import {v4 as uuidv4} from 'uuid'
 
-let token = localStorage.getItem("token");
-let http = new httpService();
+//let token = localStorage.getItem("token");
 
 const RegisterForm = () => {
   let [sendForm, setSendForm] = useState(false);
@@ -79,7 +76,7 @@ const RegisterForm = () => {
           })
           */
 
-            axios.post("http://localhost:3000/auth/register", { ...values })
+            axios.post(`${process.env.REACT_APP_API_URL}/auth/register`, { ...values })
               .then((res) => {
                 if (res.errors) setError(res.errors);
                 console.log(res);

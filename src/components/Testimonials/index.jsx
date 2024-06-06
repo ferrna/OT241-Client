@@ -42,7 +42,7 @@ const Testimonials = () => {
                     style={{
                       width: "90px",
                       height: "90px",
-                      backgroundImage: `url(http://localhost:3000/images/${testimonial.imageUrl})`,
+                      backgroundImage: `url(process.env.REACT_APP_API_URL/images/${testimonial.imageUrl})`,
                       overflow: "hidden",
                       objectFit: "cover",
                       backgroundRepeat: "no-repeat",

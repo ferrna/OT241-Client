@@ -10,7 +10,7 @@ const Slider = () => {
 
  useEffect(() => {
     const setInfo = async () => {
-      const {data} =  await axios.get("http://localhost:3000/slides")
+      const {data} =  await axios.get(`${process.env.REACT_APP_API_URL}/slides`)
       setSliderContent(data)
     }
     setInfo()
@@ -50,6 +50,7 @@ const Slider = () => {
             item.order === 1 ? (
               <div key={uuidv4()} className="carousel-item active" style={{transition: "all 1s ease-out"}}>
                 <img
+                  alt='slide'
                   src={item.imageUrl}
                   className="d-block w-100"
                 />

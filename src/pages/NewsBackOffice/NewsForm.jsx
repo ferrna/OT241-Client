@@ -28,7 +28,7 @@ const NewsForm = () => {
             formData.append("image", image)
             formData.append("name", title)
             formData.append("content", content)
-            const {data} = await axios.put(`http://localhost:3000/news/${state.props.id}`, formData, config)
+            const {data} = await axios.put(`process.env.REACT_APP_API_URL/news/${state.props.id}`, formData, config)
             console.log(data)
             navigate(-1)
             
@@ -48,7 +48,8 @@ const NewsForm = () => {
             formData.append("name", title2)
             formData.append("content", content2)
             const form = document.getElementById("formulario")
-            const { data } = await axios.post('http://localhost:3000/news', formData, config)
+            const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/news`, formData, config)
+            console.log(data)
             form.reset()
             navigate(-1)
         } catch (e) {

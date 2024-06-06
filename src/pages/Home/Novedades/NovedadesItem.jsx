@@ -29,7 +29,7 @@ function NovedadesItem({ image, content, id, name }) {
             style={{
               overflow: "hidden",
               flexGrow: "1",
-              backgroundImage: `url(http://localhost:3000/images/${image})`,
+              backgroundImage: `url(process.env.REACT_APP_API_URL/images/${image})`,
               objectFit: "contain",
               backgroundRepeat: "no-repeat",
               backgroundSize: "auto 100%",

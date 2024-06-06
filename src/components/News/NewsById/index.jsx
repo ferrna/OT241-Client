@@ -3,10 +3,7 @@ import { useParams } from "react-router-dom";
 import Loader from "../../Loader";
 import ErrorMessage from "../../ErrorMessage";
 import News from "./News";
-import httpService from "../../../services/httpService";
 import axios from "axios";
-
-const service = new httpService();
 
 function NewsById() {
   const [isLoading, setIsLoading] = useState(true);
@@ -19,7 +16,7 @@ function NewsById() {
     async function fetchData() {
       if (mounted) {
         try {
-          let {data} = await axios.get(`http://localhost:3000/news/${id}`);
+          let {data} = await axios.get(`${process.env.REACT_APP_API_URL}/news/${id}`);
           console.log(data);
           setProps({ ...data.news });
           setIsLoading(false);

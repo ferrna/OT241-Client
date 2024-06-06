@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Formik, Form, Field } from "formik";
-import httpService from "../../services/httpService";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-let http = new httpService();
+//let http = new httpService();
 
 const FormOrganizacion = ({data}) => {
   let [sendForm, setSendForm] = useState(false);
@@ -41,7 +40,7 @@ const FormOrganizacion = ({data}) => {
         })
         */
         try{
-          let message = await axios.put("http://localhost:3000/organizations/edit/1",values)
+          let message = await axios.put("process.env.REACT_APP_API_URL/organizations/edit/1",values)
           
 
            setSendForm(true);

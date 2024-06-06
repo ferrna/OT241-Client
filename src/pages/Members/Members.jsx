@@ -1,5 +1,4 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import MembersCards from '../../components/MembersCards';
 import img3 from "../../images/img3.jpg";
 
@@ -13,7 +12,7 @@ const Members = () => {
     })
 
     // useEffect(() => {
-    //     fetch('http://localhost:3000/members/1')
+    //     fetch(`${process.env.REACT_APP_API_URL}/members/1`)
     //     .then((res) => setMember)
     // })
 
@@ -29,7 +28,7 @@ const Members = () => {
                     <a type='button' className='mb-5 mt-5 btn btn-danger btn-lg' href="/registro">¡Quiero ser parte!</a>
                 </div>
                 <div className='col-sm-12 col-lg-6'>
-                    <img className='img-fluid rounded-5' src={`http://localhost:3000/images/${member.image}`} alt={img3} />
+                    <img className='img-fluid rounded-5' src={`process.env.REACT_APP_API_URL/images/${member.image}`} alt={img3} />
                 </div>
             </div>
         </div>

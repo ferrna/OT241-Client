@@ -9,13 +9,13 @@ function joinURL(baseUrl, url) {
   return `${baseUrl}/${url}`;
 }
 
-let API_URL = process.env.REACT_APP_API_URL;
+let REACT_URL = process.env.REACT_APP_URL;
 class httpService {
   constructor() {
-    this.domain = API_URL;
+    this.domain = REACT_URL;
   }
   request(url, method = "POST", data = null, config) {
-    url = joinURL("http://localhost:3000", url);
+    url = joinURL(`${process.env.REACT_APP_API_URL}`, url);
     let options = {
       headers,
       method,
@@ -49,7 +49,7 @@ class httpService {
       url = `${url}/${id}`;
     }
     //                               parámetro data no necesario
-    return this.request(url, method, ...[,], config).then((res) => res.json());
+    return this.request(url, method, ...[], config).then((res) => res.json());
   }
   post(url, data, config) {
     const method = "POST";
@@ -61,7 +61,7 @@ class httpService {
       url = `${url}/${id}`;
     }
     //                               parámetro data no necesario
-    return this.request(url, method, ...[,], config).then((res) => res.json());
+    return this.request(url, method, ...[], config).then((res) => res.json());
   }
   patch(url, id, data, config) {
     const method = "PATCH";

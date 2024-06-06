@@ -1,20 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import httpService from "../../services/httpService";
+import { Link } from "react-router-dom";
 import axios from "axios";
-import moment from "moment";
 import 'moment/locale/es-mx'
-import { v4 as uuidv4 } from 'uuid'
-
-const http = new httpService();
 
 const News = () => {
-  const navigate = useNavigate()
+  //const navigate = useNavigate()
   const [news, setNews] = useState([]);
 
   useEffect(() => {
     async function getData() {
-      let {data} = await axios.get("http://localhost:3000/news");
+      let {data} = await axios.get(`${process.env.REACT_APP_API_URL}/news`);
       setNews(data);
     }
 
@@ -32,7 +27,7 @@ const News = () => {
               <div className="card mb-3 p-3 m-2 mt-5 border-0 rounded-4" style={{maxWidth: "540px", backgroundColor: "#9AC9FB"}}>
               <div className="row g-0">
                 <div className="col-md-4">
-                  <img src={`http://localhost:3000/images/${e.image}`} className="img-fluid rounded-3 shadow" alt="..." />
+                  <img src={`process.env.REACT_APP_API_URL/images/${e.image}`} className="img-fluid rounded-3 shadow" alt="..." />
                 </div>
                 <div className="col-md-8">
                   <div className="card-body">

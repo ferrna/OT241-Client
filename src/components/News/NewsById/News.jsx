@@ -11,7 +11,7 @@ function News({ name, content, image, createdAt }) {
 
   useEffect(() => {
     text(content)
-  }, [])
+  }, [content])
 
   return (
     <div>

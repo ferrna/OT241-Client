@@ -26,7 +26,8 @@ const CreateTestimonio = () => {
             formData.content = content
             console.log(formData)
             const form = document.getElementById("formulario")
-            const { data } = await axios.post('http://localhost:3000/testimonials', formData)
+            const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/testimonials`, formData)
+            console.log(data)
             form.reset()
             navigate(-1)
         } catch (e) {

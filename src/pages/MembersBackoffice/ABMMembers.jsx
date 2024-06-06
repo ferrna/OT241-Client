@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { ConfirmAlert } from "../../components/Alerts";
 import moment from 'moment';
@@ -9,12 +9,12 @@ const ABMMembers = () => {
     const [membersInfo, setMembersInfo] = React.useState([])
 
 
-    const navigate = useNavigate()
+    //const navigate = useNavigate()
 
 
     useEffect(() => {
         const getInfo = async () => {
-            const {data} = await axios.get("http://localhost:3000/members")
+            const {data} = await axios.get("process.env.REACT_APP_API_URL/members")
             setMembersInfo(data)
         }
 
@@ -26,7 +26,7 @@ const ABMMembers = () => {
         ConfirmAlert({
             text: "Esta por eliminar este miembro, ¿desea continuar?",
             onConfirm: async () => {
-              await axios.delete(`http://localhost:3000/members/${id}`)
+              await axios.delete(`process.env.REACT_APP_API_URL/members/${id}`)
               window.location.reload()
             },
           });
@@ -56,7 +56,7 @@ const ABMMembers = () => {
                     membersInfo.map((members) => (
                         <tr>
                             <th scope="row">{members.id}</th>
-                            <td ><img src={`http://localhost:3000/images/${members.image}`} style={{ width: "35px", height:"35px" }} className="img-fluid" alt={members.id} /></td>
+                            <td ><img src={`process.env.REACT_APP_API_URL/images/${members.image}`} style={{ width: "35px", height:"35px" }} className="img-fluid" alt={members.id} /></td>
                             <td >{members.name}</td>
                             <td>{members.role}</td>
                             <td >{moment(members.createdAt).format("DD/MM/YYYY")}</td>

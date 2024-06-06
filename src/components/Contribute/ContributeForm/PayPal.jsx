@@ -1,6 +1,6 @@
 import React from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-import {ConfirmAlert, ErrorAlert, InfoAlert} from '../../Alerts';
+import { ErrorAlert, InfoAlert } from '../../Alerts';
 import "./PayPalStyles.css";
 
 export default function PayPalCheckout({ formData }) {

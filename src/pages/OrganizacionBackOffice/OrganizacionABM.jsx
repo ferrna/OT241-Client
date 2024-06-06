@@ -10,7 +10,7 @@ const OrganizacionABM = () => {
     const [data,setData] = useState([])
     const [socials,setSocials] = useState([])
     let navigate = useNavigate();
-    
+    console.log(socials, 'socials')
     const handleClick = (e) => {
         if(e.target.name === "edit"){
             console.log(e.target.id)

@@ -37,13 +37,10 @@ const Footer = ()=> {
     const { pathname } = useLocation()
     const [socials,setSocials] = useState([])
 
-
     useEffect(()=>{
-
         service.get('socialmedia').then(res => {
             setSocials([...res])            
         })
-
     },[])
 
     const getLinkClassName = path =>
@@ -51,8 +48,6 @@ const Footer = ()=> {
         ? 'text-decoration-none text-body fw-bold'
         : 'text-decoration-none text-body'
   
-
-
     return(
         <footer style={{
             height: "559px",
@@ -77,7 +72,7 @@ const Footer = ()=> {
                         className="col-5 w-30">
                     </span>
                 </div>
-                <div className=" p-2 bd-highlight w-75">
+                <div className="p-2 bd-highlight w-75">
                     <ul className="list-unstyled d-flex flex-row justify-content-between">
                     {NAV_LINKS.map(({ name, path }) => (
                         <li key={uuidv4()}>
@@ -125,7 +120,7 @@ const Footer = ()=> {
                                 </a>
                                 </li>)
                                 default:
-                                    break;
+                                    return;
                             }
                         })}
                     </ul>

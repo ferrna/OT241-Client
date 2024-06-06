@@ -30,7 +30,8 @@ const MembersForm = () => {
             formData.append("role", puesto2)
             formData.append("image", image)
             formData.append("name", nombre2)
-            const { data } = await axios.post(`http://localhost:3000/members/`, formData, config)
+            const { data } = await axios.post(`process.env.REACT_APP_API_URL/members/`, formData, config)
+            console.log(data)
             navigate(-1)
         } catch (e) {
             console.log(e)
@@ -45,7 +46,8 @@ const MembersForm = () => {
             const formData = new FormData()
             formData.append("image", image)
             formData.append("name", nombre)
-            const { data } = await axios.put(`http://localhost:3000/members/${state.props.id}`, formData, config)
+            const { data } = await axios.put(`process.env.REACT_APP_API_URL/members/${state.props.id}`, formData, config)
+            console.log(data)
             navigate(-1)
         } catch (e) {
             console.log(e)

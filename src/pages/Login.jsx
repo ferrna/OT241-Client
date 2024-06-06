@@ -8,12 +8,10 @@ import { login } from "../reducers/authSlice";
 import { useDispatch } from "react-redux";
 import Loader from "../components/Loader";
 import { ErrorAlert } from "../components/Alerts";
-
 import axios from 'axios'
-
-import httpService from "../services/httpService";
 import { useNavigate } from "react-router-dom";
-let http = new httpService();
+
+//let http = new httpService();
 
 const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -34,7 +32,7 @@ const Login = () => {
     onSubmit: (values) => {
       setIsLoading(true);
       axios
-        .post("http://localhost:3000/auth/login", { ...values })
+        .post("process.env.REACT_APP_API_URL/auth/login", { ...values })
         .then((res) => {
           console.log(res.data)
           setIsLoading(false);

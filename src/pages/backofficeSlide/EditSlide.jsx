@@ -25,7 +25,8 @@ const EditSlide = () => {
             formData.append("text", text)
             formData.append("order", order)
             const form = document.getElementById("formulario")
-            const { data } = await axios.put(`http://localhost:3000/slides/${state.props.id}`, formData, config)
+            const { data } = await axios.put(`process.env.REACT_APP_API_URL/slides/${state.props.id}`, formData, config)
+            console.log(data)
             form.reset()
             navigate(-1)
         } catch (e) {

@@ -9,7 +9,7 @@ const Contacts = () => {
     useEffect(() => {
         const fetchData = async() => {
             const token = localStorage.getItem("user")
-            const {data} = await axios.get("http://localhost:3000/contacts" , {headers: {Authorization: `Bearer ${token}`}})
+            const {data} = await axios.get("process.env.REACT_APP_API_URL/contacts" , {headers: {Authorization: `Bearer ${token}`}})
             return data
         }
         fetchData().then((r) => setData(r))

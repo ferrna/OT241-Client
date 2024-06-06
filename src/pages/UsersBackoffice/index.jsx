@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { ConfirmAlert } from "../../components/Alerts";
 import moment from 'moment';
@@ -11,7 +11,7 @@ const ABMUsers = () => {
     const [usersInfo, setusersInfo] = React.useState([])
 
 
-    const navigate = useNavigate()
+    //const navigate = useNavigate()
 
 
     useEffect(() => {
@@ -29,7 +29,7 @@ const ABMUsers = () => {
         ConfirmAlert({
             text: "Esta por eliminar este miembro, ¿desea continuar?",
             onConfirm: async () => {
-              await axios.delete(`http://localhost:3000/users/${id}`)
+              await axios.delete(`process.env.REACT_APP_API_URL/users/${id}`)
               window.location.reload()
             },
           });

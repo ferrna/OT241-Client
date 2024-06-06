@@ -36,7 +36,7 @@ function ContributeForm() {
   const handleInputChange = async (e) => {
     let value = e.target.value;
     const named = e.target.name;
-    if (named == "valor") value = value.replace(/[a-zA-Z]+/, "");
+    if (named === "valor") value = value.replace(/[a-zA-Z]+/, "");
     setData({
       ...data,
       [named]: value,

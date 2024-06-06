@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Loader from "../components/Loader";
 import axios from "axios";
 
-const urlApi = process.env.REACT_APP_API_URL;
+const urlApi = process.env.REACT_APP_REACT_APP_API_URL;
 
 const RegisterFormEdit = ({ setInfoHome, setImages, infoHome, images }) => {
   const [newImage, setNewImage] = useState(null);

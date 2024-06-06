@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
 import { Link } from "react-router-dom";
-import { FiEdit, FiTrash2 } from "react-icons/fi";
+import { FiEdit } from "react-icons/fi";
 import moment from 'moment';
 
 const ABMSlide = () => {
@@ -9,7 +9,7 @@ const ABMSlide = () => {
 
     useEffect(() => {
         const setInfo = async () => {
-            const {data} =  await axios.get("http://localhost:3000/slides")
+            const {data} =  await axios.get("process.env.REACT_APP_API_URL/slides")
             setSlideInfo(data)
           }
           setInfo()
