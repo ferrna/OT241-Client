@@ -43,7 +43,7 @@ const RoutesNav = () => {
   const { key } = useLocation();
   return (
     <TransitionGroup component={null}>
-      <CSSTransition key={key} classNames="dialog" timeout={1000}>
+      <CSSTransition key={key} classNames="dialog" timeout={800}>
         <div className="min-vh-100">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -84,12 +84,12 @@ const RoutesNav = () => {
             <Route path="contribuye" element={<Contribute />} />
             <Route path="actividades" element={<Activities />} />
             <Route path="actividades/:id" element={<ActivityById />} />
-            {/* <Route path="novedades" element={<Novedades />} /> */}
             <Route path="contacto" element={<Contacto />} />
-            {/* <Route path="contacto" element={<Contacto />} /> */}
             <Route path="/news" element={<News />} />
             <Route path="/news/:id" element={<NewsById />} />
-            <Route path="*" element={<h2>Esta pagina aun no fue creada</h2>} />
+            <Route path="*"
+              element={<div className="w-100 d-flex justify-content-center items-center min-h-100"><h2>Esta pagina aún no fue creada</h2></div>}
+            />
           </Routes>
         </div>
       </CSSTransition>

@@ -15,7 +15,6 @@ const NewsBackOffice = () => {
   const [errors, setErrors] = useState(null);
   const [reloadData, setReloadData] = useState(false);
 
-
   // Get all news
   useEffect(() => {
     let mounted = true;

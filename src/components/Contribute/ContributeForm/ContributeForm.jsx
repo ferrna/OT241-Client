@@ -70,6 +70,8 @@ function ContributeForm() {
                 className="form-control"
                 name="email"
                 value={data.email}
+                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                title="Please enter a valid email address"
                 placeholder="correo@correo.cl"
                 required
                 onChange={handleInputChange}
@@ -82,7 +84,7 @@ function ContributeForm() {
                 id="mensaje"
                 name="comentario"
                 value={data.comentario}
-                placeholder="Deje su comentario aquí"
+                placeholder="Deje su comentario aquí (opcional)"
                 style={{ height: "100px" }}
                 onChange={handleInputChange}
               ></textarea>
@@ -94,7 +96,7 @@ function ContributeForm() {
                 id="valor"
                 name="valor"
                 value={data.valor}
-                placeholder="¿Con cuanto desea contribuir?"
+                placeholder="¿Con cuanto desea contribuir? ARS$"
                 required
                 onChange={handleInputChange}
               ></input>

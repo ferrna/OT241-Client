@@ -13,7 +13,7 @@ const Testimonials = () => {
   const user = useSelector((store) => store.auth.user || null);
   useEffect(() => {
     service.get("testimonials").then((res) => {
-      setTestimonials(res);
+      setTestimonials([...res]);
     });
   }, []);
 

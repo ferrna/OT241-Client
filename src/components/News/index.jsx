@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import 'moment/locale/es-mx'
+import httpService from "../../services/httpService";
+
+const service = new httpService();
 
 const News = () => {
   //const navigate = useNavigate()
   const [news, setNews] = useState([]);
 
   useEffect(() => {
-    async function getData() {
-      let {data} = await axios.get(`${process.env.REACT_APP_API_URL}/news`);
-      setNews(data);
-    }
-
-    getData();
-    
+    service.get('news').then(res => {
+      setNews([...res])            
+    })
   }, []);
 
   return (
@@ -32,7 +30,7 @@ const News = () => {
                 <div className="col-md-8">
                   <div className="card-body">
                     <p className="card-text">{e.content}</p>
-                    <Link className='btn btn-primary w-100 f-bolder shadow' to={`${e.id}`}>Ver Novedad</Link>
+                    <Link className='btn btn-primary w-100 f-bolder shadow' to={`/news/${e.id}`}>Ver Novedad</Link>
                   </div>
                 </div>
               </div>

@@ -5,7 +5,6 @@ import ErrorMessage from "../../components/ErrorMessage";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-
 import "./styles.css";
 import { ConfirmAlert } from "../../components/Alerts";
 
@@ -17,13 +16,11 @@ const ActivitiesBackOffice = () => {
   const [errors, setErrors] = useState(null);
   const [reloadData, setReloadData] = useState(false);
 
-  // Get all news
   useEffect(() => {
     let mounted = true;
     async function fetchData() {
       if (mounted) {
         try {
-          // TODO: Descomentar esta línea una vez este listo el endpoint de la api:
           let activities = await service.get("activities");
           setProps([...activities]);
           if (activities.length === 0 || !activities) {

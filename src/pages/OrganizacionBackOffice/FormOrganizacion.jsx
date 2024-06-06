@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Formik, Form, Field } from "formik";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import httpService from "../../services/httpService";
 
-//let http = new httpService();
+let service = new httpService();
 
 const FormOrganizacion = ({data}) => {
   let [sendForm, setSendForm] = useState(false);
@@ -29,34 +29,20 @@ const FormOrganizacion = ({data}) => {
         }}
         onSubmit={async (values, { resetForm }) => {
           resetForm();
-          //Aqui va la peticion fetch para actualizar la organización en la base de datos EJ:
-          /*
-        fetch('/organization', {
-          method: 'POST',
-          headers:{
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(values)
-        })
-        */
-        try{
-          let message = await axios.put("process.env.REACT_APP_API_URL/organizations/edit/1",values)
-          
-
-           setSendForm(true);
-           setError(null);
-           setTimeout(() => {
-             setSendForm(false);
-             setError(false);
-           }, 2000);
-           
-           if(message) navigate('/Backoffice/Organizacion')
-
-        }catch(err){
-          if (err.errors) setError(err.errors);
-          console.log(err);
-        }
-
+          try{
+            let message =
+              await service.post("organizations/edit/1", values);
+             setSendForm(true);
+             setError(null);
+             setTimeout(() => {
+               setSendForm(false);
+               setError(false);
+             }, 2000);
+             if(message) navigate('/Backoffice/Organizacion')
+          } catch(err) {
+            if (err.errors) setError(err.errors);
+            console.log(err);
+          }
         }}
       >
         {({ errors, touched }) => (

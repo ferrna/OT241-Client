@@ -2,12 +2,12 @@ import React from "react";
 import MenuButton from "./MenuCard.jsx";
 import { FaRegNewspaper, FaClipboardList, FaList, FaUserAlt } from "react-icons/fa";
 import { BsFillChatFill, BsFillFileEarmarkSlidesFill } from "react-icons/bs";
-import { RiOrganizationChart, RiEdit2Line } from "react-icons/ri";
+import { RiOrganizationChart, RiEdit2Line, RiContactsBook2Fill } from "react-icons/ri";
 import { IoIosPeople } from "react-icons/io";
+import { useSelector } from 'react-redux'
 
 const Backoffice = () => {
-  //const roleUser = useSelector((state) => state.auth.user.roleId);
-  const roleUser = 1;
+  const roleUser = useSelector((state) => state.auth.user.roleId);
 
   return (
     <>
@@ -24,6 +24,11 @@ const Backoffice = () => {
             <MenuButton title="Slides" icon={<BsFillFileEarmarkSlidesFill />} to="Slides" />
             <MenuButton title="Usuarios" icon={<FaUserAlt />} to="Usuarios" />
             <MenuButton title="Miembros" icon={<IoIosPeople />} to="Miembros" />
+          </div>
+          <div className="row">
+            <div className="w-25 p-0 pe-3">
+              <MenuButton title="Contactos" className='m-0' icon={<RiContactsBook2Fill />} to="contacts" />
+            </div>
           </div>
         </div>
       ) : (

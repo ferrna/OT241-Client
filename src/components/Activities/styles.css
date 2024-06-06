@@ -4,7 +4,7 @@
 }
 
 .module--image-div {
-  minwidth: 200px;
+  min-width: 200px;
   aspect-ratio: 1 / 1;
   overflow: hidden;
   flex-grow: 1;
@@ -54,14 +54,12 @@
 
 @media only screen and (min-width: 992px) {
   .module--image-div {
-    minwidth: auto;
+    min-width: auto;
     aspect-ratio: auto;
   }
 }
 
 @media only screen and (min-width: 1200px) {
-  .module--activity {
-  }
   .module--activities {
     margin: 0 auto;
   }

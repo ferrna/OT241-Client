@@ -15,7 +15,7 @@ const CategoriesBackOffice = () => {
   const [errors, setErrors] = useState(null);
   const [reloadData, setReloadData] = useState(false);
 
-  // Get all news
+  // Get all categories
   useEffect(() => {
     let mounted = true;
     async function fetchData() {

@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios'
+import httpService from "../../services/httpService";
+
+const service = new httpService();
 
 const CreateUser = () => {
   let [sendForm, setSendForm] = useState(false);
   let [error, setError] = useState(null);
+  const token = localStorage.getItem("token")
 
   const navigate = useNavigate();
 
@@ -60,21 +63,15 @@ const CreateUser = () => {
           }}
           onSubmit={(values, { resetForm }) => {
             resetForm();
-            //Aqui va la peticion fetch para crear el usuario en la base de datos EJ:
-            /*
-          fetch('/users/auth/register', {
-            method: 'POST',
-            headers:{
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(values)
-          })
-          */
 
-            axios.post("process.env.REACT_APP_API_URL/auth/register", { ...values })
+            const config = {headers: {Authorization: `Bearer ${token}`}}
+            service.post("auth/register", { ...values }, config)
               .then((res) => {
-                if (res.errors) setError(res.errors);
-                navigate("/backoffice");
+                if (res.errors) {
+                  setError(res.errors);
+                } else {
+                  navigate("/backoffice");
+                }
               })
               .catch((err) => {
                 console.log(err);

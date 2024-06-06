@@ -1,39 +1,33 @@
 import React, { useEffect } from 'react'
-import axios from 'axios'
 import { Link } from "react-router-dom";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { ConfirmAlert } from "../../components/Alerts";
 import moment from 'moment';
 import httpService from '../../services/httpService';
+
 const service = new httpService()
 
 const ABMUsers = () => {
-    const [usersInfo, setusersInfo] = React.useState([])
-
-
-    //const navigate = useNavigate()
-
+    const [usersInfo, setUsersInfo] = React.useState([])
+    const token = localStorage.getItem("token")
 
     useEffect(() => {
-        const getInfo = async () => {
-            const res = await service.get("users/all")
+        if(!token) return
+        const config = {headers: {Authorization: `Bearer ${token}`}}
+        service.get("users/all", null, null, config).then(res => {
             console.dir(res)
-            setusersInfo(res)
-        }
-
-        getInfo()
-    }, [])
+            setUsersInfo([...res])
+        })
+    }, [token])
 
     const deleteMember = async (id) => {
-
         ConfirmAlert({
             text: "Esta por eliminar este miembro, ¿desea continuar?",
             onConfirm: async () => {
-              await axios.delete(`process.env.REACT_APP_API_URL/users/${id}`)
+              await service.delete('users', id)
               window.location.reload()
             },
           });
-
     }
   return (
     <div>

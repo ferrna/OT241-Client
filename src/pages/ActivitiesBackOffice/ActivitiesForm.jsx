@@ -5,7 +5,7 @@ import { Formik, Form, Field } from "formik";
 import httpService from "../../services/httpService";
 import "./styles.css";
 
-const http = new httpService();
+const service = new httpService();
 
 const ActivitiesForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -21,7 +21,7 @@ const ActivitiesForm = () => {
     if (mounted) {
       if (id) {
         setIsLoading(true);
-        http.get(`activities`, id).then((res) => {
+        service.get(`activities`, id).then((res) => {
           console.log(res);
           setProps({ activity: { ...res[0] } });
           setIsLoading(false);
@@ -70,7 +70,7 @@ const ActivitiesForm = () => {
           onSubmit={(values, { resetForm }) => {
             if (props.activity) {
               //REQUEST PARA EDITAR LA ACTIVIDAD
-              http
+              service
                 .put("activities", id, { ...values })
                 .then((res) => {
                   setSendForm(true);
@@ -79,7 +79,7 @@ const ActivitiesForm = () => {
                 .catch((err) => setHttpError({ msg: err.message }));
             } else {
               //REQUEST PARA CREAR LA ACTIVIDAD
-              http
+              service
                 .post("activities", { ...values })
                 .then((res) => {
                   setSendForm(true);

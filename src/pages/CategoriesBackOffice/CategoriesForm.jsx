@@ -30,7 +30,8 @@ const CategoriesForm = () => {
   const editCategory = async (ev) => {
     ev.preventDefault();
     try {
-      await service.put("categories", props.id, { ...props });
+      const {id: categoryId, ...propsWithoutId} = props;
+      await service.put("categories", categoryId, { ...propsWithoutId });
       navigate("/backoffice/categories");
     } catch (e) {
       console.log(e);

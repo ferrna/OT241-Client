@@ -1,17 +1,17 @@
 import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
 import { useFormik } from "formik";
-import img2 from "../images/loginimg.jpg";
-import * as yup from "yup";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { login } from "../reducers/authSlice";
 import { useDispatch } from "react-redux";
-import Loader from "../components/Loader";
-import { ErrorAlert } from "../components/Alerts";
-import axios from 'axios'
 import { useNavigate } from "react-router-dom";
+import img2 from "../images/loginimg.jpg";
+import { ErrorAlert } from "../components/Alerts";
+import Loader from "../components/Loader";
+import { login } from "../reducers/authSlice";
+import * as yup from "yup";
+import httpService from "../services/httpService";
 
-//let http = new httpService();
+const service = new httpService();
 
 const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -31,12 +31,12 @@ const Login = () => {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       setIsLoading(true);
-      axios
-        .post("process.env.REACT_APP_API_URL/auth/login", { ...values })
+      service
+        .post("auth/login", { ...values })
         .then((res) => {
           console.log(res.data)
           setIsLoading(false);
-          dispatch(login({ user: { ...res.data.data }, token: res.data.token }));
+          dispatch(login({ user: { ...res.data }, token: res.token }));
           navigate("/backoffice");
         })
         .catch((err) => {

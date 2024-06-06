@@ -4,6 +4,7 @@ import * as yup from "yup";
 import { InfoAlert } from "../../components/Alerts";
 import httpService from "../../services/httpService";
 import { useLocation, useParams } from "react-router";
+
 const service = new httpService()
 
 const userSchema = yup.object({

@@ -32,7 +32,7 @@ function ActivityById() {
     fetchData();
     return () => (mounted = false);
     //eslint-disable-next-line
-  }, []);
+  }, [id]);
 
   return (
     <div className="w-100">

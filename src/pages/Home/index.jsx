@@ -3,8 +3,10 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { useNavigate } from 'react-router'
 import { Link } from 'react-router-dom'
 import img2 from "../../images/loginimg.jpg";
-import axios from 'axios'
-import {v4 as uuidv4 } from 'uuid'
+import { v4 as uuidv4 } from 'uuid'
+import httpService from '../../services/httpService';
+
+const service = new httpService();
 
 const Home = () => {
 
@@ -14,38 +16,37 @@ const Home = () => {
   const [news, setNews] = useState([])
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/members`)
+    service.get("members")
     .then((res) => {
-      setMembers(res.data);
+      setMembers([...res]);
     })
-    .catch((err) => {
-      setMembers(null)
+      .catch((err) => {
+      console.log(err)
     })
   }, [])
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/testimonials`)
+    service.get("testimonials")
     .then((res) => {
-      setTestimonials(res.data);
+      setTestimonials([...res]);
     })
     .catch((err) => {
-      setTestimonials(null)
+      console.log(err)
     })
   }, [])
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/news`)
+    service.get("news")
     .then((res) => {
-      setNews(res.data);
+      setNews([...res]);
     })
     .catch((err) => {
-      setNews(null)
+      console.log(err)
     })
   }, [])
 
   return (
     <div className='container mt-5'>
-
       <div className='d-flex'>
         <div className='container w-50' style={{height: 'fit-content', alignSelf: 'center'}}>
           <h2 className='h1'>Hola! Bienvenidx</h2>
@@ -56,7 +57,6 @@ const Home = () => {
           <img className='img-fluid rounded' src={img2} alt="" />
         </div>
       </div>
-
       <div className='mt-5'>
         <div className='d-flex justify-content-between align-items-center'>
           <h2 className='h2'>Nuestro Staff</h2>
@@ -69,8 +69,8 @@ const Home = () => {
             <div key={uuidv4()} className='card border-0 col-4 col-md-3 col-lg-2 m-1 mb-5' style={{width:"20%"}}>
                   <img key={uuidv4()} className=' imagen-card img-fluid rounded-5 shadow' src={`process.env.API_URL/images/${members.image}`} alt={members.image} />
                   <div className='card-img-overlay d-flex justify-content-end flex-column'>
-                    <p className='m-0 text-light fw-bolder fs-5 text-center' key={uuidv4()}>{members.name}</p>
-                    <p className='m-0 text-light fs-8 text-center' key={uuidv4()}>{members.role}</p>
+                    <p className='m-0 text-light fw-bolder fs-5 text-center'>{members.name}</p>
+                    <p className='m-0 text-light fs-8 text-center'>{members.role}</p>
                   </div>
                 </div>
             )

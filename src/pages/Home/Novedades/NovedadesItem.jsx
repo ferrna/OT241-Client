@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import image1 from "../../../images/Novedad1.png";
+//import image1 from "../../../images/Novedad1.png";
 import { v4 as uuidv4 } from 'uuid'
 import { Link } from "react-router-dom";
 import "./styles.css";

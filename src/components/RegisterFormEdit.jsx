@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Loader from "../components/Loader";
-import axios from "axios";
+import httpService from "../services/httpService";
 
-const urlApi = process.env.REACT_APP_REACT_APP_API_URL;
+const service = new httpService()
 
 const RegisterFormEdit = ({ setInfoHome, setImages, infoHome, images }) => {
   const [newImage, setNewImage] = useState(null);
@@ -56,7 +56,7 @@ const RegisterFormEdit = ({ setInfoHome, setImages, infoHome, images }) => {
 
                 console.log("Enviando");
                 setIsLoading(true);
-                let response = await axios.post(`${urlApi}/images`, formData, {
+                let response = await service.post('images', formData, {
                   headers: { "Content-Type": "multipart/form-data" },
                 });
 

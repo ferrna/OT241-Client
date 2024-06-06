@@ -4,9 +4,10 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
 import { login } from "../reducers/authSlice";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios'
+import httpService from "../services/httpService";
 
 //let token = localStorage.getItem("token");
+const service = new httpService()
 
 const RegisterForm = () => {
   let [sendForm, setSendForm] = useState(false);
@@ -65,18 +66,8 @@ const RegisterForm = () => {
           }}
           onSubmit={(values, { resetForm }) => {
             resetForm();
-            //Aqui va la peticion fetch para crear el usuario en la base de datos EJ:
-            /*
-          fetch('/users/auth/register', {
-            method: 'POST',
-            headers:{
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(values)
-          })
-          */
 
-            axios.post(`${process.env.REACT_APP_API_URL}/auth/register`, { ...values })
+            service.post('auth/register', { ...values })
               .then((res) => {
                 if (res.errors) setError(res.errors);
                 console.log(res);

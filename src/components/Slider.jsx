@@ -2,18 +2,17 @@ import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { useEffect } from 'react'
-import axios from 'axios';
+import httpService from '../services/httpService';
+
+const service = new httpService();
 
 const Slider = () => {
  const [sliderContent, setSliderContent] = React.useState([])
 
-
  useEffect(() => {
-    const setInfo = async () => {
-      const {data} =  await axios.get(`${process.env.REACT_APP_API_URL}/slides`)
-      setSliderContent(data)
-    }
-    setInfo()
+   service.get("slides").then((res) => {
+      setSliderContent([...res]);
+    });
  }, [])
   return (
     <div className="container-fluid p-0">

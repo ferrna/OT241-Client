@@ -1,16 +1,15 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useLocation, useNavigate } from 'react-router'
-import axios from 'axios'
+import httpService from '../../services/httpService';
+
+const service = new httpService();
 
 const MembersForm = () => {
     const {state} = useLocation()
     const config = {     
         headers: { 'content-type': 'multipart/form-data' }
     }
-
     const navigate = useNavigate()
-
-
 
     const [nombre, setNombre] = React.useState(state.props.name)
     const [image, setImage] = React.useState([])
@@ -18,44 +17,32 @@ const MembersForm = () => {
     const [nombre2, setNombre2] = React.useState("")
     const [puesto2, setPuesto2] = React.useState("")
 
-    useEffect(() => {
-        
-    }, [])
-
     const createMember = async (e) => {
         e.preventDefault()
-
         try {
             const formData = new FormData()
             formData.append("role", puesto2)
             formData.append("image", image)
             formData.append("name", nombre2)
-            const { data } = await axios.post(`process.env.REACT_APP_API_URL/members/`, formData, config)
-            console.log(data)
+            await service.post("members", formData, config)
             navigate(-1)
-        } catch (e) {
-            console.log(e)
+        } catch (err) {
+            console.log(err)
         }
-
     }
 
     const editMembers = async (e) => {
         e.preventDefault()
-
         try {
             const formData = new FormData()
             formData.append("image", image)
             formData.append("name", nombre)
-            const { data } = await axios.put(`process.env.REACT_APP_API_URL/members/${state.props.id}`, formData, config)
-            console.log(data)
+            await service.put("members", state.props.id, formData, config)
             navigate(-1)
-        } catch (e) {
-            console.log(e)
+        } catch (err) {
+            console.log(err)
         }
-
-
     }
-
   return (
     <div>
         {

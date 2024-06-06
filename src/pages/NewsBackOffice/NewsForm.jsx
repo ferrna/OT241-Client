@@ -1,8 +1,10 @@
 import React from 'react'
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import axios from 'axios'
 import { useLocation, useNavigate } from 'react-router';
+import httpService from '../../services/httpService';
+
+const service = new httpService();
 
 const NewsForm = () => {
     const navigate = useNavigate()
@@ -28,13 +30,10 @@ const NewsForm = () => {
             formData.append("image", image)
             formData.append("name", title)
             formData.append("content", content)
-            const {data} = await axios.put(`process.env.REACT_APP_API_URL/news/${state.props.id}`, formData, config)
-            console.log(data)
+            await service.put("news", state.props.id, formData, config)
             navigate(-1)
-            
-
-        } catch (e) {
-            console.log(e)
+        } catch (err) {
+            console.log(err)
         }
 
     }
@@ -48,8 +47,7 @@ const NewsForm = () => {
             formData.append("name", title2)
             formData.append("content", content2)
             const form = document.getElementById("formulario")
-            const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/news`, formData, config)
-            console.log(data)
+            await service.post("news", formData, config)
             form.reset()
             navigate(-1)
         } catch (e) {

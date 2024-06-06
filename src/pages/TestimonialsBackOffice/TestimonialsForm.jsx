@@ -4,7 +4,6 @@ import httpService from "../../services/httpService";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import Loader from '../../components/Loader';
-import axios from 'axios'
 
 const service = new httpService();
 
@@ -77,7 +76,7 @@ const TestimonialsForm = () => {
         if(id){
             //Edit
                 setIsLoading(true)
-                let res = await axios.put(`process.env.REACT_APP_API_URL/testimonials/${id}`,{
+                let res = await service.put(`testimonials`, id, {
                     name: mydata.name,
                     content: myContent,
                     imageUrl: mydata.imageUrl
@@ -90,7 +89,7 @@ const TestimonialsForm = () => {
         }else{
             //create
             console.log('create')
-            let res = await axios.post(`${process.env.REACT_APP_API_URL}/testimonials`,{
+            let res = await service.post(`testimonials`, {
                 name: mydata.name,
                 content: myContent,
                 imageUrl: mydata.imageUrl

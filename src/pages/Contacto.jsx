@@ -1,7 +1,9 @@
 import React,{useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import axios from 'axios'
-import  Loader  from '../components/Loader'
+import Loader from '../components/Loader'
+import httpService from '../services/httpService'
+
+const service = new httpService()
 
 const Contacto = () => {
     const [isLoading, setIsLoading] = useState(false)
@@ -10,7 +12,6 @@ const Contacto = () => {
     const sendMessage = async (e) => {
         //Prevent refresh
         e.preventDefault()
-
         //send Logic
         let myNewData = {
             name: data.nombre,
@@ -18,9 +19,8 @@ const Contacto = () => {
             message: data.comentario
         }
 
-        let res = await axios.post(`${process.env.REACT_APP_API_URL}/contacts`,myNewData,{headers:{'Content-Type': 'application/json'}})
+        let res = await service.post('contacts', myNewData, { headers:{'Content-Type': 'application/json'} })
         setIsLoading(true)
-
         if(res.statusText === "OK") setIsLoading(false)
         //Clear Form
         document.getElementById("form").reset()

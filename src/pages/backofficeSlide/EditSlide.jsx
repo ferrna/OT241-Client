@@ -1,14 +1,12 @@
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router'
-import axios from 'axios'
+import httpService from '../../services/httpService';
+
+const service = new httpService();
 
 const EditSlide = () => {
     const navigate = useNavigate()
     const {state} = useLocation()
-    const config = {     
-        headers: { 'content-type': 'multipart/form-data' }
-    }
-
 
     //States
     const [image, setImage] = React.useState(state.props.imageUrl)
@@ -25,14 +23,15 @@ const EditSlide = () => {
             formData.append("text", text)
             formData.append("order", order)
             const form = document.getElementById("formulario")
-            const { data } = await axios.put(`process.env.REACT_APP_API_URL/slides/${state.props.id}`, formData, config)
-            console.log(data)
+            const config = {     
+                headers: { 'content-type': 'multipart/form-data' }
+            }
+            await service.put("slides", state.props.id, formData, config)
             form.reset()
             navigate(-1)
         } catch (e) {
             console.log(e)
         }
-
     }
   return (
     <div>

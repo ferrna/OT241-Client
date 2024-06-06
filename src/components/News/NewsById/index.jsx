@@ -3,7 +3,9 @@ import { useParams } from "react-router-dom";
 import Loader from "../../Loader";
 import ErrorMessage from "../../ErrorMessage";
 import News from "./News";
-import axios from "axios";
+import httpService from "../../../services/httpService";
+
+const service = new httpService();
 
 function NewsById() {
   const [isLoading, setIsLoading] = useState(true);
@@ -16,10 +18,10 @@ function NewsById() {
     async function fetchData() {
       if (mounted) {
         try {
-          let {data} = await axios.get(`${process.env.REACT_APP_API_URL}/news/${id}`);
-          console.log(data);
-          setProps({ ...data.news });
-          setIsLoading(false);
+          service.get(`news/${id}`).then(res => {
+            setProps([...res.news])            
+            setIsLoading(false);
+          })
         } catch (err) {
           setErrors({ msg: "Endpoint not finded" });
           setIsLoading(false);
@@ -29,7 +31,7 @@ function NewsById() {
     fetchData();
     return () => (mounted = false);
     //eslint-disable-next-line
-  }, []);
+  }, [id]);
 
   return (
     <div className="w-100">
