@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { useLocation, Link } from 'react-router-dom';
 
 import httpService from "../../services/httpService";
+import Partners from './Partners';
 
 const service = new httpService();
 
@@ -49,10 +50,9 @@ const Footer = ()=> {
         : 'text-decoration-none text-body'
   
     return(
-        <footer style={{
-            backgroundColor: "#C0C0C0",
-            marginTop: '6rem'
-        }} className='container-fluid'>
+        <footer style={{ marginTop: '10rem' }}>
+          <div className='w-100 overflow-hidden position-relative'><img src="/images/footer-banner.jpg" alt="" /><Partners /></div>
+          <div style={{backgroundColor: "#C0C0C0"}} className='container-fluid'>
             <section style={{flexGrow: '1'}} className="d-flex flex-column w-100 h-75 align-items-center justify-content-evenly">
                 <div className="w-100 row bd-highlight align-items-center">
                     <span style={{
@@ -66,7 +66,7 @@ const Footer = ()=> {
                         src={Logo} alt="Logo"    
                     />
                     <span style={{
-                            height: "2px",
+                        height: "2px",
                             backgroundColor: "#000000"
                         }} 
                         className="col-3 col-sm-5 w-30">
@@ -106,6 +106,7 @@ const Footer = ()=> {
                     <p className='text-center'>2023 by Alkemy. All Rights Reserved.</p>
                 </div>
             </section>
+                        </div>
         </footer>
     )
 }

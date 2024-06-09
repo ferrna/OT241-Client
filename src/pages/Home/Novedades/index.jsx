@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import NovedadesItem from "./NovedadesItem.jsx";
+import { v4 as uuidv4 } from 'uuid'
 
 function Novedades({ homeNews }) {
   return (
@@ -14,7 +15,7 @@ function Novedades({ homeNews }) {
       <div className="container d-flex flex-wrap flex-xl-nowrap mb-5 overflow-hidden">
         {homeNews.map((news, i) => {
           let props = { ...news, i };
-          return <NovedadesItem key={i + 1} {...props} />;
+          return <NovedadesItem key={uuidv4()} {...props} />;
         })}
       </div>
     </>

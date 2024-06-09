@@ -11,7 +11,7 @@ function NewsById() {
   const [isLoading, setIsLoading] = useState(true);
   const [errors, setErrors] = useState(null);
   const { id } = useParams();
-  const [props, setProps] = useState();
+  const [props, setProps] = useState({});
 
   useEffect(() => {
     let mounted = true;
@@ -19,7 +19,8 @@ function NewsById() {
       if (mounted) {
         try {
           service.get(`news/${id}`).then(res => {
-            setProps([...res.news])            
+            setProps({ ...res.news })
+            console.log(res)
             setIsLoading(false);
           })
         } catch (err) {
@@ -30,7 +31,6 @@ function NewsById() {
     }
     fetchData();
     return () => (mounted = false);
-    //eslint-disable-next-line
   }, [id]);
 
   return (

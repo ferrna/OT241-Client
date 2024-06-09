@@ -54,8 +54,7 @@ function Profile() {
 
   return (
     <div className="container-fluid mb-5">
-      <h1 className="mb-4 text-center">{admin ? "Editar Usuario" : "Mi perfil"}</h1>
-
+      <h1 className="mb-4 text-center mt-5">{admin ? "Editar Usuario" : "Mi perfil"}</h1>
       <form className="card col-12 col-md-6 col-lg-4 mx-auto shadow" onSubmit={formik.handleSubmit}>
         <div className="card-body">
           <div className="d-flex justify-content-between mb-4">

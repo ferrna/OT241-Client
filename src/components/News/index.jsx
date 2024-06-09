@@ -25,7 +25,7 @@ const News = () => {
               <div className="card mb-3 p-3 m-2 mt-5 border-0 rounded-4" style={{maxWidth: "540px", backgroundColor: "#9AC9FB"}}>
               <div className="row g-0">
                 <div className="col-md-4">
-                  <img src={`process.env.REACT_APP_API_URL/images/${e.image}`} className="img-fluid rounded-3 shadow" alt="..." />
+                  <img src={`${e.image}`} className="img-fluid rounded-3 shadow" alt="..." />
                 </div>
                 <div className="col-md-8">
                   <div className="card-body">

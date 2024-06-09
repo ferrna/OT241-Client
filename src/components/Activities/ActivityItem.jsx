@@ -9,7 +9,7 @@ function Activity({ image, content, id, name }) {
           <div
             className="module--image-div col-lg-6 bg-cover d-flex justify-content-center align-items-center align-self-stretch rounded-4"
             style={{
-              backgroundImage: `url(${image})`,
+              backgroundImage: `url('${image}')`,
             }}
           ></div>
           <div className="col-lg-6 d-lg-flex align-self-lg-stretch">

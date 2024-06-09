@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-//import image1 from "../../../images/Novedad1.png";
 import { v4 as uuidv4 } from 'uuid'
 import { Link } from "react-router-dom";
 import "./styles.css";
@@ -21,7 +20,6 @@ function NovedadesItem({ image, content, id, name }) {
           backgroundColor: "#7E9AFD",
           border: "1px solid #0038FF",
         }}
-        key={uuidv4()}
       >
         <div className="row g-0 d-flex align-items-center align-items-lg-stretch">
           <div
@@ -29,15 +27,14 @@ function NovedadesItem({ image, content, id, name }) {
             style={{
               overflow: "hidden",
               flexGrow: "1",
-              backgroundImage: `url(process.env.REACT_APP_API_URL/images/${image})`,
+              backgroundImage: `url(${image})`,
               objectFit: "contain",
               backgroundRepeat: "no-repeat",
               backgroundSize: "auto 100%",
               backgroundPosition: "center center",
             }}
           >
-            {/* 
-            <img src={img1} className="img-fluid rounded-4 h-100" alt={`imagen-${name}`} /> */}
+            {/* <img src={image} className="img-fluid rounded-4 h-100" alt={`${image}`} /> */}
           </div>
           <div className="col-lg-6 d-lg-flex align-self-lg-stretch">
             <div className="d-flex flex-column justify-content-between pt-2 ps-lg-4 align-items-center">
@@ -46,7 +43,6 @@ function NovedadesItem({ image, content, id, name }) {
                 style={{
                   lineHeight: "1.7rem",
                 }}
-                key={uuidv4()}
                 id="contenido"
               >
               </p>

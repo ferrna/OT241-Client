@@ -1,5 +1,4 @@
 import React,{useState} from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import Loader from '../components/Loader'
 import httpService from '../services/httpService'
 
@@ -41,8 +40,8 @@ const Contacto = () => {
         <div className="container mt-5">
             <div className="row">
                 <div className="col-sm-12 col-lg-6">
-                <h2>What is Lorem Ipsum?</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis, ligula quis molestie mattis, est massa dignissim leo, vitae tempor ex turpis venenatis libero. Aliquam et accumsan urna, id accumsan sem. Ut sed faucibus mauris. Etiam nibh nisl, viverra in odio ac, lacinia vulputate massa. Duis facilisis lectus rutrum condimentum euismod. Morbi et venenatis dolor, ut efficitur nulla. Nam vitae ornare libero. Praesent nisl risus, molestie et urna ac, gravida ultrices velit.</p>
+                <h2>Nos pondremos en contacto a la brevedad,</h2>
+                    <p className="fs-5">Realiza cualquier consulta sobre nuestros programas, actividades o proyectos; informanos sobre algun acontecimiento, problema o situación; o ponte en contacto con nosotros y te estaremos respondiendo o contactando a la brevedad. Gracias.</p>
                 </div>
                 <div className="col-sm-12 col-lg-6">
                     <form onSubmit={sendMessage} id="form">
@@ -52,7 +51,7 @@ const Contacto = () => {
                         </div>
                         <div className="mb-3">
                             <label className="form-label">Email</label>
-                            <input type="email" className="form-control" name= "email" placeholder="correo@correo.cl" required onChange={handleInputChange}/>
+                            <input type="email" className="form-control" name= "email" placeholder="correo@correo.com" required onChange={handleInputChange}/>
                         </div>
                         <div className="mb-3">
                             <label className="form-label">Mensaje</label>
